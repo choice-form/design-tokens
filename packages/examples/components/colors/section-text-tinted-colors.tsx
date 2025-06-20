@@ -1,8 +1,4 @@
-import {
-  color,
-  spacing,
-  typographyStyles,
-} from "@choiceform/design-tokens/helpers";
+import { color, spacing, typographyStyles } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { memo, useState } from "react";
 import {

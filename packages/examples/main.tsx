@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // 导入基础重置样式
 import "@choiceform/design-tokens/tokens.css";
+import "@choiceform/design-tokens/preflight.css";
 
 // 导入设计令牌的CSS变量 - 如果新包有这个导出的话
 // import "@choiceform/design-tokens/style.css";

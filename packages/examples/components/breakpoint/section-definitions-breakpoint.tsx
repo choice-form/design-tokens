@@ -5,7 +5,8 @@ import {
   breakpointInfo,
   spacingList,
   typographyStyles,
-} from "@choiceform/design-tokens/helpers";
+  BreakpointKey,
+} from "@choiceform/design-tokens";
 import { styled } from "@linaria/react";
 import { Section } from "..";
 import { memo } from "react";
@@ -18,7 +19,7 @@ const BreakpointTable = styled.table`
   td {
     padding: ${spacingList([2, 4])};
     text-align: left;
-    border-bottom: 1px solid ${color("bd.default")};
+    border-bottom: 1px solid ${color("border.default")};
   }
 
   th {
@@ -56,14 +57,14 @@ export const SectionDefinitionsBreakpoint = memo(
           </thead>
           <tbody>
             {breakpointNames.map((name) => {
-              const info = breakpointInfo(name);
-              const value = breakpoint(name);
+              const info = breakpointInfo(name as BreakpointKey);
+              const value = breakpoint(name as BreakpointKey);
               return (
                 <tr key={name}>
                   <td>{name}</td>
                   <td>{value}</td>
                   <td>--cdt-breakpoints-{name}</td>
-                  <td>{info.mediaQuery}</td>
+                  <td>{info.name}</td>
                 </tr>
               );
             })}

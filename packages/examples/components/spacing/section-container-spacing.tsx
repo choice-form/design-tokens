@@ -1,4 +1,4 @@
-import { listBreakpoints } from "@choiceform/design-tokens/helpers";
+import { listBreakpoints } from "@choiceform/design-tokens";
 import { CSSProperties, Fragment, memo } from "react";
 import { Section } from "..";
 import {
@@ -48,7 +48,7 @@ export const SectionContainerSpacing = memo(function SectionContainerSpacing() {
             <SpacingBar
               style={
                 {
-                  "--width": "200px",
+                  "--width": `var(--cdt-breakpoints-${key.replace(".", "-")})`,
                 } as CSSProperties
               }
             />

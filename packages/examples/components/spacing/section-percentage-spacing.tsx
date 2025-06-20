@@ -3,7 +3,7 @@ import {
   fontWeight,
   spacing,
   spacingList,
-} from "@choiceform/design-tokens/helpers";
+} from "@choiceform/design-tokens";
 import { styled } from "@linaria/react";
 import { CSSProperties, Fragment, memo } from "react";
 import { Section } from "..";
@@ -51,14 +51,14 @@ const SpacingBar = styled.div`
   justify-content: center;
   align-items: center;
   height: ${spacing(4)};
-  background-color: ${color("bg.accent")};
-  color: ${color("fg.on-accent")};
+  background-color: ${color("background.accent")};
+  color: ${color("text.on-accent")};
   font-weight: ${fontWeight("medium")};
 `;
 
 const SpacingValue = styled.span`
   padding: ${spacing(2)} 0;
-  color: ${color("fg-default")};
+  color: ${color("text.default")};
 `;
 
 export const SectionPercentageSpacing = memo(

@@ -1,4 +1,4 @@
-import { color, radius, spacing } from "@choiceform/design-tokens/helpers";
+import { color, radius, spacing } from "@choiceform/design-tokens";
 import { styled } from "@linaria/react";
 import { memo } from "react";
 
@@ -17,10 +17,10 @@ const Select = styled.select`
   height: ${spacing(6)};
   margin-left: auto;
   padding: 0 ${spacing(1)};
-  border: 1px solid ${color("bd.default")};
+  border: 1px solid ${color("border.default")};
   border-radius: ${radius("md")};
-  background-color: ${color("bg.default")};
-  color: ${color("fg.default")};
+  background-color: ${color("background.default")};
+  color: ${color("text.default")};
 `;
 
 export const ColorTypesSelect = memo(function ColorTypesSelect(

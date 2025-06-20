@@ -201,16 +201,17 @@ const baseColorsDark = {
 };
 
 const semanticColorsLight = {
-  "foreground-default": "black",
-  "foreground-secondary": "black",
-  "foreground-tertiary": "black",
-  "foreground-accent": "blue-600",
-  "foreground-success": "green-600",
-  "foreground-warning": "yellow-950",
-  "foreground-danger": "red-600",
-  "foreground-assistive": "pink-600",
-  "foreground-component": "purple-600",
-  "foreground-inverse": "white",
+  "text-default": "black",
+  "text-secondary": "black",
+  "text-disabled": "black",
+  "text-tertiary": "black",
+  "text-accent": "blue-600",
+  "text-success": "green-600",
+  "text-warning": "yellow-950",
+  "text-danger": "red-600",
+  "text-assistive": "pink-600",
+  "text-component": "purple-600",
+  "text-inverse": "white",
 
   "background-default": "white",
   "background-secondary": "gray-100",
@@ -225,22 +226,23 @@ const semanticColorsLight = {
   "icon-tertiary": [178, 178, 178],
   "icon-disabled": [178, 178, 178],
 
-  "boundary-default": "gray-200",
-  "boundary-strong": "gray-800",
-  "boundary-selected-strong": "blue-600",
+  "border-default": "gray-200",
+  "border-strong": "gray-800",
+  "border-selected-strong": "blue-600",
 };
 
 const semanticColorsDark = {
-  "foreground-default": "white",
-  "foreground-secondary": "white",
-  "foreground-tertiary": "white",
-  "foreground-accent": "blue-400",
-  "foreground-success": "green-400",
-  "foreground-warning": "yellow-400",
-  "foreground-danger": "red-400",
-  "foreground-assistive": "pink-400",
-  "foreground-component": "purple-400",
-  "foreground-inverse": "black",
+  "text-default": "white",
+  "text-secondary": "white",
+  "text-disabled": "white",
+  "text-tertiary": "white",
+  "text-accent": "blue-400",
+  "text-success": "green-400",
+  "text-warning": "yellow-400",
+  "text-danger": "red-400",
+  "text-assistive": "pink-400",
+  "text-component": "purple-400",
+  "text-inverse": "black",
 
   "background-default": "gray-800",
   "background-secondary": "gray-700",
@@ -255,9 +257,9 @@ const semanticColorsDark = {
   "icon-tertiary": [128, 128, 128],
   "icon-disabled": [128, 128, 128],
 
-  "boundary-default": "gray-600",
-  "boundary-strong": "white",
-  "boundary-selected-strong": "blue-400",
+  "border-default": "gray-600",
+  "border-strong": "white",
+  "border-selected-strong": "blue-400",
 };
 
 const paleColors = {
@@ -376,10 +378,9 @@ const extendedSemanticColors = {
   "gray-900": [30, 30, 30],
   "gray-950": [17, 17, 17],
 
-  "foreground-disabled": "foreground-tertiary",
-  "foreground-on-accent": "white",
-  "foreground-on-accent-secondary": "white",
-  "foreground-on-accent-tertiary": "white",
+  "text-on-accent": "white",
+  "text-on-accent-secondary": "white",
+  "text-on-accent-tertiary": "white",
 
   "background-accent": "blue-500",
   "background-accent-hover": "blue-600",
@@ -402,41 +403,43 @@ const extendedSemanticColors = {
   "background-menu": "gray-900",
   "background-toolbar": "gray-800",
 
-  "boundary-selected": "blue-500",
-  "boundary-menu": "gray-700",
-  "boundary-toolbar": "gray-600",
+  "border-selected": "blue-500",
+  "border-menu": "gray-700",
+  "border-toolbar": "gray-600",
 };
 
 const defaultAlpha = {
-  "foreground-default": 0.9,
-  "foreground-secondary": 0.5,
-  "foreground-tertiary": 0.3,
+  "text-default": 0.9,
+  "text-secondary": 0.5,
+  "text-tertiary": 0.3,
+  "text-disabled": 0.3,
 
-  "foreground-secondary-dark": 0.7,
-  "foreground-tertiary-dark": 0.4,
-  "boundary-strong-dark": 0.9,
+  "text-secondary-dark": 0.7,
+  "text-tertiary-dark": 0.4,
+  "text-disabled-dark": 0.4,
+  "border-strong-dark": 0.9,
 
-  "foreground-on-accent-secondary": 0.8,
-  "foreground-on-accent-tertiary": 0.4,
+  "text-on-accent-secondary": 0.8,
+  "text-on-accent-tertiary": 0.4,
 };
 
 const colorAliases = {
-  "fg-default": "foreground-default",
-  "fg-secondary": "foreground-secondary",
-  "fg-tertiary": "foreground-tertiary",
-  "fg-disabled": "foreground-disabled",
-  "fg-inverse": "foreground-inverse",
+  "fg-default": "text-default",
+  "fg-secondary": "text-secondary",
+  "fg-tertiary": "text-tertiary",
+  "fg-disabled": "text-disabled",
+  "fg-inverse": "text-inverse",
 
-  "fg-on-accent": "foreground-on-accent",
-  "fg-on-accent-secondary": "foreground-on-accent-secondary",
-  "fg-on-accent-tertiary": "foreground-on-accent-tertiary",
+  "fg-on-accent": "text-on-accent",
+  "fg-on-accent-secondary": "text-on-accent-secondary",
+  "fg-on-accent-tertiary": "text-on-accent-tertiary",
 
-  "fg-accent": "foreground-accent",
-  "fg-success": "foreground-success",
-  "fg-warning": "foreground-warning",
-  "fg-danger": "foreground-danger",
-  "fg-assistive": "foreground-assistive",
-  "fg-component": "foreground-component",
+  "fg-accent": "text-accent",
+  "fg-success": "text-success",
+  "fg-warning": "text-warning",
+  "fg-danger": "text-danger",
+  "fg-assistive": "text-assistive",
+  "fg-component": "text-component",
 
   "bg-default": "background-default",
   "bg-secondary": "background-secondary",
@@ -471,12 +474,12 @@ const colorAliases = {
   "ic-tertiary": "icon-tertiary",
   "ic-disabled": "icon-disabled",
 
-  "bd-default": "boundary-default",
-  "bd-strong": "boundary-strong",
-  "bd-selected": "boundary-selected",
-  "bd-selected-strong": "boundary-selected-strong",
-  "bd-menu": "boundary-menu",
-  "bd-toolbar": "boundary-toolbar",
+  "bd-default": "border-default",
+  "bd-strong": "border-strong",
+  "bd-selected": "border-selected",
+  "bd-selected-strong": "border-selected-strong",
+  "bd-menu": "border-menu",
+  "bd-toolbar": "border-toolbar",
 };
 
 // 颜色分类映射
@@ -512,13 +515,13 @@ const colorCategories = {
   background: "background colors",
 
   // Text colors
-  foreground: "text colors",
+  text: "text colors",
 
   // Icon colors
   icon: "icon colors",
 
   // Border colors
-  boundary: "border colors",
+  border: "border colors",
 };
 
 // 导出所有颜色数据

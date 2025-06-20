@@ -1,4 +1,4 @@
-import { color, radius, spacing } from "@choiceform/design-tokens/helpers";
+import { color, ColorPath, radius, spacing } from "@choiceform/design-tokens";
 import { ToolbarFrame } from "@choiceform/icons-react";
 import { css } from "@linaria/core";
 import { memo, useState } from "react";
@@ -48,11 +48,7 @@ export const SectionBorderColors = memo(function SectionBorderColors() {
         {["light", "dark"].map((theme) => (
           <Panel theme={theme as "light" | "dark"} key={theme}>
             {defaultBorderGroups.map((colorData) => {
-              const colorKey = color(
-                colorData.colorKey as any,
-                1,
-                theme === "light" ? "." : "dark"
-              );
+              const colorKey = color(colorData.colorKey as ColorPath);
               return (
                 <div
                   key={colorData.name}
@@ -70,7 +66,6 @@ export const SectionBorderColors = memo(function SectionBorderColors() {
                         colorType={colorType}
                         shade={{
                           key: colorData.colorKey,
-                          opacity: 1,
                         }}
                         theme={theme as "light" | "dark"}
                       />
@@ -134,11 +129,7 @@ export const SectionBorderColors = memo(function SectionBorderColors() {
         {["light", "dark"].map((theme) => (
           <Panel theme={theme as "light" | "dark"} key={theme}>
             {selectionBorderGroups.map((colorData) => {
-              const colorKey = color(
-                colorData.colorKey as any,
-                1,
-                theme === "light" ? "." : "dark"
-              );
+              const colorKey = color(colorData.colorKey as ColorPath);
               return (
                 <div
                   key={colorData.name}
@@ -156,7 +147,6 @@ export const SectionBorderColors = memo(function SectionBorderColors() {
                         colorType={colorType}
                         shade={{
                           key: colorData.colorKey,
-                          opacity: 1,
                         }}
                         theme={theme as "light" | "dark"}
                       />
@@ -172,7 +162,7 @@ export const SectionBorderColors = memo(function SectionBorderColors() {
                     `}
                   >
                     <div
-                      data-strong={colorData.name === "bd.selected-strong"}
+                      data-strong={colorData.name === "border.selected-strong"}
                       className={css`
                         display: flex;
                         justify-content: center;
@@ -183,10 +173,8 @@ export const SectionBorderColors = memo(function SectionBorderColors() {
                         border-radius: ${radius("md")};
 
                         &[data-strong="true"] {
-                          background-color: ${color(
-                            "background.accent" as any
-                          )};
-                          color: ${color("foreground.on-accent" as any)};
+                          background-color: ${color("background.accent")};
+                          color: ${color("text.on-accent")};
                         }
                       `}
                     >
@@ -236,11 +224,7 @@ export const SectionBorderColors = memo(function SectionBorderColors() {
         {["light", "dark"].map((theme) => (
           <Panel theme={theme as "light" | "dark"} key={theme}>
             {menuBorderStrongGroups.map((colorData) => {
-              const colorKey = color(
-                colorData.colorKey as any,
-                1,
-                theme === "light" ? "." : "dark"
-              );
+              const colorKey = color(colorData.colorKey as ColorPath);
               return (
                 <div
                   key={colorData.name}
@@ -258,14 +242,13 @@ export const SectionBorderColors = memo(function SectionBorderColors() {
                         colorType={colorType}
                         shade={{
                           key: colorData.colorKey,
-                          opacity: 1,
                         }}
                         theme={theme as "light" | "dark"}
                       />
                     }
                   />
                   <div
-                    data-type={colorData.name.replace("bd.", "")}
+                    data-type={colorData.name.replace("border.", "")}
                     className={css`
                       display: flex;
                       justify-content: center;
@@ -274,7 +257,7 @@ export const SectionBorderColors = memo(function SectionBorderColors() {
                       padding: ${spacing(4)};
 
                       &[data-type="menu"] {
-                        background-color: ${color("bg.menu" as any)};
+                        background-color: ${color("background.menu")};
                       }
 
                       &[data-type="toolbar"] {

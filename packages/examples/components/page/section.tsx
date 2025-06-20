@@ -3,7 +3,7 @@ import {
   mediaQuery,
   spacing,
   typographyStyles,
-} from "@choiceform/design-tokens/helpers";
+} from "@choiceform/design-tokens";
 import { styled } from "@linaria/react";
 import { memo } from "react";
 
@@ -17,7 +17,6 @@ interface SectionProps {
 
 const SectionRoot = styled.section`
   margin-bottom: ${spacing(32)};
-  ${typographyStyles("body.medium")};
 `;
 const SectionContainer = styled.div`
   display: grid;
@@ -30,9 +29,13 @@ const SectionContainer = styled.div`
   }
 `;
 
+const SectionLeftColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${spacing(4)};
+`;
+
 const SectionTitle = styled.h2`
-  margin-bottom: ${spacing(4)};
-  color: ${color("fg.default")};
   ${typographyStyles("heading.small")};
 `;
 
@@ -69,10 +72,10 @@ export const Section = memo(function Section(props: SectionProps) {
   return (
     <SectionRoot className={className}>
       <SectionContainer data-orientation={orientation}>
-        <div>
+        <SectionLeftColumn>
           <SectionTitle>{title}</SectionTitle>
           <SectionContent>{content}</SectionContent>
-        </div>
+        </SectionLeftColumn>
         <SectionChildren>{children}</SectionChildren>
       </SectionContainer>
     </SectionRoot>

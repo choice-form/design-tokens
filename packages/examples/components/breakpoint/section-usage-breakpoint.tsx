@@ -1,4 +1,4 @@
-import { color } from "@choiceform/design-tokens/helpers";
+import { color } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { styled } from "@linaria/react";
 import { memo } from "react";
@@ -12,11 +12,11 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   &:not(:last-child) {
-    border-bottom: 1px solid ${color("bd.default")};
+    border-bottom: 1px solid ${color("border.default")};
   }
 `;
 
-const mediaQueryFunctionsCode = `import { mediaQuery, mediaQueryDown } from '@choiceform/design-tokens/helpers'
+const mediaQueryFunctionsCode = `import { mediaQuery, mediaQueryDown } from '@choiceform/design-tokens'
 
 // "@media screen and (min-width: 768px)"
 mediaQuery("md")
@@ -28,7 +28,7 @@ mediaQueryDown("lg")
 // or combine with custom CSS media queries
 `;
 
-const devicePresetFunctionsCode = `import { mediaQuery } from '@choiceform/design-tokens/helpers'
+const devicePresetFunctionsCode = `import { mediaQuery } from '@choiceform/design-tokens'
 
 // Mobile-first approach using named breakpoints
 // "@media screen and (min-width: 640px)"  // small screens
@@ -49,7 +49,7 @@ export const SectionUsageBreakpoint = memo(function SectionUsageBreakpoint() {
         <span
           key={content + Math.random()}
           className={css`
-            color: ${color("fg.secondary")};
+            color: ${color("text.secondary")};
           `}
         >
           {content}
@@ -62,7 +62,7 @@ export const SectionUsageBreakpoint = memo(function SectionUsageBreakpoint() {
         <span
           key={content + Math.random()}
           className={css`
-            color: ${color("fg.assistive")};
+            color: ${color("text.assistive")};
           `}
         >
           {content}
@@ -74,7 +74,7 @@ export const SectionUsageBreakpoint = memo(function SectionUsageBreakpoint() {
         <span
           key={content + Math.random()}
           className={css`
-            color: ${color("fg.assistive")};
+            color: ${color("text.assistive")};
           `}
         >
           {content}

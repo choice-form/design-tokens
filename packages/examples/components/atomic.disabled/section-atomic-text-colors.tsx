@@ -1,9 +1,9 @@
-import { color, spacing, typographyStyles } from "@choiceform/design-tokens/helpers";
+import { color, spacing, typographyStyles } from "@choiceform/design-tokens";
 import { css, cx } from "@linaria/core";
 import { memo } from "react";
 import { CodeBlock, ColorField, ColorValue, Panel, Section } from "..";
 import { text } from "../../../css-in-js/src/atomic";
-import { BaseColorKey } from "@choiceform/design-tokens/helpers";
+import { BaseColorKey } from "@choiceform/design-tokens";
 
 const textColorCode = `
 <div

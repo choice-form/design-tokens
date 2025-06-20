@@ -1,4 +1,4 @@
-// import { scale } from "@choiceform/design-tokens/helpers";
+// import { scale } from "@choiceform/design-tokens";
 import { CSSProperties, Fragment, memo } from "react";
 import { Section } from "..";
 import {

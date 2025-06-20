@@ -1,4 +1,4 @@
-import { color, spacing } from "@choiceform/design-tokens/helpers";
+import { color, spacing } from "@choiceform/design-tokens";
 import { styled } from "@linaria/react";
 
 export const Container = styled.div`
@@ -21,20 +21,20 @@ export const SpacingGrid = styled.div`
 export const SpacingBar = styled.div`
   width: var(--width);
   height: ${spacing(4)};
-  background-color: ${color("bg.accent")};
+  background-color: ${color("background.accent")};
 `;
 
 export const SpacingValue = styled.span`
   padding: ${spacing(2)};
-  color: ${color("fg.default")};
+  color: ${color("text.default")};
 `;
 
 export const SpacingLabel = styled.span`
-  color: ${color("fg.assistive")};
+  color: ${color("text.assistive")};
 `;
 
 export const SpacingDivider = styled.div`
   grid-column: 1 / -1;
   height: ${spacing("px")};
-  background-color: ${color("bd.default")};
+  background-color: ${color("border.default")};
 `;

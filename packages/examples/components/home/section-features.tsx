@@ -3,7 +3,7 @@ import {
   mediaQuery,
   spacing,
   typographyStyles,
-} from "@choiceform/design-tokens/helpers";
+} from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import React from "react";
 import { Container } from "../page";
@@ -51,7 +51,7 @@ const featuresData: Feature[] = [
 
 const sectionClass = css`
   padding: ${spacing(12)} 0;
-  background-color: ${color("bg.default")};
+  background-color: ${color("background.default")};
 `;
 
 const contentClass = css`
@@ -62,7 +62,7 @@ const contentClass = css`
 const sectionTitleClass = css`
   margin-bottom: ${spacing(8)};
   ${typographyStyles("heading.large")};
-  color: ${color("fg.default")};
+  color: ${color("text.default")};
   text-align: center;
 
   ${mediaQuery("md")} {
@@ -73,7 +73,7 @@ const sectionTitleClass = css`
 const featureClass = css`
   margin-bottom: ${spacing(8)};
   padding-bottom: ${spacing(6)};
-  border-bottom: 1px solid ${color("bd.default")};
+  border-bottom: 1px solid ${color("border.default")};
 
   &:last-child {
     border-bottom: none;
@@ -84,13 +84,13 @@ const featureClass = css`
 const featureTitleClass = css`
   margin-bottom: ${spacing(3)};
   ${typographyStyles("heading.medium")};
-  color: ${color("fg-default")};
+  color: ${color("text.default")};
 `;
 
 const featureDescClass = css`
   margin-bottom: ${spacing(4)};
   ${typographyStyles("body.medium")};
-  color: ${color("fg.secondary")};
+  color: ${color("text.secondary")};
 `;
 
 const featureListClass = css`
@@ -112,7 +112,7 @@ const featureItemClass = css`
 
   &::before {
     content: "•";
-    color: ${color("fg.accent")};
+    color: ${color("text.accent")};
     font-weight: bold;
     flex-shrink: 0;
     margin-top: ${spacing(0.5)};
@@ -121,7 +121,7 @@ const featureItemClass = css`
 
 const featureItemTextClass = css`
   ${typographyStyles("body.medium")};
-  color: ${color("fg.default")};
+  color: ${color("text.default")};
 `;
 
 export const SectionFeatures: React.FC = () => {

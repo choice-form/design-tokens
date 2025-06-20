@@ -1,4 +1,4 @@
-import { spacing } from "@choiceform/design-tokens/helpers";
+import { spacing } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { memo } from "react";
 import { Panel, Section } from "..";

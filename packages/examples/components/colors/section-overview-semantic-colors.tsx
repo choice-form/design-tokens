@@ -1,4 +1,4 @@
-import { color } from "@choiceform/design-tokens/helpers";
+import { color } from "@choiceform/design-tokens";
 import { memo, useState } from "react";
 import {
   ColorField,

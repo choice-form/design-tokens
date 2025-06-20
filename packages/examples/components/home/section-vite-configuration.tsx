@@ -4,7 +4,7 @@ import {
   spacingList,
   typographyStyles,
   mediaQuery,
-} from "@choiceform/design-tokens/helpers";
+} from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import React from "react";
 import { CodeBlock } from "../ui";
@@ -12,7 +12,7 @@ import { Container } from "../page";
 
 const sectionClass = css`
   padding: ${spacingList([12, 0, 48, 0])};
-  background-color: ${color("bg.default")};
+  background-color: ${color("background.default")};
 `;
 
 const contentClass = css`
@@ -23,7 +23,7 @@ const contentClass = css`
 const sectionTitleClass = css`
   margin-bottom: ${spacing(8)};
   ${typographyStyles("heading.large")};
-  color: ${color("fg.default")};
+  color: ${color("text.default")};
   text-align: center;
 
   ${mediaQuery("md")} {
@@ -42,13 +42,13 @@ const stepClass = css`
 const stepTitleClass = css`
   margin-bottom: ${spacing(3)};
   ${typographyStyles("heading.medium")};
-  color: ${color("fg.default")};
+  color: ${color("text.default")};
 `;
 
 const stepDescClass = css`
   margin-bottom: ${spacing(4)};
   ${typographyStyles("body.medium")};
-  color: ${color("fg.secondary")};
+  color: ${color("text.secondary")};
 `;
 
 export const SectionViteConfiguration: React.FC = () => {
@@ -70,7 +70,7 @@ export const SectionViteConfiguration: React.FC = () => {
         <span
           key={content + Math.random()}
           className={css`
-            color: ${color("fg.secondary")};
+            color: ${color("text.secondary")};
           `}
         >
           {content}
@@ -82,7 +82,7 @@ export const SectionViteConfiguration: React.FC = () => {
         <span
           key={content + Math.random()}
           className={css`
-            color: ${color("fg.assistive")};
+            color: ${color("text.assistive")};
           `}
         >
           {content}
@@ -108,7 +108,7 @@ export const SectionViteConfiguration: React.FC = () => {
               language="bash"
               customHighlight={customHighlight}
               className={css`
-                background-color: ${color("bg.secondary")};
+                background-color: ${color("background.secondary")};
               `}
             />
           </div>
@@ -139,7 +139,7 @@ export default defineConfig({
               language="typescript"
               customHighlight={customHighlight}
               className={css`
-                background-color: ${color("bg.secondary")};
+                background-color: ${color("background.secondary")};
               `}
             />
           </div>

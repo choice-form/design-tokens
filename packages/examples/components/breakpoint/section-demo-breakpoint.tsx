@@ -3,7 +3,7 @@ import {
   spacing,
   typographyStyles,
   mediaQuery,
-} from "@choiceform/design-tokens/helpers";
+} from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { styled } from "@linaria/react";
 import { memo, useEffect, useState } from "react";
@@ -11,17 +11,17 @@ import { CodeBlock, Section } from "..";
 
 const Container = styled.div`
   padding: ${spacing(4)};
-  background-color: ${color("bg.secondary")};
+  background-color: ${color("background.secondary")};
 
   /* 响应式样式演示 */
   ${mediaQuery("sm")} {
     padding: ${spacing(6)};
-    background-color: ${color("bg.accent", 0.1)};
+    background-color: ${color("background.accent", 0.1)};
   }
 
   ${mediaQuery("md")} {
     padding: ${spacing(8)};
-    background-color: ${color("bg.accent", 0.2)};
+    background-color: ${color("background.accent", 0.2)};
   }
 
   ${mediaQuery("lg")} {
@@ -29,7 +29,7 @@ const Container = styled.div`
     grid-template-columns: 1fr 1fr;
     gap: ${spacing(6)};
     padding: ${spacing(10)};
-    background-color: ${color("bg.accent", 0.3)};
+    background-color: ${color("background.accent", 0.3)};
   }
 `;
 
@@ -45,7 +45,7 @@ const Content = styled.div`
 `;
 
 const Code = styled.div`
-  background: ${color("bg.default")};
+  background: ${color("background.default")};
 `;
 
 const demoCode = `const ResponsiveDemo = styled.div\`
@@ -93,7 +93,7 @@ export const SectionDemoBreakpoint = memo(function SectionDemoBreakpoint() {
         <span
           key={content + Math.random()}
           className={css`
-            color: ${color("fg-assistive")};
+            color: ${color("text.assistive")};
           `}
         >
           {content}
@@ -129,7 +129,7 @@ export const SectionDemoBreakpoint = memo(function SectionDemoBreakpoint() {
             Current viewport width:{" "}
             <span
               className={css`
-                color: ${color("fg.assistive")};
+                color: ${color("text.assistive")};
               `}
             >
               {viewportWidth}px
@@ -139,7 +139,7 @@ export const SectionDemoBreakpoint = memo(function SectionDemoBreakpoint() {
             Current breakpoint:{" "}
             <span
               className={css`
-                color: ${color("fg.assistive")};
+                color: ${color("text.assistive")};
               `}
             >
               {currentBreakpoint}

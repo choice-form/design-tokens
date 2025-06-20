@@ -4,9 +4,8 @@ import {
   colorHex,
   colorRgb,
   getAllAvailableColors,
-  getColorsByCategory,
-} from "@choiceform/design-tokens/helpers";
-import type { ColorPath } from "@choiceform/design-tokens/helpers";
+} from "@choiceform/design-tokens";
+import type { ColorPath } from "@choiceform/design-tokens";
 import tinycolor from "tinycolor2";
 
 export type ColorType =
@@ -46,8 +45,8 @@ export function getRealColorValue(
 
     try {
       // 修复：调整 colorHex 和 colorRgb 的参数顺序
-      hexValue = colorHex(colorKey, themeMode);
-      const [r, g, b] = colorRgb(colorKey, themeMode);
+      hexValue = colorHex(colorKey as ColorPath, themeMode);
+      const [r, g, b] = colorRgb(colorKey as ColorPath, themeMode);
       rgbValue = `rgb(${r}, ${g}, ${b})`;
     } catch (error) {
       // 如果找不到颜色，标记为无效
@@ -123,7 +122,7 @@ export function getColorsByType(
   category: "background" | "foreground" | "boundary" | "icon"
 ): string[] {
   try {
-    return getColorsByCategory(category);
+    return getAllAvailableColors();
   } catch (error) {
     console.warn(`Failed to get colors for category ${category}:`, error);
     return [];
@@ -135,7 +134,7 @@ export function getColorsByType(
  */
 export function isValidColorKey(colorKey: string): boolean {
   // 修复：为 hasColor 函数提供正确的参数
-  return hasColor(colorKey, ".");
+  return hasColor(colorKey as ColorPath, ".");
 }
 
 /**

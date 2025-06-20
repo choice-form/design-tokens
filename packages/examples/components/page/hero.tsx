@@ -1,8 +1,4 @@
-import {
-  color,
-  spacing,
-  typographyStyles,
-} from "@choiceform/design-tokens/helpers";
+import { color, spacing, typographyStyles } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { memo } from "react";
 
@@ -13,13 +9,13 @@ const heroClass = css`
 
 const heroTitleClass = css`
   margin-bottom: ${spacing(4)};
-  color: ${color("fg.default")};
+  color: ${color("text.default")};
   ${typographyStyles("heading.large")};
 `;
 
 const heroDescriptionClass = css`
   margin-bottom: ${spacing(6)};
-  color: ${color("fg.secondary")};
+  color: ${color("text.secondary")};
 `;
 
 interface HeroProps {

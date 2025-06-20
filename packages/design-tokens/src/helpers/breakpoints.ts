@@ -1,218 +1,54 @@
 // ============================================================================
 // Breakpoint Helper Functions - 断点辅助函数
 // ============================================================================
+//
+// ⚠️ DEPRECATED: 这个文件已弃用
+// 请使用 tokens.js 中的函数代替
+//
+// tokens.js 包含了所有的 helper 函数和更准确的类型定义
+// 注意：breakpoint 相关功能已集成到 spacing() 函数中
+// ============================================================================
 
-import { getAllTokenPaths, getToken } from "./tokens";
-import type {
-  BreakpointValue,
-  MediaQueryType,
-  ThemeMode,
-} from "../types/helpers";
+// 弃用警告 - 防止实际使用
+console.warn(`
+⚠️  弃用警告: src/helpers/breakpoints.ts 已被弃用
 
-// 定义尺寸令牌的类型
-interface DimensionToken {
-  value: number;
-  unit: string;
+新的导入方式：
+import { 
+  breakpoint, mediaQuery, mediaQueryRule, breakpointExists, listBreakpoints 
+} from "@choiceform/design-tokens";
+
+所有 breakpoint 和 mediaQuery 相关函数现在都从 tokens.js 统一导出
+`);
+
+// 抛出错误以阻止使用
+throw new Error("此 breakpoints helper 文件已弃用，请使用 tokens.js 中的函数");
+
+// 为了类型兼容性，导出空函数
+export function breakpoint(): never {
+  throw new Error("已弃用，请使用 tokens.js");
 }
 
-/**
- * 检查是否为尺寸令牌
- * @param token - 令牌对象
- * @returns 是否为尺寸令牌
- */
-function isDimensionToken(token: any): token is DimensionToken {
-  return (
-    token &&
-    typeof token === "object" &&
-    typeof token.value === "number" &&
-    typeof token.unit === "string"
-  );
+export function mediaQuery(): never {
+  throw new Error("已弃用，请使用 tokens.js");
 }
 
-/**
- * 获取断点值（编译时类型检查版本）
- * @param name - 断点名称
- * @param mode - 主题模式
- * @returns CSS 断点值
- * @example
- *   breakpoint("sm")   // "640px"
- *   breakpoint("md")   // "768px"
- *   breakpoint("lg")   // "1024px"
- */
-export function breakpoint(name: BreakpointValue, mode?: ThemeMode): string;
-
-/**
- * 获取断点值（运行时动态值版本）
- * @param name - 断点名称
- * @param mode - 主题模式
- * @returns CSS 断点值
- */
-export function breakpoint(name: string, mode?: ThemeMode): string;
-
-/**
- * 获取断点值（实现）
- */
-export function breakpoint(name: string, mode: ThemeMode = "."): string {
-  const tokenPath = `breakpoints.${name}`;
-
-  try {
-    const tokenValue = getToken(tokenPath, mode);
-
-    if (!isDimensionToken(tokenValue)) {
-      throw new Error(
-        `Token at path '${tokenPath}' is not a valid dimension token`
-      );
-    }
-
-    return `${tokenValue.value}${tokenValue.unit}`;
-  } catch (error) {
-    const availableBreakpoints = listBreakpoints();
-    throw new Error(
-      `Breakpoint '${name}' not found. Available breakpoints: ${availableBreakpoints.join(", ")}`
-    );
-  }
+export function mediaQueryDown(): never {
+  throw new Error("已弃用，请使用 tokens.js");
 }
 
-/**
- * 生成媒体查询（编译时类型检查版本）
- * @param name - 断点名称
- * @param type - 媒体查询类型，默认 "screen"
- * @param mode - 主题模式
- * @returns 完整的媒体查询字符串
- * @example
- *   mediaQuery("md")          // "@media screen and (min-width: 768px)"
- *   mediaQuery("lg", "print") // "@media print and (min-width: 1024px)"
- */
-export function mediaQuery(
-  name: BreakpointValue,
-  type?: MediaQueryType,
-  mode?: ThemeMode
-): string;
-
-/**
- * 生成媒体查询（运行时动态值版本）
- */
-export function mediaQuery(
-  name: string,
-  type?: MediaQueryType,
-  mode?: ThemeMode
-): string;
-
-/**
- * 生成媒体查询（实现）
- */
-export function mediaQuery(
-  name: string,
-  type: MediaQueryType = "screen",
-  mode?: ThemeMode
-): string {
-  const breakpointValue = breakpoint(name, mode);
-  return `@media ${type} and (min-width: ${breakpointValue})`;
+export function breakpointList(): never {
+  throw new Error("已弃用，请使用 tokens.js");
 }
 
-/**
- * 生成向下媒体查询（max-width）（编译时类型检查版本）
- * @param name - 断点名称
- * @param type - 媒体查询类型，默认 "screen"
- * @param mode - 主题模式
- * @returns 向下的媒体查询字符串
- * @example
- *   mediaQueryDown("md")     // "@media screen and (max-width: 767.98px)"
- */
-export function mediaQueryDown(
-  name: BreakpointValue,
-  type?: MediaQueryType,
-  mode?: ThemeMode
-): string;
-
-/**
- * 生成向下媒体查询（运行时动态值版本）
- */
-export function mediaQueryDown(
-  name: string,
-  type?: MediaQueryType,
-  mode?: ThemeMode
-): string;
-
-/**
- * 生成向下媒体查询（实现）
- */
-export function mediaQueryDown(
-  name: string,
-  type: MediaQueryType = "screen",
-  mode?: ThemeMode
-): string {
-  const tokenPath = `breakpoints.${name}`;
-  const tokenValue = getToken(tokenPath, mode || ".");
-
-  if (!isDimensionToken(tokenValue)) {
-    throw new Error(`Breakpoint '${name}' not found`);
-  }
-
-  // 减去 0.02px 以避免重叠
-  const maxValue = tokenValue.value - 0.02;
-  return `@media ${type} and (max-width: ${maxValue}${tokenValue.unit})`;
+export function listBreakpoints(): never {
+  throw new Error("已弃用，请使用 tokens.js");
 }
 
-/**
- * 批量获取多个断点值
- * @param names - 断点名称数组
- * @param mode - 主题模式
- * @returns CSS 断点值数组
- * @example
- *   breakpointList("sm", "md")  // ["640px", "768px"]
- */
-export function breakpointList(...names: BreakpointValue[]): string[] {
-  return names.map((name) => breakpoint(name));
+export function breakpointExists(): never {
+  throw new Error("已弃用，请使用 tokens.js");
 }
 
-/**
- * 获取所有可用的断点名称
- * @returns 断点名称数组
- */
-export function listBreakpoints(): string[] {
-  return getAllTokenPaths()
-    .filter((path) => path.startsWith("breakpoints."))
-    .map((path) => path.replace("breakpoints.", ""))
-    .sort();
-}
-
-/**
- * 检查断点是否存在
- * @param name - 断点名称
- * @param mode - 主题模式
- * @returns 是否存在
- */
-export function breakpointExists(name: string, mode?: ThemeMode): boolean {
-  try {
-    breakpoint(name, mode);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-/**
- * 获取断点的详细信息
- * @param name - 断点名称
- * @param mode - 主题模式
- * @returns 断点详细信息
- */
-export function breakpointInfo(name: string, mode: ThemeMode = ".") {
-  const tokenPath = `breakpoints.${name}`;
-  const tokenValue = getToken(tokenPath, mode);
-
-  if (!isDimensionToken(tokenValue)) {
-    throw new Error(`Breakpoint '${name}' not found`);
-  }
-
-  return {
-    name,
-    path: tokenPath,
-    value: tokenValue.value,
-    unit: tokenValue.unit,
-    cssValue: `${tokenValue.value}${tokenValue.unit}`,
-    mediaQuery: mediaQuery(name, "screen", mode),
-    mediaQueryDown: mediaQueryDown(name, "screen", mode),
-  };
+export function breakpointInfo(): never {
+  throw new Error("已弃用，请使用 tokens.js");
 }

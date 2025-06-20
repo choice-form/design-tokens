@@ -3,7 +3,7 @@ import {
   spacing,
   typographyStyles,
   mediaQuery,
-} from "@choiceform/design-tokens/helpers";
+} from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -22,7 +22,7 @@ const heroContentClass = css`
 const heroTitleClass = css`
   margin-bottom: ${spacing(4)};
   ${typographyStyles("heading.display")};
-  color: ${color("foreground.default")};
+  color: ${color("text.default")};
   font-weight: 600;
   text-align: center;
 
@@ -34,7 +34,7 @@ const heroTitleClass = css`
 const heroSubtitleClass = css`
   margin-bottom: ${spacing(8)};
   ${typographyStyles("body.large")};
-  color: ${color("foreground.secondary")};
+  color: ${color("text.secondary")};
   text-align: center;
 
   ${mediaQuery("md")} {
@@ -59,10 +59,10 @@ const buttonClass = css`
   align-items: center;
   gap: ${spacing(2)};
   padding: ${spacing(2)} ${spacing(4)};
-  border: 1px solid ${color("boundary.default")};
+  border: 1px solid ${color("border.default")};
   border-radius: ${spacing(1)};
   background-color: ${color("background.default")};
-  color: ${color("foreground.default")};
+  color: ${color("text.default")};
   text-decoration: none;
   ${typographyStyles("body.medium")};
   cursor: pointer;
@@ -70,7 +70,7 @@ const buttonClass = css`
 
 const primaryButtonClass = css`
   background-color: ${color("background.inverse")};
-  color: ${color("foreground.inverse")};
+  color: ${color("text.inverse")};
   border-color: ${color("background.inverse")};
 `;
 
@@ -90,7 +90,7 @@ const badgeClass = css`
   padding: ${spacing(1)} ${spacing(3)};
   background-color: ${color("background.secondary")};
   ${typographyStyles("body.small")};
-  color: ${color("foreground.secondary")};
+  color: ${color("text.secondary")};
   white-space: nowrap;
 `;
 
@@ -99,7 +99,7 @@ export const SectionHero: React.FC = () => {
     <section className={heroSectionClass}>
       <Container>
         <div className={heroContentClass}>
-          <h1 className={heroTitleClass}>@choiceform/design-tokens/helpers</h1>
+          <h1 className={heroTitleClass}>@choiceform/design-tokens</h1>
 
           <p className={heroSubtitleClass}>
             Modern CSS-in-JS design tokens system with Linaria. Zero runtime

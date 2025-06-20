@@ -18,63 +18,44 @@ const {
 // ============================================================================
 
 /**
- * 解析带单位的值
+ * 解析 CSS 颜色到标准 rgba 格式
  */
-function parseValueWithUnit(value) {
-  const match = value.match(/^(-?\d*\.?\d+)(.*)$/);
-  if (!match) {
-    return { value: 0, unit: "px" };
-  }
-  return {
-    value: parseFloat(match[1]),
-    unit: match[2] || "px",
-  };
-}
+function parseColorToTerrazzo(colorStr) {
+  if (!colorStr) return "rgba(0, 0, 0, 1)";
 
-/**
- * 解析 CSS 颜色到 W3C 格式
- */
-function parseColorToW3C(colorStr) {
-  // 解析 rgb(r, g, b) 或 rgb(r g b / alpha) 格式
+  // 解析 rgb(r g b / alpha) 格式转换为 rgba(r, g, b, alpha)
   const rgbMatch = colorStr.match(
-    /rgb\(\s*(\d+)\s*[,\s]\s*(\d+)\s*[,\s]\s*(\d+)(?:\s*\/\s*([\d.]+))?\s*\)/
+    /rgba?\(\s*(\d+)\s+(\d+)\s+(\d+)\s*\/\s*([\d.]+)\s*\)/
   );
   if (rgbMatch) {
     const r = parseInt(rgbMatch[1]);
     const g = parseInt(rgbMatch[2]);
     const b = parseInt(rgbMatch[3]);
-    const alpha = rgbMatch[4] ? parseFloat(rgbMatch[4]) : 1;
-
-    return {
-      colorSpace: "srgb",
-      components: [r / 255, g / 255, b / 255],
-      alpha: alpha,
-    };
+    const alpha = parseFloat(rgbMatch[4]);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
   }
 
-  // 解析 rgba(r, g, b, alpha) 或 rgba(r g b / alpha) 格式
+  // 解析 rgba(r, g, b, alpha) 格式（保持原样）
   const rgbaMatch = colorStr.match(
-    /rgba\(\s*(\d+)\s*[,\s]\s*(\d+)\s*[,\s]\s*(\d+)\s*[,\/]\s*([\d.]+)\s*\)/
+    /rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*([\d.]+)\s*\)/
   );
   if (rgbaMatch) {
-    const r = parseInt(rgbaMatch[1]);
-    const g = parseInt(rgbaMatch[2]);
-    const b = parseInt(rgbaMatch[3]);
-    const alpha = parseFloat(rgbaMatch[4]);
+    return colorStr; // 已经是正确格式
+  }
 
-    return {
-      colorSpace: "srgb",
-      components: [r / 255, g / 255, b / 255],
-      alpha: alpha,
-    };
+  // 解析 rgb(r, g, b) 格式转换为 rgba(r, g, b, 1)
+  const rgbSimpleMatch = colorStr.match(
+    /rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/
+  );
+  if (rgbSimpleMatch) {
+    const r = parseInt(rgbSimpleMatch[1]);
+    const g = parseInt(rgbSimpleMatch[2]);
+    const b = parseInt(rgbSimpleMatch[3]);
+    return `rgba(${r}, ${g}, ${b}, 1)`;
   }
 
   // 默认返回黑色
-  return {
-    colorSpace: "srgb",
-    components: [0, 0, 0],
-    alpha: 1,
-  };
+  return "rgba(0, 0, 0, 1)";
 }
 
 // 辅助函数：解析 CSS 阴影字符串
@@ -82,33 +63,51 @@ function parseCssShadow(shadowString) {
   // 移除多余空格
   shadowString = shadowString.trim();
 
-  // 检查是否为内嵌阴影
-  const isInset = shadowString.startsWith("inset");
+  // 检查是否为内嵌阴影（可能在开头或结尾）
+  const isInset = shadowString.includes("inset");
   if (isInset) {
-    shadowString = shadowString.replace(/^inset\s+/, "");
+    shadowString = shadowString
+      .replace(/^inset\s+/, "")
+      .replace(/\s+inset$/, "");
   }
 
   // 查找颜色部分
   let color = null;
   let colorString = "";
 
-  // 匹配 rgb/rgba 颜色
+  // 匹配 rgb/rgba 颜色（包括空格分隔格式）
   const colorMatch = shadowString.match(/(rgba?\([^)]+\))/);
   if (colorMatch) {
     colorString = colorMatch[0];
-    color = parseColorToW3C(colorString);
+    color = parseColorToTerrazzo(colorString);
   }
 
   // 移除颜色部分，获取数值部分
   const valuesString = shadowString.replace(colorString, "").trim();
   const values = valuesString.split(/\s+/).filter((v) => v);
 
+  // 辅助函数：确保值有单位
+  const ensureUnit = (value) => {
+    if (!value) return "0px";
+    // 如果是纯数字（包括 "0"），添加 px 单位
+    if (/^\d+(\.\d+)?$/.test(value)) {
+      return value + "px";
+    }
+    return value;
+  };
+
+  // Terrazzo 官方推荐格式：字符串格式的距离值，所有值都需要单位
+  const offsetX = ensureUnit(values[0]);
+  const offsetY = ensureUnit(values[1]);
+  const blur = ensureUnit(values[2]);
+  const spread = ensureUnit(values[3]);
+
   return {
-    color: color,
-    offsetX: parseValueWithUnit(values[0] || "0px"),
-    offsetY: parseValueWithUnit(values[1] || "0px"),
-    blur: parseValueWithUnit(values[2] || "0px"),
-    spread: parseValueWithUnit(values[3] || "0px"),
+    offsetX,
+    offsetY,
+    blur,
+    spread,
+    color,
     ...(isInset ? { inset: true } : {}),
   };
 }

@@ -1,8 +1,4 @@
-import {
-  color,
-  spacing,
-  typographyStyles,
-} from "@choiceform/design-tokens/helpers";
+import { color, spacing, typographyStyles } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { Highlight, Language, PrismTheme } from "prism-react-renderer";
 import { memo, ReactNode } from "react";
@@ -20,7 +16,7 @@ export interface CodeBlockProps {
 
 const codeBlockClass = css`
   background: transparent;
-  color: ${color("fg.default")};
+  color: ${color("text.default")};
   font-family:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
@@ -32,7 +28,7 @@ const codeBlockClass = css`
 
 const customTheme: PrismTheme = {
   plain: {
-    color: color("fg.default"),
+    color: color("text.default"),
   },
   styles: [],
 };

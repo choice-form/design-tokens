@@ -1,8 +1,4 @@
-import {
-  color,
-  spacing,
-  typographyStyles,
-} from "@choiceform/design-tokens/helpers";
+import { color, spacing, typographyStyles } from "@choiceform/design-tokens";
 import FillColor from "@choiceform/icons-react/FillColor";
 import { css, LinariaClassName } from "@linaria/core";
 import { styled } from "@linaria/react";
@@ -21,7 +17,7 @@ const Field = styled.div`
   gap: ${spacing(2)};
   height: ${spacing(8)};
   padding: 0 ${spacing(2)};
-  border: 1px solid ${color("bd.default")};
+  border: 1px solid ${color("border.default")};
   ${typographyStyles("body.medium")};
 `;
 
@@ -43,7 +39,7 @@ export const ColorField = memo(function ColorField(props: ColorFieldProps) {
     <Field className={props.className}>
       <FillColor
         className={css`
-          color: ${color("ic.secondary")};
+          color: ${color("icon.secondary")};
         `}
       />
       <span

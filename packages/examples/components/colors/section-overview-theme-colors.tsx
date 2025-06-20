@@ -1,4 +1,4 @@
-import { color, radius, spacing } from "@choiceform/design-tokens/helpers";
+import { color, radius, spacing } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { styled } from "@linaria/react";
 import { memo } from "react";
@@ -7,7 +7,7 @@ import { ColorField, Panel, Section, TokenFunctionDisplay } from "..";
 const buttonContainerClass = css`
   display: grid;
   padding: ${spacing(4)};
-  border: 1px dashed ${color("bd.default")};
+  border: 1px dashed ${color("border.default")};
   place-content: center;
   aspect-ratio: 1 / 1;
 `;
@@ -19,17 +19,17 @@ const Button = styled.button`
   height: ${spacing(6)};
   padding: 0 ${spacing(2)};
   border-radius: ${radius("md")};
-  background-color: ${color("bg.accent")};
-  color: ${color("fg.on-accent")};
+  background-color: ${color("background.accent")};
+  color: ${color("text.on-accent")};
 
   &[data-theme="accent"] {
-    background-color: ${color("bg.accent")};
-    color: ${color("fg.on-accent")};
+    background-color: ${color("background.accent")};
+    color: ${color("text.on-accent")};
   }
 
   &[data-theme="component"] {
-    background-color: ${color("bg.component")};
-    color: ${color("fg.on-accent")};
+    background-color: ${color("background.component")};
+    color: ${color("text.on-accent")};
   }
 `;
 
@@ -52,7 +52,7 @@ export const SectionOverviewThemeColors = memo(
             </p>
             <ul
               className={css`
-                color: ${color("fg.assistive")};
+                color: ${color("text.assistive")};
               `}
             >
               <li>Light mode - optimized for bright environments</li>
@@ -85,10 +85,10 @@ export const SectionOverviewThemeColors = memo(
                 colorString={
                   <TokenFunctionDisplay
                     functionName="color"
-                    value="bg.accent"
+                    value="background.accent"
                   />
                 }
-                colorValue={color("bg.accent")}
+                colorValue={color("background.accent")}
               />
             </div>
           </Panel>

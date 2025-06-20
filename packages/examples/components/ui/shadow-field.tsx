@@ -1,4 +1,4 @@
-import { color, spacing } from "@choiceform/design-tokens/helpers";
+import { color, spacing } from "@choiceform/design-tokens";
 import EffectsSettings from "@choiceform/icons-react/EffectsSettings";
 import { css } from "@linaria/core";
 import { styled } from "@linaria/react";
@@ -16,16 +16,16 @@ const Field = styled.div`
   width: 100%;
   height: ${spacing(8)};
   padding: 0 ${spacing(2)};
-  border: 1px solid ${color("bd.default")};
+  border: 1px solid ${color("border.default")};
 `;
 
 const iconStyles = css`
-  color: ${color("ic.secondary")};
+  color: ${color("icon.secondary")};
 `;
 
 const textStyles = css`
   flex: 1;
-  color: ${color("fg.success")};
+  color: ${color("text.success")};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

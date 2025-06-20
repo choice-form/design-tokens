@@ -1,8 +1,9 @@
 import {
   color,
+  ColorPath,
   spacing,
   typographyStyles,
-} from "@choiceform/design-tokens/helpers";
+} from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { memo, useState } from "react";
 import {
@@ -49,12 +50,7 @@ export const SectionTextAgainstColors = memo(
         {["light", "dark"].map((theme) => (
           <Panel theme={theme as "light" | "dark"} key={theme}>
             {textAgainstGroups.map((colorData) => {
-              const opacity = 1; // 简化：使用固定透明度
-              const colorKey = color(
-                colorData.colorKey as any,
-                opacity,
-                theme === "light" ? "." : "dark"
-              );
+              const colorKey = color(colorData.colorKey as ColorPath);
 
               return (
                 <div
@@ -73,10 +69,8 @@ export const SectionTextAgainstColors = memo(
                         colorType={colorType}
                         shade={{
                           key: colorData.colorKey,
-                          opacity,
                         }}
                         theme={theme as "light" | "dark"}
-                        opacity={opacity}
                       />
                     }
                   />
@@ -84,7 +78,7 @@ export const SectionTextAgainstColors = memo(
                     className={css`
                       margin-top: ${spacing(4)};
                       padding: ${spacing(4)} ${spacing(2)};
-                      background-color: ${color("bg.accent" as any)};
+                      background-color: ${color("background.accent")};
                       color: var(--color);
                       ${typographyStyles("heading.medium")};
                     `}

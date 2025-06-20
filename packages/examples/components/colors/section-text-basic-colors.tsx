@@ -1,8 +1,9 @@
 import {
   color,
+  ColorPath,
   spacing,
   typographyStyles,
-} from "@choiceform/design-tokens/helpers";
+} from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { memo, useState } from "react";
 import {
@@ -68,12 +69,7 @@ export const SectionTextBasicColors = memo(function SectionTextBasicColors() {
       {["light", "dark"].map((theme) => (
         <Panel theme={theme as "light" | "dark"} key={theme}>
           {textBasicGroups.map((colorData) => {
-            const opacity = 1; // 简化：使用固定透明度
-            const colorKey = color(
-              colorData.colorKey,
-              opacity,
-              theme as "light" | "dark"
-            );
+            const colorKey = color(colorData.colorKey as ColorPath);
 
             return (
               <div
@@ -92,10 +88,8 @@ export const SectionTextBasicColors = memo(function SectionTextBasicColors() {
                       colorType={colorType}
                       shade={{
                         key: colorData.colorKey,
-                        opacity,
                       }}
                       theme={theme as "light" | "dark"}
-                      opacity={opacity}
                     />
                   }
                 />

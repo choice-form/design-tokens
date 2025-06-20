@@ -1,8 +1,4 @@
-import {
-  color,
-  spacing,
-  typographyStyles,
-} from "@choiceform/design-tokens/helpers";
+import { color, spacing, typographyStyles } from "@choiceform/design-tokens";
 import { css, cx } from "@linaria/core";
 import { memo } from "react";
 
@@ -18,11 +14,11 @@ const themePanelClass = css`
   flex-direction: column;
   gap: ${spacing(4)};
   padding: ${spacing(4)};
-  color: ${color("fg.default")};
+  color: ${color("text.default")};
   min-width: 0;
 
   &[data-theme="dark"] {
-    background-color: ${color("bg.default")};
+    background-color: ${color("background.default")};
   }
 `;
 
@@ -30,15 +26,14 @@ const themePanelEmptyClass = css`
   justify-content: center;
   align-items: center;
   border: none;
-  background-color: ${color("bg.secondary")};
-  color: ${color("fg.secondary")};
+  background-color: ${color("background.secondary")};
+  color: ${color("text.secondary")};
   ${typographyStyles("heading.medium")};
 `;
 
 const themeTitleClass = css`
-  color: ${color("fg.secondary")};
+  color: ${color("text.secondary")};
   text-transform: uppercase;
-  ${typographyStyles("body.medium")};
 `;
 
 export const Panel = memo(function Panel(props: PanelProps) {

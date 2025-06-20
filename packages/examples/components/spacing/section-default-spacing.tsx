@@ -1,7 +1,4 @@
-import {
-  spacingToPx,
-  type SpacingValue,
-} from "@choiceform/design-tokens/helpers";
+import { spacing, type SpacingValue } from "@choiceform/design-tokens";
 import { CSSProperties, Fragment, memo } from "react";
 import { Section } from "..";
 import {
@@ -80,7 +77,7 @@ export const SectionDefaultSpacing = memo(function SectionDefaultSpacing() {
                   {key === "px" ? "-" : `${Number(key) / 4}rem`}
                 </SpacingValueComponent>
                 <SpacingValueComponent>
-                  {spacingToPx(key as SpacingValue)}
+                  {spacing(key as SpacingValue)}
                 </SpacingValueComponent>
                 <SpacingValueComponent>
                   $spacing(

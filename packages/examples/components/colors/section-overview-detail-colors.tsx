@@ -1,5 +1,4 @@
-import { color, radius, spacing } from "@choiceform/design-tokens/helpers";
-import { css } from "@linaria/core";
+import { color, radius, spacing } from "@choiceform/design-tokens";
 import { styled } from "@linaria/react";
 import { memo, useState } from "react";
 import {
@@ -31,7 +30,7 @@ const ColorRadioButton = styled.button`
   &[data-selected="true"] {
     border-color: rgb(var(--color, 0, 0, 0), 1);
     background-color: rgb(var(--color, 0, 0, 0), 1);
-    color: ${color("fg.on-accent")};
+    color: ${color("text.on-accent")};
   }
 
   &[data-selected="false"]:hover {
@@ -41,7 +40,8 @@ const ColorRadioButton = styled.button`
 
 export const SectionOverviewDetailColor = memo(
   function SectionOverviewDetailColor() {
-    const [selectedColor, setSelectedColor] = useState<string | null>("grey");
+    const [selectedColor, setSelectedColor] = useState<string | null>("blue");
+
     const [colorType, setColorType] = useState<ColorTypes>(ColorTypes.FUNCTION);
 
     return (
@@ -76,11 +76,11 @@ export const SectionOverviewDetailColor = memo(
               data-selected={selectedColor === colorData.name}
               style={
                 {
-                  "--color": `var(--cdt-${colorData.shades[4].key})`,
+                  "--color": `var(--cdt-color-${colorData.shades[4].key.replace(".", "-")})`,
                 } as React.CSSProperties
               }
             >
-              <span>{colorData.shades[3].key.replace("-400", "")}</span>
+              <span>{colorData.shades[3].key.replace(".400", "")}</span>
             </ColorRadioButton>
           ))}
 
@@ -95,7 +95,7 @@ export const SectionOverviewDetailColor = memo(
                 shadeGroup.shades.map((shade) => (
                   <ColorField
                     key={shade.key}
-                    colorValue={`rgba(var(--cdt-${shade.key}), 1)`}
+                    colorValue={`rgba(var(--cdt-color-${shade.key.replace(".", "-")}), 1)`}
                     colorString={
                       <ColorValue
                         selectedColor={shade.key}

@@ -1,9 +1,10 @@
 import {
-  listShadows,
   radius,
   shadow,
+  ShadowKey,
+  shadowList,
   spacing,
-} from "@choiceform/design-tokens/helpers";
+} from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { styled } from "@linaria/react";
 import { CSSProperties, Fragment, memo } from "react";
@@ -26,11 +27,9 @@ const ShadowBox = styled.div`
 `;
 
 export const SectionDetailShadow = memo(function SectionDetailShadow() {
-  const shadowNames = listShadows();
-
   return (
     <>
-      {shadowNames.map((shadowName) => {
+      {shadowList().map((shadowName) => {
         return (
           <Section
             key={shadowName}
@@ -44,7 +43,10 @@ export const SectionDetailShadow = memo(function SectionDetailShadow() {
             }
           >
             {["light", "dark"].map((theme) => {
-              const shadowValue = shadow(shadowName, theme as "light" | "dark");
+              const shadowValue = shadow(
+                shadowName as ShadowKey,
+                theme as "light" | "dark"
+              );
 
               return (
                 <Panel theme={theme as "light" | "dark"} key={theme}>

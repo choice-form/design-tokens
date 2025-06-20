@@ -1,8 +1,9 @@
 import {
   color,
+  ColorPath,
   spacing,
   typographyStyles,
-} from "@choiceform/design-tokens/helpers";
+} from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { memo, useState } from "react";
 import tinycolor from "tinycolor2";
@@ -54,21 +55,18 @@ export const SectionBackgroundHierarchyColors = memo(
         {["light", "dark"].map((theme) => (
           <Panel theme={theme as "light" | "dark"} key={theme}>
             {backgroundHierarchyGroups.map((colorData) => {
-              const colorInfo = getRealColorValue(
-                colorData.colorKey,
-                1,
-                "semantic",
-                theme as "light" | "dark"
-              );
+              const colorInfo = getRealColorValue(colorData.colorKey);
 
               return (
                 <div
                   key={colorData.name}
                   style={
                     {
-                      "--color": color(colorData.colorKey),
-                      "--color-secondary": color(colorData.colorKey),
-                      "--color-hover": color(colorData.colorKey),
+                      "--color": color(colorData.colorKey as ColorPath),
+                      "--color-secondary": color(
+                        colorData.colorKey as ColorPath
+                      ),
+                      "--color-hover": color(colorData.colorKey as ColorPath),
                       "--color-text": tinycolor(colorInfo.hexValue).isDark()
                         ? "white"
                         : "black",
@@ -84,7 +82,6 @@ export const SectionBackgroundHierarchyColors = memo(
                         colorType={colorType}
                         shade={{
                           key: colorData.colorKey,
-                          opacity: 1,
                         }}
                         theme={theme as "light" | "dark"}
                       />
@@ -107,7 +104,8 @@ export const SectionBackgroundHierarchyColors = memo(
                         grid-row: 1 / 3;
                         width: ${spacing(16)};
                         height: ${spacing(16)};
-                        border: 1px solid ${color("bd.default")};
+                        border: 1px solid ${color("border.default")};
+                        color: ${color("text.default")};
                         background-color: var(--color);
                         ${typographyStyles("body.large")};
                       `}

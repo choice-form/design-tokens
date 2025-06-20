@@ -1,9 +1,4 @@
-import {
-  listShadows,
-  radius,
-  shadow,
-  spacing,
-} from "@choiceform/design-tokens/helpers";
+import { radius, spacing, tokens } from "@choiceform/design-tokens";
 import { styled } from "@linaria/react";
 import { CSSProperties, memo } from "react";
 import { Panel, Section, TokenFunctionDisplay } from "..";
@@ -24,6 +19,10 @@ const ShadowBox = styled.div`
 `;
 
 export const SectionOverviewShadow = memo(function SectionOverviewShadow() {
+  const getAllShadowKeys = () => {
+    return Object.keys(tokens).filter((key) => key.startsWith("shadows."));
+  };
+
   return (
     <>
       <Section
@@ -52,30 +51,28 @@ export const SectionOverviewShadow = memo(function SectionOverviewShadow() {
         }
       >
         {["light", "dark"].map((theme) => {
-          const shadowNames = listShadows();
-
           return (
             <Panel theme={theme as "light" | "dark"} key={theme}>
               <Container>
-                {shadowNames.map((name) => {
-                  const shadowValue = shadow(name, theme as "light" | "dark");
-
-                  return (
-                    <ShadowBox
-                      key={name}
-                      style={
-                        {
-                          "--shadow": shadowValue,
-                        } as CSSProperties
-                      }
-                    >
-                      <TokenFunctionDisplay
-                        functionName="shadow"
-                        value={name}
-                      />
-                    </ShadowBox>
-                  );
-                })}
+                {getAllShadowKeys()
+                  .slice(0, 6)
+                  .map((name) => {
+                    return (
+                      <ShadowBox
+                        key={name}
+                        style={
+                          {
+                            "--shadow": `var(--cdt-${name.replace(".", "-")})`,
+                          } as CSSProperties
+                        }
+                      >
+                        <TokenFunctionDisplay
+                          functionName="shadow"
+                          value={name.replace("shadows.", "")}
+                        />
+                      </ShadowBox>
+                    );
+                  })}
               </Container>
             </Panel>
           );

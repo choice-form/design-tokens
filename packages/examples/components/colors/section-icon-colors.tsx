@@ -1,4 +1,4 @@
-import { color, spacing } from "@choiceform/design-tokens/helpers";
+import { color, ColorPath, spacing } from "@choiceform/design-tokens";
 import { ToolbarComponent } from "@choiceform/icons-react";
 import { css } from "@linaria/core";
 import { memo, useState } from "react";
@@ -61,7 +61,7 @@ export const SectionIconColors = memo(function SectionIconColors() {
       {["light", "dark"].map((theme) => (
         <Panel theme={theme as "light" | "dark"} key={theme}>
           {iconGroups.map((colorData) => {
-            const colorKey = color(colorData.colorKey);
+            const colorKey = color(colorData.colorKey as ColorPath);
             return (
               <div
                 key={colorData.name}
@@ -93,7 +93,7 @@ export const SectionIconColors = memo(function SectionIconColors() {
                     width: ${spacing(8)};
                     height: ${spacing(8)};
                     margin-top: ${spacing(4)};
-                    border: 1px solid ${color("bd.default")};
+                    border: 1px solid ${color("border.default")};
                   `}
                 >
                   <ToolbarComponent color="var(--color)" />

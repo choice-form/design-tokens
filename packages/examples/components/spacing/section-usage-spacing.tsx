@@ -1,4 +1,4 @@
-import { color, spacing } from "@choiceform/design-tokens/helpers";
+import { color, spacing } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { styled } from "@linaria/react";
 import { memo } from "react";
@@ -12,7 +12,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   &:not(:last-child) {
-    border-bottom: 1px solid ${color("bd.default")};
+    border-bottom: 1px solid ${color("border.default")};
   }
 `;
 
@@ -40,7 +40,7 @@ export const SectionUsageSpacing = memo(function SectionUsageSpacing() {
         <span
           key={content + Math.random()}
           className={css`
-            color: ${color("fg.secondary")};
+            color: ${color("text.secondary")};
           `}
         >
           {content}
@@ -53,7 +53,7 @@ export const SectionUsageSpacing = memo(function SectionUsageSpacing() {
         <span
           key={content + Math.random()}
           className={css`
-            color: ${color("fg.assistive")};
+            color: ${color("text.assistive")};
           `}
         >
           {content}

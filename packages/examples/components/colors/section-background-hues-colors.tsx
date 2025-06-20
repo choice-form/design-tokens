@@ -1,4 +1,4 @@
-import { spacing, typographyStyles } from "@choiceform/design-tokens/helpers";
+import { spacing, typographyStyles } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { memo, useState } from "react";
 import tinycolor from "tinycolor2";
@@ -93,21 +93,16 @@ export const SectionBackgroundHuesColors = memo(
         {["light", "dark"].map((theme) => (
           <Panel theme={theme as "light" | "dark"} key={theme}>
             {semanticHuesBgGroups.map((colorData) => {
-              const colorInfo = getRealColorValue(
-                colorData.colorKey,
-                1,
-                "semantic",
-                theme as "light" | "dark"
-              );
+              const colorInfo = getRealColorValue(colorData.colorKey);
 
               return (
                 <div
                   key={colorData.name}
                   style={
                     {
-                      "--color": `rgba(var(--cdt-background-${colorData.colorKey.replace("bg.", "")}), 1)`,
-                      "--color-secondary": `rgba(var(--cdt-background-${colorData.colorKey.replace("bg.", "")}-secondary), 1)`,
-                      "--color-hover": `rgba(var(--cdt-background-${colorData.colorKey.replace("bg.", "")}-hover), 1)`,
+                      "--color": `rgba(var(--cdt-color-${colorData.colorKey.replace(".", "-")}), 1)`,
+                      "--color-secondary": `rgba(var(--cdt-color-${colorData.colorKey.replace(".", "-")}-secondary), 1)`,
+                      "--color-hover": `rgba(var(--cdt-color-${colorData.colorKey.replace(".", "-")}-hover), 1)`,
                       "--color-text": tinycolor(colorInfo.hexValue).isDark()
                         ? "white"
                         : "black",
@@ -123,7 +118,6 @@ export const SectionBackgroundHuesColors = memo(
                         colorType={colorType}
                         shade={{
                           key: colorData.colorKey,
-                          opacity: 1,
                         }}
                         theme={theme as "light" | "dark"}
                       />

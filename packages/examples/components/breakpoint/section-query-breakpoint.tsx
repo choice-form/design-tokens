@@ -3,7 +3,7 @@ import {
   mediaQuery,
   spacing,
   typographyStyles,
-} from "@choiceform/design-tokens/helpers";
+} from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { styled } from "@linaria/react";
 import { memo } from "react";
@@ -13,7 +13,7 @@ const Container = styled.div`
   display: grid;
   gap: ${spacing(4)};
   padding: ${spacing(4)};
-  background-color: ${color("bg.default")};
+  background-color: ${color("background.default")};
 
   &::before {
     display: block;
@@ -22,20 +22,20 @@ const Container = styled.div`
 
   /* 移动设备 */
   ${mediaQuery("sm")} {
-    background-color: ${color("bg.accent", 0.1)};
+    background-color: ${color("background.accent", 0.1)};
 
     &::before {
-      color: ${color("fg.accent")};
+      color: ${color("text.accent")};
       content: "📱 Mobile (xs+)";
     }
   }
 
   /* 平板设备 */
   ${mediaQuery("md")} {
-    background-color: ${color("bg.success", 0.1)};
+    background-color: ${color("background.success", 0.1)};
 
     &::before {
-      color: ${color("fg.success")};
+      color: ${color("text.success")};
       content: "📱 Tablet (md-lg)";
     }
   }
@@ -45,10 +45,10 @@ const Container = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto 1fr;
     grid-auto-flow: column;
-    background-color: ${color("bg.warning", 0.1)};
+    background-color: ${color("background.warning", 0.1)};
 
     &::before {
-      color: ${color("fg.warning")};
+      color: ${color("text.warning")};
       content: "🖥️ Desktop (lg+)";
     }
   }
@@ -68,7 +68,7 @@ const Content = styled.div`
 `;
 
 const Code = styled.div`
-  background: ${color("bg.default")};
+  background: ${color("background.default")};
 
   ${mediaQuery("lg")} {
     grid-row: 1 / 3;
@@ -96,7 +96,7 @@ export const SectionQueryBreakpoint = memo(function SectionQueryBreakpoint() {
         <span
           key={content}
           className={css`
-            color: ${color("fg.assistive")};
+            color: ${color("text.assistive")};
           `}
         >
           {content}

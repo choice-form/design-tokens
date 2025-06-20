@@ -1,9 +1,9 @@
-import { color, spacing } from "@choiceform/design-tokens/helpers";
+import { color, ColorPath, spacing } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { memo, useMemo } from "react";
 
 interface ColorSwatchProps {
-  shade: { key: string; opacity?: number };
+  shade: { key: ColorPath; opacity?: number };
 }
 
 const colorSwatchClass = css`

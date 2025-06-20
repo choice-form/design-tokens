@@ -3,7 +3,7 @@ import {
   spacing,
   typographyStyles,
   mediaQuery,
-} from "@choiceform/design-tokens/helpers";
+} from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import React from "react";
 import { Container } from "../page";
@@ -21,7 +21,7 @@ const contentClass = css`
 const sectionTitleClass = css`
   margin-bottom: ${spacing(8)};
   ${typographyStyles("heading.large")};
-  color: ${color("fg.default")};
+  color: ${color("text.default")};
   text-align: center;
 
   ${mediaQuery("md")} {
@@ -40,13 +40,13 @@ const stepClass = css`
 const stepTitleClass = css`
   margin-bottom: ${spacing(3)};
   ${typographyStyles("heading.medium")};
-  color: ${color("fg.default")};
+  color: ${color("text.default")};
 `;
 
 const stepDescClass = css`
   margin-bottom: ${spacing(4)};
   ${typographyStyles("body.medium")};
-  color: ${color("fg.secondary")};
+  color: ${color("text.secondary")};
 `;
 
 export const SectionInstallation: React.FC = () => {
@@ -55,7 +55,7 @@ export const SectionInstallation: React.FC = () => {
     const cleanContent = content.replace(/['"]/g, "");
 
     const tokens = [
-      "@choiceform/design-tokens/helpers",
+      "@choiceform/design-tokens",
       "initTokens",
       "spacing",
       "spacingList",
@@ -73,7 +73,7 @@ export const SectionInstallation: React.FC = () => {
         <span
           key={content + Math.random()}
           className={css`
-            color: ${color("fg.secondary")};
+            color: ${color("text.secondary")};
           `}
         >
           {content}
@@ -87,7 +87,7 @@ export const SectionInstallation: React.FC = () => {
         <span
           key={content + Math.random()}
           className={css`
-            color: ${color("fg.assistive")};
+            color: ${color("text.assistive")};
           `}
         >
           {content}
@@ -111,11 +111,11 @@ export const SectionInstallation: React.FC = () => {
               package manager:
             </p>
             <CodeBlock
-              code="npm install @choiceform/design-tokens/helpers"
+              code="npm install @choiceform/design-tokens"
               language="bash"
               customHighlight={customHighlight}
               className={css`
-                background-color: ${color("bg.secondary")};
+                background-color: ${color("background.secondary")};
               `}
             />
           </div>
@@ -132,15 +132,15 @@ export const SectionInstallation: React.FC = () => {
             </p>
             <CodeBlock
               code={`// Import to initialize CSS variables
-import '@choiceform/design-tokens/helpers'
+import '@choiceform/design-tokens'
 
 // Or initialize manually
-import { initTokens } from '@choiceform/design-tokens/helpers'
+import { initTokens } from '@choiceform/design-tokens'
 initTokens()`}
               language="tsx"
               customHighlight={customHighlight}
               className={css`
-                background-color: ${color("bg.secondary")};
+                background-color: ${color("background.secondary")};
               `}
             />
           </div>
@@ -166,7 +166,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               language="tsx"
               customHighlight={customHighlight}
               className={css`
-                background-color: ${color("bg.secondary")};
+                background-color: ${color("background.secondary")};
                 margin-bottom: ${spacing(4)};
               `}
             />
@@ -174,7 +174,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               Then use design tokens in your components:
             </p>
             <CodeBlock
-              code={`import { spacingList, color } from '@choiceform/design-tokens/helpers'
+              code={`import { spacingList, color } from '@choiceform/design-tokens'
 import { styled } from '@linaria/react'
 
 const Button = styled.button\`
@@ -185,7 +185,7 @@ const Button = styled.button\`
               language="tsx"
               customHighlight={customHighlight}
               className={css`
-                background-color: ${color("bg.secondary")};
+                background-color: ${color("background.secondary")};
               `}
             />
           </div>

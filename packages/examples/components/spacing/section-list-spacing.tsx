@@ -1,4 +1,4 @@
-import { color, spacing, spacingList } from "@choiceform/design-tokens/helpers";
+import { color, spacing, spacingList } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { styled } from "@linaria/react";
 import { memo } from "react";
@@ -12,7 +12,7 @@ const Block = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${color("bg.secondary")};
+  background-color: ${color("background.secondary")};
   aspect-ratio: 1 / 1;
 `;
 
@@ -23,8 +23,8 @@ const BlockInner = styled.div`
   gap: ${spacing(2)};
   width: 100%;
   height: 100%;
-  border: 1px dotted ${color("bd.selected")};
-  color: ${color("fg.secondary")};
+  border: 1px dotted ${color("border.selected")};
+  color: ${color("text.secondary")};
   text-align: center;
 `;
 

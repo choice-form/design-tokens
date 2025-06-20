@@ -5,7 +5,8 @@ import {
   typography,
   listTypographyPresets,
   typographyInfo,
-} from "@choiceform/design-tokens/helpers";
+  TypographyKey,
+} from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { memo } from "react";
 import { Section } from "../page";
@@ -33,7 +34,7 @@ const infoGridClass = css`
   gap: ${spacing(2)};
   margin: ${spacingList(["px", "px", 0, "px"])};
   padding: ${spacing(4)};
-  background-color: ${color("bg-secondary")};
+  background-color: ${color("background.secondary")};
 `;
 
 const infoGridItemClass = css`
@@ -48,7 +49,7 @@ const examplesClass = css`
   gap: var(--dynamic-lineHeight);
   padding: ${spacing(4)};
   background-image: linear-gradient(
-    ${color("bg-danger", 0.2)} 1px,
+    ${color("background.danger", 0.2)} 1px,
     transparent 1px
   );
   background-position: 0 ${spacing(4)};
@@ -126,7 +127,7 @@ export const SectionTypography = memo(function SectionTypography() {
       {listTypographyPresets().map((key) => {
         const value = typographyInfo(key);
         // 使用typography函数获取完整的样式对象
-        const typographyStyles = typography(key);
+        const typographyStyles = typography(key as TypographyKey);
 
         // 准备CSS变量值
         const cssVarStyle = {
@@ -145,7 +146,7 @@ export const SectionTypography = memo(function SectionTypography() {
           <Section
             key={key}
             title={key
-              .replace(/-/g, " ")
+              .replace(/\./g, " ")
               .replace(/\b\w/g, (char) => char.toUpperCase())}
             content={
               <>
@@ -176,7 +177,7 @@ export const SectionTypography = memo(function SectionTypography() {
                   The quick brown fox jumps over the lazy dog
                 </div>
 
-                {key !== "heading-display" && (
+                {key !== "heading.display" && (
                   <div
                     className={`${dynamicTypographyClass} ${secondaryTextClass}`}
                     style={cssVarStyle}

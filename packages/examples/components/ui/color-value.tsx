@@ -1,4 +1,4 @@
-import { color } from "@choiceform/design-tokens/helpers";
+import { color } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { memo, useMemo } from "react";
 import { getRealColorValue } from "../../utils";
@@ -33,7 +33,7 @@ export const ColorValue = memo(function ColorValue({
         rgba(
         <span
           className={css`
-            color: ${color("fg.assistive")};
+            color: ${color("text.assistive")};
           `}
         >
           var(--cdt-{selectedColor})
@@ -55,7 +55,7 @@ export const ColorValue = memo(function ColorValue({
           rgba(
           <span
             className={css`
-              color: ${color("fg.assistive")};
+              color: ${color("text.assistive")};
             `}
           >
             {r}, {g}, {b}, {a}

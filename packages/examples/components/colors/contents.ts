@@ -1,4 +1,4 @@
-import { tokens } from "@choiceform/design-tokens";
+import { ColorPath, tokens } from "@choiceform/design-tokens";
 
 // 基础颜色类型定义
 export type ColorShade = {
@@ -26,7 +26,10 @@ const getSemanticColors = (category: string): string[] => {
 };
 
 // 基础颜色色阶数据
-export const overviewRampsGroups = [
+export const overviewRampsGroups: {
+  name: string;
+  shades: { key: ColorPath; opacity?: number }[];
+}[] = [
   {
     name: "white",
     shades: [
@@ -71,12 +74,17 @@ export const overviewRampsGroups = [
     "green",
   ].map((colorName) => ({
     name: colorName,
-    shades: getColorsByGroup(colorName).map((key) => ({ key })),
+    shades: getColorsByGroup(colorName).map((key) => ({
+      key: key as ColorPath,
+    })),
   })),
 ];
 
 // Pale 颜色组
-export const overviewPaleGroup = [
+export const overviewPaleGroup: {
+  name: string;
+  shades: { key: ColorPath; opacity?: number }[];
+}[] = [
   "blue-pale",
   "violet-pale",
   "purple-pale",
@@ -88,14 +96,16 @@ export const overviewPaleGroup = [
   "green-pale",
 ].map((colorName) => ({
   name: colorName,
-  shades: getColorsByGroup(colorName).map((key) => ({ key })),
+  shades: getColorsByGroup(colorName).map((key) => ({
+    key: key as ColorPath,
+  })),
 }));
 
 // 语义颜色数据 - 从实际 tokens 中动态生成
 const allSemanticColors = [
   ...getSemanticColors("background"),
-  ...getSemanticColors("foreground"),
-  ...getSemanticColors("boundary"),
+  ...getSemanticColors("text"),
+  ...getSemanticColors("border"),
   ...getSemanticColors("icon"),
 ];
 
@@ -163,14 +173,14 @@ export const overviewSemanticGroups = backgroundColors
   }));
 
 // 文本基础颜色
-const foregroundColors = getSemanticColors("foreground");
-export const textBasicGroups = foregroundColors
+const textColors = getSemanticColors("text");
+export const textBasicGroups = textColors
   .filter(
     (colorKey: string) =>
-      colorKey === "foreground.default" ||
-      colorKey === "foreground.secondary" ||
-      colorKey === "foreground.tertiary" ||
-      colorKey === "foreground.disabled"
+      colorKey === "text.default" ||
+      colorKey === "text.secondary" ||
+      colorKey === "text.tertiary" ||
+      colorKey === "text.disabled"
   )
   .map((colorKey: string) => ({
     name: colorKey,
@@ -178,7 +188,7 @@ export const textBasicGroups = foregroundColors
   }));
 
 // 文本着色颜色
-export const textTintedGroups = foregroundColors
+export const textTintedGroups = textColors
   .filter(
     (colorKey: string) =>
       colorKey.includes("accent") ||
@@ -195,7 +205,7 @@ export const textTintedGroups = foregroundColors
   }));
 
 // 对比文本颜色
-export const textAgainstGroups = foregroundColors
+export const textAgainstGroups = textColors
   .filter((colorKey: string) => colorKey.includes("on-"))
   .map((colorKey: string) => ({
     name: colorKey,
@@ -210,7 +220,7 @@ export const iconGroups = iconColors.map((colorKey: string) => ({
 }));
 
 // 边框颜色
-const boundaryColors = getSemanticColors("boundary");
+const boundaryColors = getSemanticColors("border");
 
 // 默认边框颜色
 export const defaultBorderGroups = boundaryColors

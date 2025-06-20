@@ -21,7 +21,8 @@
     "./tokens.css": "./dist/tokens.css",
     "./tokens.scss": "./dist/tokens.scss",
     "./tokens.js": "./dist/tokens.js",
-    "./tokens.d.ts": "./dist/tokens.d.ts"
+    "./tokens.d.ts": "./dist/tokens.d.ts",
+    "./preflight.css": "./dist/preflight.css"
   },
   "keywords": [
     "design-tokens",

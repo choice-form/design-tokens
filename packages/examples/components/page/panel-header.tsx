@@ -1,4 +1,4 @@
-import { color, spacing, mediaQuery } from "@choiceform/design-tokens/helpers";
+import { color, spacing, mediaQuery } from "@choiceform/design-tokens";
 import { styled } from "@linaria/react";
 import { memo } from "react";
 

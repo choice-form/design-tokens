@@ -1,4 +1,4 @@
-import { color } from "@choiceform/design-tokens/helpers";
+import { color } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { memo } from "react";
 import { Section } from "..";

@@ -4,7 +4,7 @@ import {
   radius,
   typographyStyles,
   zIndex,
-} from "@choiceform/design-tokens/helpers";
+} from "@choiceform/design-tokens";
 import Choiceform from "@choiceform/icons-react/Choiceform";
 import ThemeMoonDark from "@choiceform/icons-react/ThemeMoonDark";
 import ThemeSunBright from "@choiceform/icons-react/ThemeSunBright";
@@ -29,7 +29,7 @@ import TypographyPage from "./pages/typography";
 const AppContainer = styled.div`
   min-height: 100vh;
   background-color: ${color("background.default")};
-  color: ${color("foreground.default")};
+  color: ${color("text.default")};
   ${typographyStyles("body.medium")};
 `;
 
@@ -43,7 +43,7 @@ const Header = styled.header`
   position: sticky;
   top: 0;
   z-index: ${zIndex("sticky")};
-  border-bottom: 1px solid ${color("boundary.default")};
+  border-bottom: 1px solid ${color("border.default")};
   background-color: ${color("background.default")};
 `;
 
@@ -51,12 +51,12 @@ const Logo = styled(Link)`
   display: flex;
   align-items: center;
   gap: ${spacing(2)};
-  color: ${color("foreground.default")};
+  color: ${color("text.default")};
   text-decoration: none;
   ${typographyStyles("heading.medium")};
 
   &:hover {
-    color: ${color("foreground.accent")};
+    color: ${color("text.accent")};
   }
 `;
 
@@ -101,7 +101,7 @@ const NavLink = styled(Link)`
 
   &[data-active="true"] {
     background-color: ${color("background.accent", 0.1)};
-    color: ${color("foreground.accent")};
+    color: ${color("text.accent")};
   }
 
   &[data-active="false"]:hover {

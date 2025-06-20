@@ -1,4 +1,4 @@
-import { color } from "@choiceform/design-tokens/helpers";
+import { color } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { memo } from "react";
 
@@ -17,7 +17,7 @@ export const TokenFunctionDisplay = memo((props: TokenFunctionDisplayProps) => {
       {functionName}(
       <span
         className={css`
-          color: ${color("fg.assistive")};
+          color: ${color("text.assistive")};
         `}
       >
         {withQuotes && '"'}

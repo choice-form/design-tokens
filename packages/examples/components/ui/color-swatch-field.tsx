@@ -1,11 +1,13 @@
-import { color, spacing } from "@choiceform/design-tokens/helpers";
+import { color, spacing } from "@choiceform/design-tokens";
 import { css, cx } from "@linaria/core";
 import { memo } from "react";
 import { overviewPaleGroup, overviewRampsGroups } from "../colors/contents";
 import { ColorSwatch } from "./color-swatch";
 
 interface ColorSwatchFieldProps {
-  colorData: (typeof overviewRampsGroups)[0] | (typeof overviewPaleGroup)[0];
+  colorData:
+    | (typeof overviewRampsGroups)[number]
+    | (typeof overviewPaleGroup)[number];
   theme: "light" | "dark";
 }
 
@@ -15,11 +17,11 @@ const colorRowClass = css`
   grid-template-columns: 1fr auto;
   height: ${spacing(8)};
   padding: 0 ${spacing(1)} 0 ${spacing(2)};
-  border: 1px solid ${color("bd.default")};
+  border: 1px solid ${color("border.default")};
 
   &:hover {
-    border-color: ${color("bd.default", 0.8)};
-    background-color: ${color("bg.secondary", 0.5)};
+    border-color: ${color("border.default", 0.8)};
+    background-color: ${color("background.secondary", 0.5)};
   }
 `;
 
@@ -48,7 +50,7 @@ export const ColorSwatchField = memo(function ColorSwatchField(
     >
       <div
         className={css`
-          color: ${color("fg.assistive")};
+          color: ${color("text.assistive")};
           text-transform: capitalize;
         `}
       >

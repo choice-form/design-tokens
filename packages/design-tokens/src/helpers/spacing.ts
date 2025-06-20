@@ -1,8 +1,17 @@
 // ============================================================================
 // Spacing Helper Functions - 间距辅助函数
 // ============================================================================
+//
+// ⚠️ DEPRECATED: 这个文件已弃用
+// 请使用 tokens.js 中的函数代替:
+//
+// import { spacing, spacingList, spacingExists } from "../tokens.js";
+//
+// tokens.js 包含了所有的 helper 函数和更准确的类型定义
+// ============================================================================
 
-import type { FractionString, SpacingValue } from "../types/helpers";
+// 使用 Terrazzo 生成的类型定义
+import type { FractionString, SpacingValue } from "../../dist/tokens";
 // 按照 Terrazzo 生成的实际导出方式导入
 // @ts-ignore - tokens.js 由 Terrazzo 在构建时生成
 import { token } from "../tokens.js";
@@ -32,7 +41,7 @@ function listBreakpoints(): string[] {
 }
 
 // 重新导出类型
-export type { SpacingValue, FractionString } from "../types/helpers";
+export type { SpacingValue, FractionString } from "../../dist/tokens";
 
 // 定义尺寸令牌的类型
 interface DimensionToken {

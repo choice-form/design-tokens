@@ -6034,31 +6034,16 @@
         }
       }
     },
-    "foreground": {
-      "disabled": {
-        "$type": "color",
-        "$value": "{color.foreground.tertiary}",
-        "$description": "foreground disabled color (extended)",
-        "$extensions": {
-          "choiceform.design-system": {
-            "category": "text colors",
-            "aliases": [
-              "fg.disabled",
-              "fg-disabled"
-            ]
-          }
-        }
-      },
+    "text": {
       "on-accent": {
         "$type": "color",
         "$value": "{color.white}",
-        "$description": "foreground on accent color (extended)",
+        "$description": "text on accent color (extended)",
         "$extensions": {
           "choiceform.design-system": {
             "category": "text colors",
             "aliases": [
-              "fg.on-accent",
-              "fg-on-accent"
+              "text.on.accent"
             ]
           }
         }
@@ -6066,7 +6051,7 @@
       "on-accent-secondary": {
         "$type": "color",
         "$value": "{color.white}",
-        "$description": "foreground on accent secondary color (extended)",
+        "$description": "text on accent secondary color (extended)",
         "$extensions": {
           "alpha": {
             "light": 0.8,
@@ -6075,8 +6060,7 @@
           "choiceform.design-system": {
             "category": "text colors",
             "aliases": [
-              "fg.on-accent-secondary",
-              "fg-on-accent-secondary"
+              "text.on.accent.secondary"
             ]
           }
         }
@@ -6084,7 +6068,7 @@
       "on-accent-tertiary": {
         "$type": "color",
         "$value": "{color.white}",
-        "$description": "foreground on accent tertiary color (extended)",
+        "$description": "text on accent tertiary color (extended)",
         "$extensions": {
           "alpha": {
             "light": 0.4,
@@ -6093,8 +6077,7 @@
           "choiceform.design-system": {
             "category": "text colors",
             "aliases": [
-              "fg.on-accent-tertiary",
-              "fg-on-accent-tertiary"
+              "text.on.accent.tertiary"
             ]
           }
         }
@@ -6102,7 +6085,7 @@
       "default": {
         "$type": "color",
         "$value": "{color.black}",
-        "$description": "foreground default color",
+        "$description": "text default color",
         "$extensions": {
           "alpha": {
             "light": 0.9,
@@ -6115,8 +6098,7 @@
           "choiceform.design-system": {
             "category": "text colors",
             "aliases": [
-              "fg.default",
-              "fg-default"
+              "text.default"
             ]
           }
         }
@@ -6124,7 +6106,7 @@
       "secondary": {
         "$type": "color",
         "$value": "{color.black}",
-        "$description": "foreground secondary color",
+        "$description": "text secondary color",
         "$extensions": {
           "alpha": {
             "light": 0.5,
@@ -6137,16 +6119,15 @@
           "choiceform.design-system": {
             "category": "text colors",
             "aliases": [
-              "fg.secondary",
-              "fg-secondary"
+              "text.secondary"
             ]
           }
         }
       },
-      "tertiary": {
+      "disabled": {
         "$type": "color",
         "$value": "{color.black}",
-        "$description": "foreground tertiary color",
+        "$description": "text disabled color",
         "$extensions": {
           "alpha": {
             "light": 0.3,
@@ -6159,8 +6140,28 @@
           "choiceform.design-system": {
             "category": "text colors",
             "aliases": [
-              "fg.tertiary",
-              "fg-tertiary"
+              "text.disabled"
+            ]
+          }
+        }
+      },
+      "tertiary": {
+        "$type": "color",
+        "$value": "{color.black}",
+        "$description": "text tertiary color",
+        "$extensions": {
+          "alpha": {
+            "light": 0.3,
+            "dark": 0.4
+          },
+          "mode": {
+            "light": "{color.black}",
+            "dark": "{color.white}"
+          },
+          "choiceform.design-system": {
+            "category": "text colors",
+            "aliases": [
+              "text.tertiary"
             ]
           }
         }
@@ -6168,7 +6169,7 @@
       "accent": {
         "$type": "color",
         "$value": "{color.blue.600}",
-        "$description": "foreground accent color",
+        "$description": "text accent color",
         "$extensions": {
           "mode": {
             "light": "{color.blue.600}",
@@ -6177,8 +6178,7 @@
           "choiceform.design-system": {
             "category": "text colors",
             "aliases": [
-              "fg.accent",
-              "fg-accent"
+              "text.accent"
             ]
           }
         }
@@ -6186,7 +6186,7 @@
       "success": {
         "$type": "color",
         "$value": "{color.green.600}",
-        "$description": "foreground success color",
+        "$description": "text success color",
         "$extensions": {
           "mode": {
             "light": "{color.green.600}",
@@ -6195,8 +6195,7 @@
           "choiceform.design-system": {
             "category": "text colors",
             "aliases": [
-              "fg.success",
-              "fg-success"
+              "text.success"
             ]
           }
         }
@@ -6204,7 +6203,7 @@
       "warning": {
         "$type": "color",
         "$value": "{color.yellow.950}",
-        "$description": "foreground warning color",
+        "$description": "text warning color",
         "$extensions": {
           "mode": {
             "light": "{color.yellow.950}",
@@ -6213,8 +6212,7 @@
           "choiceform.design-system": {
             "category": "text colors",
             "aliases": [
-              "fg.warning",
-              "fg-warning"
+              "text.warning"
             ]
           }
         }
@@ -6222,7 +6220,7 @@
       "danger": {
         "$type": "color",
         "$value": "{color.red.600}",
-        "$description": "foreground danger color",
+        "$description": "text danger color",
         "$extensions": {
           "mode": {
             "light": "{color.red.600}",
@@ -6231,8 +6229,7 @@
           "choiceform.design-system": {
             "category": "text colors",
             "aliases": [
-              "fg.danger",
-              "fg-danger"
+              "text.danger"
             ]
           }
         }
@@ -6240,7 +6237,7 @@
       "assistive": {
         "$type": "color",
         "$value": "{color.pink.600}",
-        "$description": "foreground assistive color",
+        "$description": "text assistive color",
         "$extensions": {
           "mode": {
             "light": "{color.pink.600}",
@@ -6249,8 +6246,7 @@
           "choiceform.design-system": {
             "category": "text colors",
             "aliases": [
-              "fg.assistive",
-              "fg-assistive"
+              "text.assistive"
             ]
           }
         }
@@ -6258,7 +6254,7 @@
       "component": {
         "$type": "color",
         "$value": "{color.purple.600}",
-        "$description": "foreground component color",
+        "$description": "text component color",
         "$extensions": {
           "mode": {
             "light": "{color.purple.600}",
@@ -6267,8 +6263,7 @@
           "choiceform.design-system": {
             "category": "text colors",
             "aliases": [
-              "fg.component",
-              "fg-component"
+              "text.component"
             ]
           }
         }
@@ -6276,7 +6271,7 @@
       "inverse": {
         "$type": "color",
         "$value": "{color.white}",
-        "$description": "foreground inverse color",
+        "$description": "text inverse color",
         "$extensions": {
           "mode": {
             "light": "{color.white}",
@@ -6285,8 +6280,7 @@
           "choiceform.design-system": {
             "category": "text colors",
             "aliases": [
-              "fg.inverse",
-              "fg-inverse"
+              "text.inverse"
             ]
           }
         }
@@ -6700,17 +6694,16 @@
         }
       }
     },
-    "boundary": {
+    "border": {
       "selected": {
         "$type": "color",
         "$value": "{color.blue.500}",
-        "$description": "boundary selected color (extended)",
+        "$description": "border selected color (extended)",
         "$extensions": {
           "choiceform.design-system": {
             "category": "border colors",
             "aliases": [
-              "bd.selected",
-              "bd-selected"
+              "border.selected"
             ]
           }
         }
@@ -6718,13 +6711,12 @@
       "menu": {
         "$type": "color",
         "$value": "{color.gray.700}",
-        "$description": "boundary menu color (extended)",
+        "$description": "border menu color (extended)",
         "$extensions": {
           "choiceform.design-system": {
             "category": "border colors",
             "aliases": [
-              "bd.menu",
-              "bd-menu"
+              "border.menu"
             ]
           }
         }
@@ -6732,13 +6724,12 @@
       "toolbar": {
         "$type": "color",
         "$value": "{color.gray.600}",
-        "$description": "boundary toolbar color (extended)",
+        "$description": "border toolbar color (extended)",
         "$extensions": {
           "choiceform.design-system": {
             "category": "border colors",
             "aliases": [
-              "bd.toolbar",
-              "bd-toolbar"
+              "border.toolbar"
             ]
           }
         }
@@ -6746,7 +6737,7 @@
       "default": {
         "$type": "color",
         "$value": "{color.gray.200}",
-        "$description": "boundary default color",
+        "$description": "border default color",
         "$extensions": {
           "mode": {
             "light": "{color.gray.200}",
@@ -6755,8 +6746,7 @@
           "choiceform.design-system": {
             "category": "border colors",
             "aliases": [
-              "bd.default",
-              "bd-default"
+              "border.default"
             ]
           }
         }
@@ -6764,7 +6754,7 @@
       "strong": {
         "$type": "color",
         "$value": "{color.gray.800}",
-        "$description": "boundary strong color",
+        "$description": "border strong color",
         "$extensions": {
           "alpha": {
             "light": 1,
@@ -6777,8 +6767,7 @@
           "choiceform.design-system": {
             "category": "border colors",
             "aliases": [
-              "bd.strong",
-              "bd-strong"
+              "border.strong"
             ]
           }
         }
@@ -6786,7 +6775,7 @@
       "selected-strong": {
         "$type": "color",
         "$value": "{color.blue.600}",
-        "$description": "boundary selected strong color",
+        "$description": "border selected strong color",
         "$extensions": {
           "mode": {
             "light": "{color.blue.600}",
@@ -6795,8 +6784,7 @@
           "choiceform.design-system": {
             "category": "border colors",
             "aliases": [
-              "bd.selected-strong",
-              "bd-selected-strong"
+              "border.selected.strong"
             ]
           }
         }
