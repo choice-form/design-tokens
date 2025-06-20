@@ -51,9 +51,9 @@ export const SectionTextAgainstColors = memo(
             {textAgainstGroups.map((colorData) => {
               const opacity = 1; // 简化：使用固定透明度
               const colorKey = color(
-                colorData.colorKey,
+                colorData.colorKey as any,
                 opacity,
-                theme as "light" | "dark"
+                theme === "light" ? "." : "dark"
               );
 
               return (
@@ -84,7 +84,7 @@ export const SectionTextAgainstColors = memo(
                     className={css`
                       margin-top: ${spacing(4)};
                       padding: ${spacing(4)} ${spacing(2)};
-                      background-color: ${color("bg.accent")};
+                      background-color: ${color("bg.accent" as any)};
                       color: var(--color);
                       ${typographyStyles("heading.medium")};
                     `}

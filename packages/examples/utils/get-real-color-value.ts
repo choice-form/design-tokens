@@ -30,11 +30,14 @@ export function getRealColorValue(
   mode: "light" | "dark" = "light"
 ) {
   try {
+    // 修复：将主题模式参数转换为正确格式
+    const themeMode = mode === "light" ? "." : "dark";
+
     // 使用新的 color 函数获取 CSS 变量（类型断言以避免严格类型检查）
     const cssValue =
       opacity < 1
-        ? color(colorKey as ColorPath, opacity, mode)
-        : color(colorKey as ColorPath, 1, mode);
+        ? color(colorKey as ColorPath, opacity, themeMode)
+        : color(colorKey as ColorPath, 1, themeMode);
 
     // 直接从 Terrazzo tokens 获取颜色值
     let hexValue = "#000000";
@@ -42,9 +45,9 @@ export function getRealColorValue(
     let isValid = true;
 
     try {
-      // 获取实际的颜色值 - Terrazzo 数据中包含 hex 值
-      hexValue = colorHex(colorKey, mode);
-      const [r, g, b] = colorRgb(colorKey, mode);
+      // 修复：调整 colorHex 和 colorRgb 的参数顺序
+      hexValue = colorHex(colorKey, themeMode);
+      const [r, g, b] = colorRgb(colorKey, themeMode);
       rgbValue = `rgb(${r}, ${g}, ${b})`;
     } catch (error) {
       // 如果找不到颜色，标记为无效
@@ -131,7 +134,8 @@ export function getColorsByType(
  * 检查颜色键是否有效
  */
 export function isValidColorKey(colorKey: string): boolean {
-  return hasColor(colorKey);
+  // 修复：为 hasColor 函数提供正确的参数
+  return hasColor(colorKey, ".");
 }
 
 /**
