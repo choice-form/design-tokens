@@ -1,0 +1,330 @@
+// ============================================================================
+// 阴影函数库
+// ============================================================================
+
+@use "sass:map";
+@use "sass:meta";
+@use "sass:list";
+@use "../tokens/shadows" as shadow-tokens;
+@use "../css-variables/config" as css-vars;
+
+/// 获取阴影值
+/// @param {String} $name - 阴影名称
+/// @param {String} $theme - 主题名称，"light" | "dark"，默认自动检测
+/// @param {Boolean} $as-var - 是否返回 CSS 变量，默认 true
+/// @return {String} 阴影值或 CSS 变量
+/// @example scss - 基本用法
+///   .card {
+///     box-shadow: shadow("md");
+///   }
+/// @example scss - 使用具体值
+///   .card {
+///     box-shadow: shadow("lg", null, false);
+///   }
+/// @example scss - 指定主题
+///   .card {
+///     box-shadow: shadow("lg", "dark");
+///   }
+@function shadow($name, $theme: null, $as-var: true) {
+  @if $name == "none" or $name == none {
+    @return none;
+  }
+
+  // 检查是否为语义阴影名
+  @if map.has-key(shadow-tokens.$semantic-shadows, $name) {
+    $base-name: map.get(shadow-tokens.$semantic-shadows, $name);
+    @if $as-var {
+      @return var(--#{css-vars.$css-var-prefix}shadow-#{$name});
+    } @else {
+      // 递归获取基础阴影值
+      @return shadow($base-name, false);
+    }
+  }
+
+  // 检查是否为基础阴影名（light theme）
+  @if map.has-key(shadow-tokens.$shadows-light, $name) {
+    @if $as-var {
+      @return var(--#{css-vars.$css-var-prefix}shadow-#{$name});
+    } @else {
+      $shadow-list: map.get(shadow-tokens.$shadows-light, $name);
+      @return $shadow-list;
+    }
+  }
+
+  // 检查是否为基础阴影名（dark theme）
+  @if map.has-key(shadow-tokens.$shadows-dark, $name) {
+    @if $as-var {
+      @return var(--#{css-vars.$css-var-prefix}shadow-#{$name});
+    } @else {
+      $shadow-list: map.get(shadow-tokens.$shadows-dark, $name);
+      @return $shadow-list;
+    }
+  }
+
+  // 检查是否为特殊阴影名
+  @if map.has-key(shadow-tokens.$hard-shadows, $name) {
+    @if $as-var {
+      @return var(--#{css-vars.$css-var-prefix}shadow-#{$name});
+    } @else {
+      $shadow-list: map.get(shadow-tokens.$hard-shadows, $name);
+      @return $shadow-list;
+    }
+  }
+
+  @error "阴影 '#{$name}' 不存在。\A可用语义阴影: #{map.keys(shadow-tokens.$semantic-shadows)}\A可用基础阴影: #{map.keys(shadow-tokens.$shadows-light)}\A可用特殊阴影: #{map.keys(shadow-tokens.$hard-shadows)}";
+}
+
+/// 获取多个阴影值
+/// @param {List} $names - 阴影名称列表
+/// @param {Boolean} $as-var - 是否返回CSS变量形式，默认为true
+/// @return {List} 阴影值列表
+/// @example scss - 使用示例
+///   .element {
+///     box-shadow: shadow-list("sm", "focus"); // 组合多个阴影
+///   }
+@function shadow-list($names...) {
+  $result: ();
+  @each $name in $names {
+    $result: list.append($result, shadow($name), comma);
+  }
+  @return $result;
+}
+
+/// 检查阴影是否存在
+/// @param {String} $name - 阴影名称
+/// @return {Boolean} 是否存在
+/// @example scss - 使用示例
+///   @if shadow-exists("md") { } // true
+///   @if shadow-exists("unknown") { } // false
+@function shadow-exists($name) {
+  @return map.has-key(shadow-tokens.$semantic-shadows, $name) or
+    map.has-key(shadow-tokens.$shadows-light, $name) or
+    map.has-key(shadow-tokens.$shadows-dark, $name) or
+    map.has-key(shadow-tokens.$hard-shadows, $name);
+}
+
+/// 解析阴影别名
+/// @param {String} $name - 阴影名称（可能是别名）
+/// @return {String} 解析后的基础阴影名称
+/// @example scss - 使用示例
+///   $resolved: resolve-shadow-alias("md"); // "tooltip"
+@function resolve-shadow-alias($name) {
+  @if map.has-key(shadow-tokens.$semantic-shadows, $name) {
+    $base-name: map.get(shadow-tokens.$semantic-shadows, $name);
+    @if map.has-key(shadow-tokens.$hard-shadows, $base-name) {
+      $special-shadow: map.get(shadow-tokens.$hard-shadows, $base-name);
+      @return $base-name;
+    }
+    @return $base-name;
+  }
+
+  @if map.has-key(shadow-tokens.$shadows-light, $name) or
+    map.has-key(shadow-tokens.$shadows-dark, $name) or
+    map.has-key(shadow-tokens.$hard-shadows, $name)
+  {
+    @return $name;
+  }
+
+  @if map.has-key(shadow-tokens.$hard-shadows, $name) {
+    $special-shadow: map.get(shadow-tokens.$hard-shadows, $name);
+    @return $name;
+  }
+
+  @error "未知的阴影: '#{$name}'";
+}
+
+/// 获取所有可用的阴影名称
+/// @return {List} 阴影名称列表
+@function shadow-keys() {
+  $semantic-shadows: map.keys(shadow-tokens.$semantic-shadows);
+  $light-shadows: map.keys(shadow-tokens.$shadows-light);
+  $dark-shadows: map.keys(shadow-tokens.$shadows-dark);
+  $hard-shadows: map.keys(shadow-tokens.$hard-shadows);
+
+  $all-shadows: ();
+  @each $shadow in $semantic-shadows {
+    $all-shadows: list.append($all-shadows, $shadow);
+  }
+  @each $shadow in $light-shadows {
+    $all-shadows: list.append($all-shadows, $shadow);
+  }
+  @each $shadow in $dark-shadows {
+    $all-shadows: list.append($all-shadows, $shadow);
+  }
+  @each $shadow in $hard-shadows {
+    $all-shadows: list.append($all-shadows, $shadow);
+  }
+
+  @return $all-shadows;
+}
+
+/// 获取阴影的调试信息
+/// @param {String} $name - 阴影名称
+/// @return {String} 调试信息
+@function shadow-debug($name) {
+  @if not shadow-exists($name) {
+    @return "阴影 '#{$name}' 不存在";
+  }
+
+  $resolved: resolve-shadow-alias($name);
+  $type: "未知";
+
+  @if map.has-key(shadow-tokens.$semantic-shadows, $name) {
+    $type: "语义阴影";
+  } @else if map.has-key(shadow-tokens.$shadows-light, $name) {
+    $type: "基础阴影(light)";
+  } @else if map.has-key(shadow-tokens.$shadows-dark, $name) {
+    $type: "基础阴影(dark)";
+  } @else if map.has-key(shadow-tokens.$hard-shadows, $name) {
+    $type: "特殊阴影";
+  }
+
+  @return "阴影 '#{$name}' - 类型: #{$type}, 解析为: #{$resolved}";
+}
+
+/// 列出所有可用阴影
+/// @return {List} 阴影名称列表
+/// @example scss - 查看所有阴影
+///   $all-shadows: list-shadows();
+@function list-shadows() {
+  @return _list-all-shadows();
+}
+
+/// 列出语义阴影
+/// @return {List} 语义阴影名称列表
+@function list-semantic-shadows() {
+  @return _list-semantic-shadows();
+}
+
+// ============================================================================
+// 私有辅助函数
+// ============================================================================
+
+/// 检查阴影是否存在
+/// @param {String} $name - 阴影名称
+/// @return {Boolean} 是否存在
+/// @access private
+@function _shadow-exists($name) {
+  // 检查基础阴影 (light theme)
+  @if map.has-key(shadow-tokens.$shadows-light, $name) {
+    @return true;
+  }
+
+  // 检查基础阴影 (dark theme)
+  @if map.has-key(shadow-tokens.$shadows-dark, $name) {
+    @return true;
+  }
+
+  // 检查语义阴影
+  @if map.has-key(shadow-tokens.$semantic-shadows, $name) {
+    @return true;
+  }
+
+  // 检查特殊阴影
+  @if map.has-key(shadow-tokens.$hard-shadows, $name) {
+    @return true;
+  }
+
+  @return false;
+}
+
+/// 获取阴影值
+/// @param {String} $name - 阴影名称
+/// @param {String} $theme - 主题名称
+/// @return {String} 阴影值
+/// @access private
+@function _get-shadow-value($name, $theme) {
+  // 选择主题对应的阴影映射
+  $shadows: shadow-tokens.$shadows-light;
+  @if $theme == "dark" {
+    $shadows: shadow-tokens.$shadows-dark;
+  }
+
+  // 直接查找基础阴影
+  @if map.has-key($shadows, $name) {
+    $shadow-list: map.get($shadows, $name);
+    @return _shadow-list-to-string($shadow-list);
+  }
+
+  // 查找语义阴影
+  @if map.has-key(shadow-tokens.$semantic-shadows, $name) {
+    $base-name: map.get(shadow-tokens.$semantic-shadows, $name);
+
+    // 如果是特殊阴影，返回处理后的值
+    @if map.has-key(shadow-tokens.$hard-shadows, $base-name) {
+      $special-shadow: map.get(shadow-tokens.$hard-shadows, $base-name);
+      @return _shadow-list-to-string($special-shadow);
+    }
+
+    // 否则递归获取基础阴影
+    @if map.has-key($shadows, $base-name) {
+      $shadow-list: map.get($shadows, $base-name);
+      @return _shadow-list-to-string($shadow-list);
+    }
+  }
+
+  // 查找特殊阴影
+  @if map.has-key(shadow-tokens.$hard-shadows, $name) {
+    $special-shadow: map.get(shadow-tokens.$hard-shadows, $name);
+    @return _shadow-list-to-string($special-shadow);
+  }
+
+  @return "无法解析";
+}
+
+/// 将阴影列表转换为字符串
+/// @param {List} $shadow-list - 阴影列表
+/// @return {String} 阴影字符串
+/// @access private
+@function _shadow-list-to-string($shadow-list) {
+  $result: "";
+  $separator: ", ";
+
+  @for $i from 1 through list.length($shadow-list) {
+    $shadow: list.nth($shadow-list, $i);
+    @if $i == 1 {
+      $result: #{$shadow};
+    } @else {
+      $result: #{$result}#{$separator}#{$shadow};
+    }
+  }
+
+  @return $result;
+}
+
+/// 列出所有阴影
+/// @return {List} 阴影名称列表
+/// @access private
+@function _list-all-shadows() {
+  $light-shadows: map.keys(shadow-tokens.$shadows-light);
+  $dark-shadows: map.keys(shadow-tokens.$shadows-dark);
+  $semantic-shadows: map.keys(shadow-tokens.$semantic-shadows);
+  $hard-shadows: map.keys(shadow-tokens.$hard-shadows);
+
+  // 合并并去重
+  $all-shadows: $light-shadows;
+  @each $shadow in $dark-shadows {
+    @if not list.index($all-shadows, $shadow) {
+      $all-shadows: list.append($all-shadows, $shadow);
+    }
+  }
+  @each $shadow in $semantic-shadows {
+    @if not list.index($all-shadows, $shadow) {
+      $all-shadows: list.append($all-shadows, $shadow);
+    }
+  }
+  @each $shadow in $hard-shadows {
+    @if not list.index($all-shadows, $shadow) {
+      $all-shadows: list.append($all-shadows, $shadow);
+    }
+  }
+
+  @return $all-shadows;
+}
+
+/// 列出所有语义阴影
+/// @return {List} 语义阴影名称列表
+/// @access private
+@function _list-semantic-shadows() {
+  @return map.keys(shadow-tokens.$semantic-shadows);
+}

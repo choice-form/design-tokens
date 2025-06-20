@@ -1,0 +1,118 @@
+{
+  "typography": {
+    "body": {
+      "large": {
+        "$type": "typography",
+        "$description": "body typography preset",
+        "$value": {
+          "fontFamily": "{font.families.default}",
+          "fontSize": "{font.sizes.md}",
+          "fontWeight": "{font.weights.default}",
+          "lineHeight": "{font.lineHeights.normal}",
+          "letterSpacing": "{font.letterSpacings.body-large}"
+        }
+      },
+      "large-strong": {
+        "$type": "typography",
+        "$description": "body typography preset",
+        "$value": {
+          "fontFamily": "{font.families.default}",
+          "fontSize": "{font.sizes.md}",
+          "fontWeight": "{font.weights.strong}",
+          "lineHeight": "{font.lineHeights.normal}",
+          "letterSpacing": "{font.letterSpacings.body-large}"
+        }
+      },
+      "medium": {
+        "$type": "typography",
+        "$description": "body typography preset",
+        "$value": {
+          "fontFamily": "{font.families.default}",
+          "fontSize": "{font.sizes.sm}",
+          "fontWeight": "{font.weights.medium}",
+          "lineHeight": "{font.lineHeights.snug}",
+          "letterSpacing": "{font.letterSpacings.body-medium}"
+        }
+      },
+      "medium-strong": {
+        "$type": "typography",
+        "$description": "body typography preset",
+        "$value": {
+          "fontFamily": "{font.families.default}",
+          "fontSize": "{font.sizes.sm}",
+          "fontWeight": "{font.weights.heavy}",
+          "lineHeight": "{font.lineHeights.snug}",
+          "letterSpacing": "{font.letterSpacings.body-medium}"
+        }
+      },
+      "small": {
+        "$type": "typography",
+        "$description": "body typography preset",
+        "$value": {
+          "fontFamily": "{font.families.default}",
+          "fontSize": "{font.sizes.xs}",
+          "fontWeight": "{font.weights.default}",
+          "lineHeight": "{font.lineHeights.tight}",
+          "letterSpacing": "{font.letterSpacings.body-small}"
+        }
+      },
+      "small-strong": {
+        "$type": "typography",
+        "$description": "body typography preset",
+        "$value": {
+          "fontFamily": "{font.families.default}",
+          "fontSize": "{font.sizes.xs}",
+          "fontWeight": "{font.weights.strong}",
+          "lineHeight": "{font.lineHeights.tight}",
+          "letterSpacing": "{font.letterSpacings.body-small-strong}"
+        }
+      }
+    },
+    "heading": {
+      "display": {
+        "$type": "typography",
+        "$description": "heading typography preset",
+        "$value": {
+          "fontFamily": "{font.families.display}",
+          "fontSize": "{font.sizes.2xl}",
+          "fontWeight": "{font.weights.light}",
+          "lineHeight": "{font.lineHeights.extra-loose}",
+          "letterSpacing": "{font.letterSpacings.display}"
+        }
+      },
+      "large": {
+        "$type": "typography",
+        "$description": "heading typography preset",
+        "$value": {
+          "fontFamily": "{font.families.default}",
+          "fontSize": "{font.sizes.xl}",
+          "fontWeight": "{font.weights.heavy}",
+          "lineHeight": "{font.lineHeights.loose}",
+          "letterSpacing": "{font.letterSpacings.heading-large}"
+        }
+      },
+      "medium": {
+        "$type": "typography",
+        "$description": "heading typography preset",
+        "$value": {
+          "fontFamily": "{font.families.default}",
+          "fontSize": "{font.sizes.lg}",
+          "fontWeight": "{font.weights.heavy}",
+          "lineHeight": "{font.lineHeights.relaxed}",
+          "letterSpacing": "{font.letterSpacings.heading-medium}"
+        }
+      },
+      "small": {
+        "$type": "typography",
+        "$description": "heading typography preset",
+        "$value": {
+          "fontFamily": "{font.families.default}",
+          "fontSize": "{font.sizes.md}",
+          "fontWeight": "{font.weights.heavy}",
+          "lineHeight": "{font.lineHeights.normal}",
+          "letterSpacing": "{font.letterSpacings.heading-small}"
+        }
+      }
+    }
+  }
+}

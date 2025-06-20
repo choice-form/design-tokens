@@ -1,0 +1,217 @@
+// ============================================================================
+// Position 定位 Mixins
+// ============================================================================
+
+@use "sass:meta";
+@use "sass:math";
+@use "../functions" as fn;
+
+/// 基础 absolute 定位
+/// @param {String|Number} $top - 顶部距离，支持 spacing token
+/// @param {String|Number} $right - 右侧距离，支持 spacing token
+/// @param {String|Number} $bottom - 底部距离，支持 spacing token
+/// @param {String|Number} $left - 左侧距离，支持 spacing token
+/// @param {Number} $z-index - z-index 值
+@mixin absolute($top: null, $right: null, $bottom: null, $left: null, $z-index: null) {
+  position: absolute;
+
+  @if $top != null {
+    @if meta.type-of($top) == number and math.is-unitless($top) {
+      top: fn.spacing($top);
+    } @else {
+      top: $top;
+    }
+  }
+
+  @if $right != null {
+    @if meta.type-of($right) == number and math.is-unitless($right) {
+      right: fn.spacing($right);
+    } @else {
+      right: $right;
+    }
+  }
+
+  @if $bottom != null {
+    @if meta.type-of($bottom) == number and math.is-unitless($bottom) {
+      bottom: fn.spacing($bottom);
+    } @else {
+      bottom: $bottom;
+    }
+  }
+
+  @if $left != null {
+    @if meta.type-of($left) == number and math.is-unitless($left) {
+      left: fn.spacing($left);
+    } @else {
+      left: $left;
+    }
+  }
+
+  @if $z-index != null {
+    z-index: $z-index;
+  }
+}
+
+/// Absolute 居中定位
+@mixin absolute-center($z-index: null) {
+  @include absolute(50%, null, null, 50%, $z-index);
+  transform: translate(-50%, -50%);
+}
+
+/// Absolute 水平居中
+@mixin absolute-center-x($top: null, $z-index: null) {
+  @include absolute($top, null, null, 50%, $z-index);
+  transform: translateX(-50%);
+}
+
+/// Absolute 垂直居中
+@mixin absolute-center-y($left: null, $z-index: null) {
+  @include absolute(50%, null, null, $left, $z-index);
+  transform: translateY(-50%);
+}
+
+/// Absolute 全覆盖定位
+@mixin absolute-cover($inset: 0, $z-index: null) {
+  @if meta.type-of($inset) == number and math.is-unitless($inset) and $inset != 0 {
+    $inset: fn.spacing($inset);
+  }
+  @include absolute($inset, $inset, $inset, $inset, $z-index);
+}
+
+/// Absolute 四角定位快捷方式
+@mixin absolute-corner($corner, $offset: 0, $z-index: null) {
+  @if meta.type-of($offset) == number and math.is-unitless($offset) and $offset != 0 {
+    $offset: fn.spacing($offset);
+  }
+
+  @if $corner == top-left {
+    @include absolute($offset, null, null, $offset, $z-index);
+  } @else if $corner == top-right {
+    @include absolute($offset, $offset, null, null, $z-index);
+  } @else if $corner == bottom-left {
+    @include absolute(null, null, $offset, $offset, $z-index);
+  } @else if $corner == bottom-right {
+    @include absolute(null, $offset, $offset, null, $z-index);
+  }
+}
+
+/// 基础 relative 定位
+@mixin relative($top: null, $right: null, $bottom: null, $left: null, $z-index: null) {
+  position: relative;
+
+  @if $top != null {
+    @if meta.type-of($top) == number and math.is-unitless($top) {
+      top: fn.spacing($top);
+    } @else {
+      top: $top;
+    }
+  }
+
+  @if $right != null {
+    @if meta.type-of($right) == number and math.is-unitless($right) {
+      right: fn.spacing($right);
+    } @else {
+      right: $right;
+    }
+  }
+
+  @if $bottom != null {
+    @if meta.type-of($bottom) == number and math.is-unitless($bottom) {
+      bottom: fn.spacing($bottom);
+    } @else {
+      bottom: $bottom;
+    }
+  }
+
+  @if $left != null {
+    @if meta.type-of($left) == number and math.is-unitless($left) {
+      left: fn.spacing($left);
+    } @else {
+      left: $left;
+    }
+  }
+
+  @if $z-index != null {
+    z-index: $z-index;
+  }
+}
+
+/// 基础 fixed 定位
+@mixin fixed($top: null, $right: null, $bottom: null, $left: null, $z-index: null) {
+  position: fixed;
+
+  @if $top != null {
+    @if meta.type-of($top) == number and math.is-unitless($top) {
+      top: fn.spacing($top);
+    } @else {
+      top: $top;
+    }
+  }
+
+  @if $right != null {
+    @if meta.type-of($right) == number and math.is-unitless($right) {
+      right: fn.spacing($right);
+    } @else {
+      right: $right;
+    }
+  }
+
+  @if $bottom != null {
+    @if meta.type-of($bottom) == number and math.is-unitless($bottom) {
+      bottom: fn.spacing($bottom);
+    } @else {
+      bottom: $bottom;
+    }
+  }
+
+  @if $left != null {
+    @if meta.type-of($left) == number and math.is-unitless($left) {
+      left: fn.spacing($left);
+    } @else {
+      left: $left;
+    }
+  }
+
+  @if $z-index != null {
+    z-index: $z-index;
+  }
+}
+
+/// Fixed 居中定位
+@mixin fixed-center($z-index: null) {
+  @include fixed(50%, null, null, 50%, $z-index);
+  transform: translate(-50%, -50%);
+}
+
+/// Fixed 全覆盖定位
+@mixin fixed-cover($inset: 0, $z-index: null) {
+  @if meta.type-of($inset) == number and math.is-unitless($inset) and $inset != 0 {
+    $inset: fn.spacing($inset);
+  }
+  @include fixed($inset, $inset, $inset, $inset, $z-index);
+}
+
+/// Sticky 定位
+@mixin sticky($top: 0, $z-index: null) {
+  position: sticky;
+
+  @if meta.type-of($top) == number and math.is-unitless($top) and $top != 0 {
+    top: fn.spacing($top);
+  } @else {
+    top: $top;
+  }
+
+  @if $z-index != null {
+    z-index: $z-index;
+  }
+}
+
+/// 定位重置
+@mixin position-reset {
+  position: static;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  z-index: auto;
+}

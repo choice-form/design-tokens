@@ -1,0 +1,81 @@
+// ============================================================================
+// 主题切换 Mixins
+// ============================================================================
+
+/// 暗色主题样式
+/// 支持 .dark class 和 data-theme="dark" 两种方式
+/// @example scss - 使用示例
+///   .card {
+///     background: white;
+///     color: black;
+///
+///     @include dark {
+///       background: black;
+///       color: white;
+///     }
+///   }
+@mixin dark {
+  &:where(.dark, .dark *),
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @content;
+  }
+}
+
+/// 亮色主题样式
+/// 支持 .light class 和 data-theme="light" 两种方式
+/// @example scss - 使用示例
+///   .card {
+///     @include light {
+///       background: white;
+///       color: black;
+///     }
+///   }
+@mixin light {
+  &:where(.light, .light *),
+  &:where([data-theme="light"], [data-theme="light"] *) {
+    @content;
+  }
+}
+
+/// 自定义主题样式
+/// @param {String} $theme-name - 主题名称
+/// @example scss - 使用示例
+///   .card {
+///     @include theme("high-contrast") {
+///       border: 2px solid black;
+///     }
+///   }
+@mixin theme($theme-name) {
+  &:where(.#{$theme-name}, .#{$theme-name} *),
+  &:where([data-theme="#{$theme-name}"], [data-theme="#{$theme-name}"] *) {
+    @content;
+  }
+}
+
+/// 系统偏好暗色主题
+/// @example scss - 使用示例
+///   .card {
+///     @include prefers-dark {
+///       background: black;
+///       color: white;
+///     }
+///   }
+@mixin prefers-dark {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+/// 系统偏好亮色主题
+/// @example scss - 使用示例
+///   .card {
+///     @include prefers-light {
+///       background: white;
+///       color: black;
+///     }
+///   }
+@mixin prefers-light {
+  @media (prefers-color-scheme: light) {
+    @content;
+  }
+}

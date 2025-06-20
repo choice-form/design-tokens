@@ -1,0 +1,60 @@
+{
+  "name": "@choiceform/design-scss-tokens",
+  "version": "0.1.0",
+  "description": "Modern SCSS design tokens system",
+  "type": "module",
+  "main": "dist/index.css",
+  "module": "src/_index.scss",
+  "exports": {
+    ".": {
+      "sass": "./src/_index.scss",
+      "import": "./dist/index.css",
+      "require": "./dist/index.css",
+      "default": "./src/_index.scss"
+    },
+    "./mixins": "./src/mixins/_index.scss",
+    "./functions": "./src/functions/_index.scss",
+    "./css-variables": "./src/css-variables/_index.scss",
+    "./dist/*": "./dist/*"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "dev": "pnpm watch:types & vite",
+    "build": "sass src/index.scss:dist/index.css --no-source-map",
+    "preview": "vite preview",
+    "serve": "pnpm build && pnpm preview",
+    "watch:types": "typed-scss-modules demo/styles --watch",
+    "gen:types": "typed-scss-modules demo/styles",
+    "build:types": "typed-scss-modules demo/styles",
+    "extract-tokens": "node scripts/extract-tokens.js"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.5.2",
+    "prettier": "^3.5.3",
+    "prettier-plugin-css-order": "^2.1.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0",
+    "sass": "^1.89.2",
+    "sass-embedded": "^1.89.2",
+    "typed-scss-modules": "^8.1.1",
+    "vite": "^6.0.7"
+  },
+  "keywords": [
+    "scss",
+    "design-tokens",
+    "spacing",
+    "css",
+    "design-system"
+  ],
+  "author": "Your Organization",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

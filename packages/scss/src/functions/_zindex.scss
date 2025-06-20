@@ -1,0 +1,70 @@
+// ============================================================================
+// Z-Index 函数库
+// ============================================================================
+
+@use "sass:map";
+@use "sass:meta";
+@use "../tokens/zindex" as zindex-tokens;
+@use "../css-variables/config" as css-vars;
+
+/// 获取 z-index 值的辅助函数
+/// @param {String} $name - z-index 名称
+/// @return {Number} z-index 值
+/// @access private
+@function _get-zindex-value($name) {
+  @if map.has-key(zindex-tokens.$zindex-values, $name) {
+    @return map.get(zindex-tokens.$zindex-values, $name);
+  }
+
+  @error "Unknown z-index name: '#{$name}'. Available z-index names: #{map.keys(zindex-tokens.$zindex-values)}";
+}
+
+/// 获取 z-index 值
+/// @param {String} $name - z-index 名称
+/// @param {Boolean} $as-var - 是否返回 CSS 变量，默认 true
+/// @return {String|Number} z-index 值或 CSS 变量
+/// @example scss - 基本用法
+///   .modal {
+///     z-index: zindex("modal");
+///   }
+/// @example scss - 使用具体值
+///   .tooltip {
+///     z-index: zindex("tooltip", false);
+///   }
+/// @example scss - 使用别名
+///   .overlay {
+///     z-index: zindex("overlay");
+///   }
+@function zindex($name, $as-var: true) {
+  // 如果请求 CSS 变量，直接返回
+  @if $as-var {
+    @return var(--#{css-vars.$css-var-prefix}zindex-#{$name});
+  }
+
+  // 检查 z-index 是否存在
+  @if not map.has-key(zindex-tokens.$zindex-values, $name) {
+    @error "Unknown z-index name: '#{$name}'. Available z-index names: #{map.keys(zindex-tokens.$zindex-values)}";
+  }
+
+  // 返回具体值
+  @return _get-zindex-value($name);
+}
+
+/// 获取所有可用的 z-index 名称
+/// @return {List} z-index 名称列表
+/// @example scss - 使用示例
+///   @debug zindex-names(); // 输出所有可用的 z-index 名称
+@function zindex-names() {
+  @return map.keys(zindex-tokens.$zindex-values);
+}
+
+/// 检查 z-index 名称是否存在
+/// @param {String} $name - z-index 名称
+/// @return {Boolean} 是否存在
+/// @example scss - 使用示例
+///   @if zindex-exists("modal") {
+///     .modal { z-index: zindex("modal"); }
+///   }
+@function zindex-exists($name) {
+  @return map.has-key(zindex-tokens.$zindex-values, $name);
+}

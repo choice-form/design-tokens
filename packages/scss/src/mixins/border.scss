@@ -1,0 +1,157 @@
+// ============================================================================
+// 边框 Mixins
+// ============================================================================
+
+@use "../functions" as fn;
+
+/// 基础边框样式
+/// @param {String} $width - 边框宽度，默认 1px
+/// @param {String} $style - 边框样式，默认 solid
+/// @param {String} $color - 边框颜色 token 名称，默认 boundary-default
+/// @param {String} $sides - 应用边框的边 (all, top, bottom, left, right, horizontal, vertical)
+/// @example scss - 使用示例
+///   .card {
+///     @include border;  // 默认: 1px solid boundary-default
+///   }
+///   .input {
+///     @include border(2px, solid, "boundary-strong");
+///   }
+///   .divider {
+///     @include border($sides: "bottom");
+///   }
+@mixin border($width: 1px, $style: solid, $color: "boundary-default", $sides: "all") {
+  $border-value: $width $style fn.color($color);
+
+  @if $sides == "all" {
+    border: $border-value;
+  } @else if $sides == "top" {
+    border-top: $border-value;
+  } @else if $sides == "bottom" {
+    border-bottom: $border-value;
+  } @else if $sides == "left" {
+    border-left: $border-value;
+  } @else if $sides == "right" {
+    border-right: $border-value;
+  } @else if $sides == "horizontal" {
+    border-right: $border-value;
+    border-left: $border-value;
+  } @else if $sides == "vertical" {
+    border-top: $border-value;
+    border-bottom: $border-value;
+  }
+}
+
+/// 移除边框
+/// @param {String} $sides - 移除边框的边，默认 all
+/// @example scss - 使用示例
+///   .no-border {
+///     @include border-none;
+///   }
+///   .no-top-border {
+///     @include border-none("top");
+///   }
+@mixin border-none($sides: "all") {
+  @if $sides == "all" {
+    border: none;
+  } @else if $sides == "top" {
+    border-top: none;
+  } @else if $sides == "bottom" {
+    border-bottom: none;
+  } @else if $sides == "left" {
+    border-left: none;
+  } @else if $sides == "right" {
+    border-right: none;
+  } @else if $sides == "horizontal" {
+    border-right: none;
+    border-left: none;
+  } @else if $sides == "vertical" {
+    border-top: none;
+    border-bottom: none;
+  }
+}
+
+/// 边框颜色（保持现有宽度和样式）
+/// @param {String} $color - 边框颜色 token 名称
+/// @param {String} $sides - 应用的边，默认 all
+/// @example scss - 使用示例
+///   .error-input {
+///     @include border;  // 先设置基础边框
+///     @include border-color("boundary-danger");  // 然后改变颜色
+///   }
+@mixin border-color($color, $sides: "all") {
+  $color-value: fn.color($color);
+
+  @if $sides == "all" {
+    border-color: $color-value;
+  } @else if $sides == "top" {
+    border-top-color: $color-value;
+  } @else if $sides == "bottom" {
+    border-bottom-color: $color-value;
+  } @else if $sides == "left" {
+    border-left-color: $color-value;
+  } @else if $sides == "right" {
+    border-right-color: $color-value;
+  } @else if $sides == "horizontal" {
+    border-right-color: $color-value;
+    border-left-color: $color-value;
+  } @else if $sides == "vertical" {
+    border-top-color: $color-value;
+    border-bottom-color: $color-value;
+  }
+}
+
+/// 边框宽度（保持现有颜色和样式）
+/// @param {String} $width - 边框宽度
+/// @param {String} $sides - 应用的边，默认 all
+/// @example scss - 使用示例
+///   .thick-border {
+///     @include border;
+///     @include border-width(3px);
+///   }
+@mixin border-width($width, $sides: "all") {
+  @if $sides == "all" {
+    border-width: $width;
+  } @else if $sides == "top" {
+    border-top-width: $width;
+  } @else if $sides == "bottom" {
+    border-bottom-width: $width;
+  } @else if $sides == "left" {
+    border-left-width: $width;
+  } @else if $sides == "right" {
+    border-right-width: $width;
+  } @else if $sides == "horizontal" {
+    border-right-width: $width;
+    border-left-width: $width;
+  } @else if $sides == "vertical" {
+    border-top-width: $width;
+    border-bottom-width: $width;
+  }
+}
+
+/// 边框样式（保持现有宽度和颜色）
+/// @param {String} $style - 边框样式 (solid, dashed, dotted, double, etc.)
+/// @param {String} $sides - 应用的边，默认 all
+/// @example scss - 使用示例
+///   .dashed-border {
+///     @include border;
+///     @include border-style(dashed);
+///   }
+@mixin border-style($style, $sides: "all") {
+  @if $sides == "all" {
+    border-style: $style;
+  } @else if $sides == "top" {
+    border-top-style: $style;
+  } @else if $sides == "bottom" {
+    border-bottom-style: $style;
+  } @else if $sides == "left" {
+    border-left-style: $style;
+  } @else if $sides == "right" {
+    border-right-style: $style;
+  } @else if $sides == "horizontal" {
+    border-right-style: $style;
+    border-left-style: $style;
+  } @else if $sides == "vertical" {
+    border-top-style: $style;
+    border-bottom-style: $style;
+  }
+}

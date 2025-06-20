@@ -1,0 +1,60 @@
+{
+  "generatedAt": "2025-06-17T14:33:55.075Z",
+  "source": "SCSS tokens extraction",
+  "data": [
+    {
+      "key": "sticky",
+      "value": 100,
+      "category": "base",
+      "description": "sticky z-index level"
+    },
+    {
+      "key": "fixed",
+      "value": 700,
+      "category": "base",
+      "description": "fixed z-index level"
+    },
+    {
+      "key": "backdrop",
+      "value": 800,
+      "category": "base",
+      "description": "backdrop z-index level"
+    },
+    {
+      "key": "modals",
+      "value": 810,
+      "category": "base",
+      "description": "modals z-index level"
+    },
+    {
+      "key": "popover",
+      "value": 820,
+      "category": "base",
+      "description": "popover z-index level"
+    },
+    {
+      "key": "menu",
+      "value": 910,
+      "category": "base",
+      "description": "menu z-index level"
+    },
+    {
+      "key": "tooltip",
+      "value": 1000,
+      "category": "base",
+      "description": "tooltip z-index level"
+    },
+    {
+      "key": "notification",
+      "value": 1100,
+      "category": "base",
+      "description": "notification z-index level"
+    },
+    {
+      "key": "scroll",
+      "value": 1200,
+      "category": "base",
+      "description": "scroll z-index level"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+import React from "react"
+import { SectionHero, SectionInstallation, SectionViteConfiguration } from "../components/home"
+
+// ============================================================================
+// Home Page
+// ============================================================================
+
+export const HomePage: React.FC = () => {
+  return (
+    <>
+      {/* Hero Section */}
+      <SectionHero />
+
+      {/* Installation & Quick Start */}
+      <SectionInstallation />
+
+      {/* Vite Configuration */}
+      <SectionViteConfiguration />
+    </>
+  )
+}
+
+export default HomePage

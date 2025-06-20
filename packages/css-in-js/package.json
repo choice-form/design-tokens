@@ -1,0 +1,63 @@
+{
+  "name": "@choiceform/design-js-tokens",
+  "version": "0.1.0",
+  "description": "Modern CSS-in-JS design tokens system with Linaria",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./functions": {
+      "types": "./dist/functions.d.ts",
+      "import": "./dist/functions.js",
+      "require": "./dist/functions.cjs"
+    },
+    "./css-variables": {
+      "types": "./dist/css-variables.d.ts",
+      "import": "./dist/css-variables.js",
+      "require": "./dist/css-variables.cjs"
+    },
+    "./preflight.css": "./dist/preflight.css",
+    "./style.css": "./dist/design-tokens.css"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "vite build && tsc --emitDeclarationOnly --outDir dist --declaration --declarationMap && node scripts/build-css.js && cp src/styles/preflight.css dist/preflight.css",
+    "dev": "vite build --watch",
+    "type-check": "tsc --noEmit",
+    "lint:css": "stylelint \"**/*.{css,tsx,ts}\"",
+    "lint:css:fix": "stylelint \"**/*.{css,tsx,ts}\" --fix"
+  },
+  "dependencies": {
+    "tinycolor2": "1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.3",
+    "@types/tinycolor2": "^1.4.6",
+    "prettier": "^3.5.3",
+    "style-dictionary": "^5.0.0",
+    "typescript": "^5.6.0",
+    "vite": "^6.0.7"
+  },
+  "keywords": [
+    "css-in-js",
+    "linaria",
+    "design-tokens",
+    "spacing",
+    "css",
+    "design-system"
+  ],
+  "author": "Your Organization",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,190 @@
+// ============================================================================
+// 响应式断点 Mixins - 与 linaria breakpoints.ts 保持一致
+// ============================================================================
+
+@use "../css-variables/config" as config;
+
+// ============================================================================
+// 基础断点 Mixins - Mobile First 响应式设计
+// ============================================================================
+
+/// 超小屏幕及以上 (screen-xs: 475px+)
+/// @example scss - 使用示例
+///   .mobile-menu {
+///     display: block;
+///     @include screen-xs {
+///       display: none;
+///     }
+///   }
+@mixin screen-xs {
+  @media (width >= var(--#{config.$css-var-prefix}breakpoint-xs)) {
+    @content;
+  }
+}
+
+/// 小屏幕及以上 (screen-sm: 640px+)
+/// @example scss - 使用示例
+///   .container {
+///     padding: 1rem;
+///     @include screen-sm {
+///       padding: 2rem;
+///     }
+///   }
+@mixin screen-sm {
+  @media (width >= var(--#{config.$css-var-prefix}breakpoint-sm)) {
+    @content;
+  }
+}
+
+/// 中等屏幕及以上 (screen-md: 768px+)
+/// @example scss - 使用示例
+///   .grid {
+///     grid-template-columns: 1fr;
+///     @include screen-md {
+///       grid-template-columns: repeat(2, 1fr);
+///     }
+///   }
+@mixin screen-md {
+  @media (width >= var(--#{config.$css-var-prefix}breakpoint-md)) {
+    @content;
+  }
+}
+
+/// 大屏幕及以上 (screen-lg: 1024px+)
+/// @example scss - 使用示例
+///   .sidebar {
+///     display: none;
+///     @include screen-lg {
+///       display: block;
+///     }
+///   }
+@mixin screen-lg {
+  @media (width >= var(--#{config.$css-var-prefix}breakpoint-lg)) {
+    @content;
+  }
+}
+
+/// 特大屏幕及以上 (screen-xl: 1280px+)
+/// @example scss - 使用示例
+///   .container {
+///     max-width: 100%;
+///     @include screen-xl {
+///       max-width: 1200px;
+///     }
+///   }
+@mixin screen-xl {
+  @media (width >= var(--#{config.$css-var-prefix}breakpoint-xl)) {
+    @content;
+  }
+}
+
+/// 超大屏幕及以上 (screen-2xl: 1536px+)
+/// @example scss - 使用示例
+///   .hero {
+///     font-size: 2rem;
+///     @include screen-2xl {
+///       font-size: 3rem;
+///     }
+///   }
+@mixin screen-2xl {
+  @media (width >= var(--#{config.$css-var-prefix}breakpoint-2xl)) {
+    @content;
+  }
+}
+
+// ============================================================================
+// 容器最大宽度 Mixins
+// ============================================================================
+
+/// 应用容器最大宽度限制
+/// @param {String} $size - 容器大小 (xs, sm, md, lg, xl, 2xl)
+/// @example scss - 使用示例
+///   .container {
+///     @include container-max-width(lg);
+///   }
+@mixin container-max-width($size) {
+  @if $size == xs {
+    max-width: var(--#{config.$css-var-prefix}container-xs);
+  } @else if $size == sm {
+    max-width: var(--#{config.$css-var-prefix}container-sm);
+  } @else if $size == md {
+    max-width: var(--#{config.$css-var-prefix}container-md);
+  } @else if $size == lg {
+    max-width: var(--#{config.$css-var-prefix}container-lg);
+  } @else if $size == xl {
+    max-width: var(--#{config.$css-var-prefix}container-xl);
+  } @else if $size == 2xl {
+    max-width: var(--#{config.$css-var-prefix}container-2xl);
+  } @else {
+    @error "无效的容器大小: '#{$size}'。可用值: xs, sm, md, lg, xl, 2xl";
+  }
+}
+
+// ============================================================================
+// 语义化断点别名 Mixins
+// ============================================================================
+
+/// 移动设备 (alias for xs)
+/// @example scss - 使用示例
+///   .text {
+///     @include mobile {
+///       font-size: 0.875rem;
+///     }
+///   }
+@mixin mobile {
+  @include screen-xs {
+    @content;
+  }
+}
+
+/// 平板设备 (alias for md)
+/// @example scss - 使用示例
+///   .layout {
+///     @include tablet {
+///       grid-template-columns: repeat(2, 1fr);
+///     }
+///   }
+@mixin tablet {
+  @include screen-md {
+    @content;
+  }
+}
+
+/// 桌面设备 (alias for lg)
+/// @example scss - 使用示例
+///   .navigation {
+///     @include desktop {
+///       display: flex;
+///     }
+///   }
+@mixin desktop {
+  @include screen-lg {
+    @content;
+  }
+}
+
+/// 宽屏设备 (alias for xl)
+/// @example scss - 使用示例
+///   .hero {
+///     @include widescreen {
+///       font-size: 3rem;
+///     }
+///   }
+@mixin widescreen {
+  @include screen-xl {
+    @content;
+  }
+}
+
+/// 超宽屏设备 (alias for 2xl)
+/// @example scss - 使用示例
+///   .banner {
+///     @include ultrawide {
+///       height: 80vh;
+///     }
+///   }
+@mixin ultrawide {
+  @include screen-2xl {
+    @content;
+  }
+}

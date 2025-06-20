@@ -1,0 +1,25 @@
+// ============================================================================
+// 断点 CSS 变量生成器 - 与 linaria breakpoints.ts 保持一致
+// ============================================================================
+
+@use "config";
+
+/// 生成断点 CSS 变量
+/// @access private
+@mixin generate-breakpoint-variables() {
+  // Tailwind 标准断点定义 - 使用 rem 单位，与 linaria 保持一致
+  --#{config.$css-var-prefix}breakpoint-xs: 29.6875rem; /* 475px */
+  --#{config.$css-var-prefix}breakpoint-sm: 40rem; /* 640px */
+  --#{config.$css-var-prefix}breakpoint-md: 48rem; /* 768px */
+  --#{config.$css-var-prefix}breakpoint-lg: 64rem; /* 1024px */
+  --#{config.$css-var-prefix}breakpoint-xl: 80rem; /* 1280px */
+  --#{config.$css-var-prefix}breakpoint-2xl: 96rem; /* 1536px */
+
+  // 容器最大宽度变量
+  --#{config.$css-var-prefix}container-xs: none;
+  --#{config.$css-var-prefix}container-sm: 40rem; /* 640px */
+  --#{config.$css-var-prefix}container-md: 48rem; /* 768px */
+  --#{config.$css-var-prefix}container-lg: 64rem; /* 1024px */
+  --#{config.$css-var-prefix}container-xl: 80rem; /* 1280px */
+  --#{config.$css-var-prefix}container-2xl: 96rem; /* 1536px */
+}

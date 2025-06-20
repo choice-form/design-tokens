@@ -1,0 +1,74 @@
+{
+  "name": "design-tokens-intellisense",
+  "displayName": "Design Tokens IntelliSense",
+  "description": "Intelligent SCSS design tokens support with auto-completion, hover info, and validation",
+  "version": "1.0.0",
+  "publisher": "your-publisher",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Other"
+  ],
+  "keywords": [
+    "scss",
+    "sass",
+    "design-tokens",
+    "autocomplete",
+    "intellisense"
+  ],
+  "activationEvents": [
+    "onLanguage:scss",
+    "onLanguage:sass"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Design Tokens IntelliSense",
+      "properties": {
+        "designTokens.prefix": {
+          "type": "string",
+          "default": "dt",
+          "description": "设计令牌函数的前缀，例如：dt.colors() 或 cdt.colors()"
+        },
+        "designTokens.tokensPath": {
+          "type": "string",
+          "default": "packages/tokens/generated/tokens-data.json",
+          "description": "令牌数据文件的相对路径"
+        },
+        "designTokens.enableColorPreview": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否在颜色令牌旁显示颜色预览"
+        },
+        "designTokens.enableDiagnostics": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否启用令牌验证和错误诊断"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "designTokens.refreshTokens",
+        "title": "刷新设计令牌",
+        "category": "Design Tokens"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "install-extension": "code --install-extension *.vsix"
+  },
+  "devDependencies": {
+    "@types/node": "~18.19.112",
+    "@types/vscode": "^1.96.0",
+    "@vscode/vsce": "^3.5.0",
+    "typescript": "^4.9.5"
+  }
+}
