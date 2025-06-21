@@ -52,6 +52,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Clear npm cache and reinstall design-tokens
+        run: |
+          cd packages/examples
+          npm cache clean --force
+          pnpm remove @choiceform/design-tokens
+          pnpm add @choiceform/design-tokens@0.1.2
+
       - name: Build examples
         run: |
           cd packages/examples
