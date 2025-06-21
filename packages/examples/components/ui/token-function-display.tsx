@@ -1,5 +1,3 @@
-import { color } from "@choiceform/design-tokens";
-import { css } from "@linaria/core";
 import { memo } from "react";
 
 export interface TokenFunctionDisplayProps {
@@ -8,11 +6,6 @@ export interface TokenFunctionDisplayProps {
   withQuotes?: boolean;
 }
 
-// 预定义样式以避免运行时问题
-const assistiveTextStyles = css`
-  color: ${color("text.assistive")};
-`;
-
 export const TokenFunctionDisplay = memo((props: TokenFunctionDisplayProps) => {
   const { functionName, value, withQuotes = true } = props;
 
@@ -20,7 +13,7 @@ export const TokenFunctionDisplay = memo((props: TokenFunctionDisplayProps) => {
     <div>
       {"${"}
       {functionName}(
-      <span className={assistiveTextStyles}>
+      <span style={{ color: "var(--cdt-color-text-assistive)" }}>
         {withQuotes && '"'}
         {value}
         {withQuotes && '"'}

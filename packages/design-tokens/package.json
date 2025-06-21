@@ -1,6 +1,6 @@
 {
   "name": "@choiceform/design-tokens",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Design tokens generator for Choiceform Design System - converts TypeScript tokens to W3C format and outputs to multiple formats",
   "main": "dist/tokens.js",
   "types": "dist/tokens.d.ts",
@@ -18,11 +18,17 @@
     },
     "./css": "./dist/tokens.css",
     "./scss": "./dist/tokens.scss",
-    "./tokens.css": "./dist/tokens.css",
+    "./tokens.css": {
+      "style": "./dist/tokens.css",
+      "default": "./dist/tokens.css"
+    },
+    "./preflight.css": {
+      "style": "./dist/preflight.css", 
+      "default": "./dist/preflight.css"
+    },
     "./tokens.scss": "./dist/tokens.scss",
     "./tokens.js": "./dist/tokens.js",
-    "./tokens.d.ts": "./dist/tokens.d.ts",
-    "./preflight.css": "./dist/preflight.css"
+    "./tokens.d.ts": "./dist/tokens.d.ts"
   },
   "keywords": [
     "design-tokens",
