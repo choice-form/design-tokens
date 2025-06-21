@@ -5,6 +5,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict_Mode-blue.svg)](https://www.typescriptlang.org/)
 [![W3C Standard](https://img.shields.io/badge/W3C-Design_Tokens-green.svg)](https://www.w3.org/community/design-tokens/)
 [![Tested](https://img.shields.io/badge/Tests-✓_Full_Coverage-brightgreen.svg)](#)
+[![npm version](https://img.shields.io/npm/v/@choiceform/design-tokens.svg)](https://www.npmjs.com/package/@choiceform/design-tokens)
 
 ## 🚀 Why Choose This Library?
 
@@ -12,7 +13,7 @@
 
 - **Type-Safe**: 100% TypeScript with strict mode, catching errors at compile time.
 - **Intelligent Autocomplete**: Full IDE support for autocompletion and type checking.
-- **Dynamic Aliases**: Intuitive aliases like `bg.default` and `fg.secondary`.
+- **Dynamic Aliases**: Intuitive aliases like `background.default` and `text.secondary`.
 - **Live Reload**: See changes instantly when you modify tokens.
 
 ### 🎯 Advanced Architecture
@@ -34,6 +35,19 @@
 ### Installation
 
 ```bash
+# Install with npm
+npm install @choiceform/design-tokens
+
+# Install with pnpm (recommended)
+pnpm add @choiceform/design-tokens
+
+# Install with yarn
+yarn add @choiceform/design-tokens
+```
+
+### Development Setup
+
+```bash
 # Install dependencies
 pnpm install
 
@@ -49,13 +63,13 @@ pnpm run dev
 #### 🔥 JavaScript/TypeScript
 
 ```javascript
-import { color, spacing, shadow, typography } from "@your-org/design-tokens";
+import { color, spacing, shadow, typography } from "@choiceform/design-tokens";
 
 // 🎨 Colors - with theme and alias support
 const styles = {
-  background: color("bg.default"), // → var(--color-background-default)
-  color: color("fg.secondary", "dark"), // → foreground color for dark theme
-  border: color("bd.strong", { alpha: 0.5 }), // → border color with 50% opacity
+  background: color("background.default"), // → var(--color-background-default)
+  color: color("text.secondary", "dark"), // → foreground color for dark theme
+  border: color("border.strong", 0.5), // → border color with 50% opacity
 };
 
 // 📏 Spacing - flexible and versatile
@@ -87,9 +101,9 @@ const cssString = typographyStyles("body.medium"); // → CSS string
 
 .my-component {
   // 🎨 Colors - identical API to JS version
-  background: color("bg.default");
-  color: color("fg.secondary", 0.8);
-  border: 1px solid color("bd.default");
+  background: color("background.default");
+  color: color("text.secondary", 0.8);
+  border: 1px solid color("border.default");
 
   // 📏 Spacing - supports all JS features
   padding: spacing(4); // → "1rem"
@@ -182,7 +196,9 @@ Our SCSS integration provides a **complete, identical API** to the JavaScript ve
 // 🎯 1. Identical API to JavaScript
 .component {
   // Same function names, same parameters, same results
-  background: color("bg.default"); // ✓ Same as JS: color("bg.default")
+  background: color(
+    "background.default"
+  ); // ✓ Same as JS: color("background.default")
   padding: spacing(4); // ✓ Same as JS: spacing(4)
   box-shadow: shadow("md"); // ✓ Same as JS: shadow("md")
 }
@@ -207,8 +223,8 @@ Our SCSS integration provides a **complete, identical API** to the JavaScript ve
 // 🎨 3. Zero Learning Curve
 // If you know the JS API, you already know the SCSS API!
 .button {
-  // JS: { background: color("bg.primary", { alpha: 0.9 }) }
-  background: color("bg.primary", 0.9); // Same result in SCSS
+  // JS: { background: color("background.primary", { alpha: 0.9 }) }
+  background: color("background.primary", 0.9); // Same result in SCSS
 
   // JS: { padding: spacingList([2, 4]) }
   padding: spacing-list(2, 4); // Same result in SCSS
@@ -224,10 +240,10 @@ No more memorizing complex token paths. Use intuitive aliases instead:
 color("color.background.surface.default.light");
 
 // ✅ Smart Alias - Intuitive and easy
-color("bg.default"); // background color
-color("fg.secondary"); // foreground color
-color("bd.strong"); // border color
-color("ic.primary"); // icon color
+color("background.default"); // background color
+color("text.secondary"); // foreground color
+color("border.strong"); // border color
+color("icon.primary"); // icon color
 ```
 
 ### 2. Zero-Cost Theming 🌓
@@ -237,15 +253,9 @@ A single API provides perfect multi-theme support:
 ```javascript
 // Automatically adapts to the current theme
 const button = {
-  background: color("bg.primary"),
-  color: color("fg.onPrimary"),
+  background: color("background.default"),
+  color: color("text.default"),
   boxShadow: shadow("md"),
-};
-
-// Force a specific theme
-const darkButton = {
-  background: color("bg.primary", "dark"),
-  color: color("fg.onPrimary", "dark"),
 };
 ```
 
@@ -255,12 +265,12 @@ Catch errors at compile time, not at runtime:
 
 ```typescript
 // ✅ Type check passes
-color("bg.default"); // Correct alias
+color("background.default"); // Correct alias
 spacing(4); // Correct value
 shadow("md"); // Correct size
 
 // ❌ Compile-time error
-color("bg.invalid"); // Error: Alias does not exist
+color("background.invalid"); // Error: Alias does not exist
 spacing("invalid"); // Error: Invalid spacing value
 shadow("xxx"); // Error: Undefined shadow
 ```
@@ -273,7 +283,7 @@ const margins = spacingList([2, 4, 6, 8]); // → "0.5rem 1rem 1.5rem 2rem"
 const shadows = shadowList(["sm", "md"]); // → combination of multiple shadows
 
 // 🎨 Opacity Control
-color("bg.primary", { alpha: 0.8 }); // → rgba(..., 0.8)
+color("background.default", 0.8); // → rgba(..., 0.8)
 
 // 📱 Responsive Breakpoints
 up("md"); // → "@media screen and (min-width: 48rem)"
@@ -378,13 +388,9 @@ packages/generate-tokens/
 
 ```javascript
 // ✅ Recommended: Semantic Naming
-color("bg.primary"); // Primary background color
-color("fg.secondary"); // Secondary foreground color
-color("bd.focus"); // Focus border color
-
-// ❌ Avoid: Value-specific Naming
-color("blue.500"); // Too specific
-color("gray.light"); // Not semantic enough
+color("background.default"); // Default background color
+color("text.secondary"); // Secondary foreground color
+color("border.default"); // Default border color
 ```
 
 ### 2. Theming Strategy
@@ -392,10 +398,10 @@ color("gray.light"); // Not semantic enough
 ```javascript
 // 🎨 Responsive Theming
 const getButtonStyles = (theme = "auto") => ({
-  background: color("bg.primary", theme),
-  color: color("fg.onPrimary", theme),
+  background: color("background.accent", theme),
+  color: color("text.on-accent", theme),
   "&:hover": {
-    background: color("bg.primary.hover", theme),
+    background: color("background.accent-hover", theme),
   },
 });
 
@@ -426,7 +432,7 @@ const useSystemTheme = () => {
 
 // 🎯 2. Use Functions for Individual Values
 .card {
-  background: color("bg.default");
+  background: color("background.default");
   padding: spacing(4);
   border-radius: radius("md");
   box-shadow: shadow("sm");
@@ -478,7 +484,7 @@ const spacing = spacingList([2, 4, 6, 8]); // One call for multiple values
 const shadows = shadowList(["sm", "md"]); // Avoids multiple function calls
 
 // 🎯 Use tree-shaking
-import { color } from "@your-org/design-tokens/helpers"; // Import only what you need
+import { color } from "@choiceform/design-tokens"; // Import only what you need
 
 // 📦 Leverage build-time optimizations
 const styles = {
@@ -494,7 +500,7 @@ const styles = {
 .optimized {
   // ✅ Efficient: Use functions for individual properties
   padding: spacing(4);
-  color: color("fg.primary");
+  color: color("text.default");
 
   // ✅ Efficient: Use mixins for multiple properties
   @include typography-styles("body.large");
