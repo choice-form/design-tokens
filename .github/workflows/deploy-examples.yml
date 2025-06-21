@@ -57,7 +57,7 @@ jobs:
           cd packages/examples
           rm -rf node_modules/.vite
           pnpm remove @choiceform/design-tokens
-          pnpm add @choiceform/design-tokens@0.1.2 --no-frozen-lockfile
+          pnpm add @choiceform/design-tokens@0.1.2
           # 验证安装
           ls -la node_modules/@choiceform/design-tokens/dist/
 
