@@ -7,11 +7,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:production": "NODE_ENV=production vite build",
     "preview": "vite preview",
+    "preview:production": "NODE_ENV=production vite preview",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@choiceform/design-tokens": "workspace:*",
+    "@choiceform/design-tokens": "^0.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^7.6.2",

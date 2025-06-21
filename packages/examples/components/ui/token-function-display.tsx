@@ -8,6 +8,11 @@ export interface TokenFunctionDisplayProps {
   withQuotes?: boolean;
 }
 
+// 预定义样式以避免运行时问题
+const assistiveTextStyles = css`
+  color: ${color("text.assistive")};
+`;
+
 export const TokenFunctionDisplay = memo((props: TokenFunctionDisplayProps) => {
   const { functionName, value, withQuotes = true } = props;
 
@@ -15,11 +20,7 @@ export const TokenFunctionDisplay = memo((props: TokenFunctionDisplayProps) => {
     <div>
       {"${"}
       {functionName}(
-      <span
-        className={css`
-          color: ${color("text.assistive")};
-        `}
-      >
+      <span className={assistiveTextStyles}>
         {withQuotes && '"'}
         {value}
         {withQuotes && '"'}
