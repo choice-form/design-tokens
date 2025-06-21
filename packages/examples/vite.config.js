@@ -17,6 +17,11 @@ export default defineConfig({
         presets: ["@babel/preset-typescript", "@babel/preset-react"],
       },
       classNameSlug: (hash, name) => `cdt-${hash}`,
+      // 增加错误处理和缓存配置
+      displayName: process.env.NODE_ENV !== 'production',
+      sourceMap: process.env.NODE_ENV !== 'production',
+      // 尝试禁用缓存以避免 CI 环境问题
+      cache: false,
     }),
   ],
 
