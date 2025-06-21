@@ -7,7 +7,7 @@ import wyw from "@wyw-in-js/vite";
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 export default defineConfig({
-  base: "./",
+  base: process.env.NODE_ENV === "production" ? "/design-tokens/" : "./",
 
   plugins: [
     react(),
