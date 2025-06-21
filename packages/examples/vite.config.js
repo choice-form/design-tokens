@@ -7,7 +7,7 @@ import wyw from "@wyw-in-js/vite";
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/design-tokens/' : './',
+  base: process.env.NODE_ENV === "production" ? "/design-tokens/" : "./",
 
   plugins: [
     react(),
@@ -17,11 +17,6 @@ export default defineConfig({
         presets: ["@babel/preset-typescript", "@babel/preset-react"],
       },
       classNameSlug: (hash, name) => `cdt-${hash}`,
-      // 增加错误处理和缓存配置
-      displayName: process.env.NODE_ENV !== 'production',
-      sourceMap: process.env.NODE_ENV !== 'production',
-      // 尝试禁用缓存以避免 CI 环境问题
-      cache: false,
     }),
   ],
 
@@ -44,7 +39,7 @@ export default defineConfig({
       "@examples": resolve(__dirname, "."),
     },
     // 确保 CSS 文件正确解析
-    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.css'],
+    extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".css"],
   },
 
   server: {
