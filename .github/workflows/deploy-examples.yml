@@ -52,14 +52,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Clear cache and reinstall design-tokens  
+      - name: Build design tokens (required for workspace)
         run: |
-          cd packages/examples
-          rm -rf node_modules/.vite
-          pnpm remove @choiceform/design-tokens
-          pnpm add @choiceform/design-tokens@0.1.2
-          # 验证安装
-          ls -la node_modules/@choiceform/design-tokens/dist/
+          cd packages/design-tokens
+          pnpm run build
 
       - name: Build examples
         run: |
