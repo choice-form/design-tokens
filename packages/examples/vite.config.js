@@ -45,6 +45,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@examples": resolve(__dirname, "."),
+      "@choiceform/design-tokens": resolve(__dirname, "../design-tokens/src"),
     },
     // 确保 CSS 文件正确解析
     extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".css"],

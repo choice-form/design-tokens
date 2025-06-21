@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-// 导入基础重置样式
-import "@choiceform/design-tokens/tokens.css";
-import "@choiceform/design-tokens/preflight.css";
+// 导入基础重置样式 - 使用相对路径
+import "../design-tokens/dist/tokens.css";
+import "../design-tokens/dist/preflight.css";
 
 // 导入设计令牌
 import "@choiceform/design-tokens";
