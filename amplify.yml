@@ -20,7 +20,7 @@ applications:
         postBuild:
           commands:
             - echo "Build completed successfully"
-            - ls -la packages/examples/dist/
+            - cd packages/examples && ls -la dist/
       artifacts:
         baseDirectory: packages/examples/dist
         files:
