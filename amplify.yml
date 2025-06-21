@@ -1,0 +1,31 @@
+version: 1
+applications:
+  - appRoot: packages/examples
+    frontend:
+      buildPath: "/" # run install and build from monorepo project root
+      phases:
+        preBuild:
+          commands:
+            - npm install -g pnpm
+            - pnpm install --frozen-lockfile
+            - cd packages/design-tokens
+            - pnpm build
+            - cd ../..
+        build:
+          commands:
+            - cd packages/examples
+            - export NODE_OPTIONS="--max-old-space-size=4096"
+            - export WYW_IN_JS_EVAL_TIMEOUT=60000
+            - NODE_ENV=production pnpm run build:production
+        postBuild:
+          commands:
+            - echo "Build completed successfully"
+            - ls -la packages/examples/dist/
+      artifacts:
+        baseDirectory: packages/examples/dist
+        files:
+          - "**/*"
+      cache:
+        paths:
+          - node_modules/**/*
+          - ~/.pnpm-store/**/*
