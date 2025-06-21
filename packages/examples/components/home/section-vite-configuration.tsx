@@ -3,7 +3,7 @@ import {
   spacing,
   spacingList,
   typographyStyles,
-  mediaQuery,
+  up,
 } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import React from "react";
@@ -26,7 +26,7 @@ const sectionTitleClass = css`
   color: ${color("text.default")};
   text-align: center;
 
-  ${mediaQuery("md")} {
+  ${up("md")} {
     text-align: left;
   }
 `;

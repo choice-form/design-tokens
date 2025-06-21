@@ -30,12 +30,7 @@ export const SectionOverviewRampsColor = memo(
             <p>
               <b>Neutral Foundation</b>
             </p>
-            <ul
-              className={css`
-                list-style: disc;
-                padding-left: ${spacing(4)};
-              `}
-            >
+            <ul>
               <li>White - Pure white with various opacity levels</li>
               <li>Black - Pure black with various opacity levels</li>
               <li>Grey - Complete neutral scale for backgrounds and text</li>
@@ -43,12 +38,7 @@ export const SectionOverviewRampsColor = memo(
             <p>
               <b>Brand Colors</b>
             </p>
-            <ul
-              className={css`
-                list-style: disc;
-                padding-left: ${spacing(4)};
-              `}
-            >
+            <ul>
               <li>Blue - Primary actions and information</li>
               <li>Violet - Premium features and highlights</li>
               <li>Purple - Secondary branding and special states</li>

@@ -454,36 +454,86 @@ export default function typesGenerator(userOptions = {}) {
         typeOutput.push("): string | number;");
         typeOutput.push("");
 
-        typeOutput.push("/** 生成媒体查询字符串 */");
-        typeOutput.push("export declare function mediaQuery(");
-        typeOutput.push("  breakpointName: BreakpointKey,");
-        typeOutput.push("  direction?: MediaQueryDirection,");
-        typeOutput.push("  unit?: Exclude<UnitType, 'number'>");
+        typeOutput.push("/** 获取容器最大宽度 */");
+        typeOutput.push("export declare function container(");
+        typeOutput.push("  breakpoint: BreakpointKey | number");
         typeOutput.push("): string;");
         typeOutput.push("");
 
-        typeOutput.push("/** 生成完整的媒体查询规则 */");
-        typeOutput.push("export declare function mediaQueryRule(");
-        typeOutput.push("  breakpointName: BreakpointKey,");
-        typeOutput.push("  direction?: MediaQueryDirection,");
-        typeOutput.push("  unit?: Exclude<UnitType, 'number'>");
+        typeOutput.push("/** 生成 min-width 媒体查询 */");
+        typeOutput.push("export declare function up(");
+        typeOutput.push("  breakpoint: BreakpointKey | number,");
+        typeOutput.push("  type?: string");
         typeOutput.push("): string;");
         typeOutput.push("");
 
-        typeOutput.push("/** 生成范围媒体查询 */");
-        typeOutput.push("export declare function mediaQueryBetween(");
-        typeOutput.push("  minBreakpoint: BreakpointKey,");
-        typeOutput.push("  maxBreakpoint: BreakpointKey,");
-        typeOutput.push("  unit?: Exclude<UnitType, 'number'>");
+        typeOutput.push("/** 生成 max-width 媒体查询 */");
+        typeOutput.push("export declare function down(");
+        typeOutput.push("  breakpoint: BreakpointKey | number,");
+        typeOutput.push("  type?: string");
         typeOutput.push("): string;");
         typeOutput.push("");
 
-        typeOutput.push("/** 生成范围媒体查询规则 */");
-        typeOutput.push("export declare function mediaQueryBetweenRule(");
-        typeOutput.push("  minBreakpoint: BreakpointKey,");
-        typeOutput.push("  maxBreakpoint: BreakpointKey,");
-        typeOutput.push("  unit?: Exclude<UnitType, 'number'>");
+        typeOutput.push("/** 生成范围媒体查询 (min-width 和 max-width) */");
+        typeOutput.push("export declare function between(");
+        typeOutput.push("  minBreakpoint: BreakpointKey | number,");
+        typeOutput.push("  maxBreakpoint: BreakpointKey | number,");
+        typeOutput.push("  type?: string");
         typeOutput.push("): string;");
+        typeOutput.push("");
+
+        typeOutput.push("/** 生成精确断点媒体查询 (只在特定断点范围内) */");
+        typeOutput.push("export declare function only(");
+        typeOutput.push("  breakpoint: BreakpointKey | number,");
+        typeOutput.push("  type?: string");
+        typeOutput.push("): string;");
+        typeOutput.push("");
+
+        typeOutput.push("/** 媒体查询选项类型 */");
+        typeOutput.push("export type MediaQueryOptions = {");
+        typeOutput.push("  type?: string;");
+        typeOutput.push("  orientation?: 'portrait' | 'landscape';");
+        typeOutput.push("  minWidth?: BreakpointKey | number;");
+        typeOutput.push("  maxWidth?: BreakpointKey | number;");
+        typeOutput.push("  minHeight?: number;");
+        typeOutput.push("  maxHeight?: number;");
+        typeOutput.push("};");
+        typeOutput.push("");
+
+        typeOutput.push("/** 生成自定义媒体查询 */");
+        typeOutput.push("export declare function media(");
+        typeOutput.push("  options: MediaQueryOptions");
+        typeOutput.push("): string;");
+        typeOutput.push("");
+
+        typeOutput.push("/** 移动设备优先的媒体查询（xs 及以上） */");
+        typeOutput.push("export declare function mobile(): string;");
+        typeOutput.push("");
+
+        typeOutput.push("/** 平板设备媒体查询（md 到 lg） */");
+        typeOutput.push("export declare function tablet(): string;");
+        typeOutput.push("");
+
+        typeOutput.push("/** 桌面设备媒体查询（lg 及以上） */");
+        typeOutput.push("export declare function desktop(): string;");
+        typeOutput.push("");
+
+        typeOutput.push("/** 打印媒体查询 */");
+        typeOutput.push("export declare function print(): string;");
+        typeOutput.push("");
+
+        typeOutput.push("/** 获取断点信息（用于调试和文档） */");
+        typeOutput.push("export declare function getBreakpointInfo(");
+        typeOutput.push("  breakpoint: BreakpointKey | number");
+        typeOutput.push("): {");
+        typeOutput.push("  name: string;");
+        typeOutput.push("  value: number;");
+        typeOutput.push("  css: string;");
+        typeOutput.push("  px: string;");
+        typeOutput.push("  up: string;");
+        typeOutput.push("  down: string;");
+        typeOutput.push("  only: string;");
+        typeOutput.push("};");
         typeOutput.push("");
 
         typeOutput.push("/** 检查断点是否存在 */");
@@ -493,19 +543,18 @@ export default function typesGenerator(userOptions = {}) {
         typeOutput.push("");
 
         typeOutput.push("/** 列出所有可用的断点 */");
-        typeOutput.push("export declare function listBreakpoints(): string[];");
-        typeOutput.push("");
-
-        typeOutput.push("/** 获取断点信息 */");
-        typeOutput.push("export declare function breakpointInfo(");
-        typeOutput.push("  name: BreakpointKey");
-        typeOutput.push("): BreakpointInfo;");
-        typeOutput.push("");
-
-        typeOutput.push("/** 获取所有断点信息 */");
-        typeOutput.push(
-          "export declare function getAllBreakpointsInfo(): Record<BreakpointKey, BreakpointInfo>;"
-        );
+        typeOutput.push("export declare function listBreakpoints(): {");
+        typeOutput.push("  breakpoints: Array<{");
+        typeOutput.push("    name: string;");
+        typeOutput.push("    value: number;");
+        typeOutput.push("    css: string;");
+        typeOutput.push("    px: string;");
+        typeOutput.push("  }>;");
+        typeOutput.push("  aliases: Array<{");
+        typeOutput.push("    alias: string;");
+        typeOutput.push("    target: string;");
+        typeOutput.push("  }>;");
+        typeOutput.push("};");
         typeOutput.push("");
 
         typeOutput.push("/** 生成响应式工具类名映射 */");

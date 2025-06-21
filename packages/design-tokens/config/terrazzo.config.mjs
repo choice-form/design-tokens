@@ -13,6 +13,18 @@ import otherHelpers from "./plugins/other-helpers.mjs";
 import tokensMerger from "./plugins/tokens-merger.mjs";
 import typesGenerator from "./plugins/types-generator.mjs";
 
+// SCSS 函数插件 - v2 版本（与 CSS-in-JS API 完全一致）
+import scssColorsFunctionsV2 from "./plugins/scss/colors-functions-v2.mjs";
+import scssSpacingFunctionsV2 from "./plugins/scss/spacing-functions-v2.mjs";
+import scssOtherFunctionsV2 from "./plugins/scss/other-functions-v2.mjs";
+import scssTypographyFunctionsV2 from "./plugins/scss/typography-functions-v2.mjs";
+import scssFunctionsMerger from "./plugins/scss/scss-functions-merger.mjs";
+
+// SCSS Mixins 插件 - 包含响应式断点和 typography mixins
+import scssResponsiveMixinsV2 from "./plugins/scss/responsive-mixins-v2.mjs";
+import scssTypographyMixinsV2 from "./plugins/scss/typography-mixins-v2.mjs";
+import scssMixinsMerger from "./plugins/scss/scss-mixins-merger.mjs";
+
 export default defineConfig({
   // 输入：W3C Design Tokens 文件
   tokens: [
@@ -60,30 +72,86 @@ export default defineConfig({
       ],
       // 自定义颜色转换为RGB组件格式
       transform(token, mode) {
-        // 处理直接颜色值
-        if (
-          token.$type === "color" &&
-          token.$value &&
-          token.$value.colorSpace === "srgb"
-        ) {
-          // 检查原始值是否包含引用（如 "{color.blue.500}"）
-          const originalValue = token.originalValue?.$value;
-          if (
-            typeof originalValue === "string" &&
-            originalValue.includes("{")
-          ) {
+        // 处理颜色类型，支持 light/dark 模式
+        if (token.$type === "color") {
+          // 首先尝试从 $extensions.mode 中获取模式特定的值
+          const modeValue = token.originalValue?.$extensions?.mode?.[mode];
+          const colorValue = modeValue || token.$value;
+
+          // 如果是引用（字符串且包含 "{" ）
+          if (typeof colorValue === "string" && colorValue.includes("{")) {
             // 这是引用，使用默认转换
             return undefined;
           }
 
-          const [r, g, b] = token.$value.components;
-          const red = Math.round(r * 255);
-          const green = Math.round(g * 255);
-          const blue = Math.round(b * 255);
-          return `${red}, ${green}, ${blue}`;
+          // 如果是 RGB 对象
+          if (
+            colorValue &&
+            colorValue.colorSpace === "srgb" &&
+            colorValue.components
+          ) {
+            const [r, g, b] = colorValue.components;
+            const red = Math.round(r * 255);
+            const green = Math.round(g * 255);
+            const blue = Math.round(b * 255);
+            return `${red}, ${green}, ${blue}`;
+          }
+
+          // 如果是默认的 token.$value 格式
+          if (token.$value && token.$value.colorSpace === "srgb") {
+            // 检查原始值是否包含引用（如 "{color.blue.500}"）
+            const originalValue = token.originalValue?.$value;
+            if (
+              typeof originalValue === "string" &&
+              originalValue.includes("{")
+            ) {
+              // 这是引用，使用默认转换
+              return undefined;
+            }
+
+            const [r, g, b] = token.$value.components;
+            const red = Math.round(r * 255);
+            const green = Math.round(g * 255);
+            const blue = Math.round(b * 255);
+            return `${red}, ${green}, ${blue}`;
+          }
         }
 
-        // 让 Terrazzo 自动处理 shadow
+        // 处理 shadow 类型，保持原有的 rgba 颜色格式，并支持 light/dark 模式
+        if (token.$type === "shadow") {
+          // 首先尝试从 $extensions.mode 中获取模式特定的值
+          const modeValue = token.originalValue?.$extensions?.mode?.[mode];
+          const shadowValue = modeValue || token.originalValue?.$value;
+
+          if (shadowValue) {
+            // 处理数组（多个阴影）
+            if (Array.isArray(shadowValue)) {
+              return shadowValue
+                .map((shadow) => {
+                  const parts = [];
+                  if (shadow.inset) parts.push("inset");
+                  parts.push(shadow.offsetX || "0");
+                  parts.push(shadow.offsetY || "0");
+                  parts.push(shadow.blur || "0");
+                  if (shadow.spread) parts.push(shadow.spread);
+                  parts.push(shadow.color || "transparent");
+                  return parts.join(" ");
+                })
+                .join(", ");
+            }
+            // 处理单个阴影对象
+            else if (typeof shadowValue === "object") {
+              const parts = [];
+              if (shadowValue.inset) parts.push("inset");
+              parts.push(shadowValue.offsetX || "0");
+              parts.push(shadowValue.offsetY || "0");
+              parts.push(shadowValue.blur || "0");
+              if (shadowValue.spread) parts.push(shadowValue.spread);
+              parts.push(shadowValue.color || "transparent");
+              return parts.join(" ");
+            }
+          }
+        }
 
         return undefined;
       },
@@ -104,6 +172,18 @@ export default defineConfig({
     otherHelpers(), // radius, shadows, zindex helper 函数
     tokensMerger(), // 合并所有部分为最终 tokens.js
     typesGenerator(), // TypeScript 类型定义
+
+    // SCSS 函数插件 - v2 版本（与 CSS-in-JS API 完全一致）
+    scssColorsFunctionsV2(), // SCSS 颜色函数 - color(), color-var(), has-color()
+    scssSpacingFunctionsV2(), // SCSS 间距函数 - spacing(), spacing-list(), spacing-exists()
+    scssOtherFunctionsV2(), // SCSS 其他函数 - radius(), shadow(), z-index() 等
+    scssTypographyFunctionsV2(), // SCSS typography 函数 - font-family(), font-size(), line-height() 等
+    scssFunctionsMerger(), // 合并所有 SCSS 函数
+
+    // SCSS Mixins 插件 - 包含响应式断点和 typography mixins
+    scssResponsiveMixinsV2(), // SCSS 响应式 mixins - up(), down(), between(), only() 等
+    scssTypographyMixinsV2(), // SCSS typography mixins - typography-styles() 等
+    scssMixinsMerger(), // 合并 SCSS mixins
     // tailwind({
     //   filename: "tailwind.js",
 

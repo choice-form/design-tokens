@@ -117,7 +117,7 @@
         }
       }
     },
-    "lineHeights": {
+    "line-heights": {
       "tight": {
         "$type": "dimension",
         "$value": {
@@ -161,7 +161,7 @@
         }
       }
     },
-    "letterSpacings": {
+    "letter-spacings": {
       "body-large": {
         "$type": "dimension",
         "$value": {

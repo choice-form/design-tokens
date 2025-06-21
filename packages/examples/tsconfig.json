@@ -20,10 +20,5 @@
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "dist"],
-  "references": [
-    {
-      "path": "../css-in-js"
-    }
-  ]
+  "exclude": ["node_modules", "dist"]
 }

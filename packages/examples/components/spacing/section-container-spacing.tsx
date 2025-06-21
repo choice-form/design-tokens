@@ -10,6 +10,7 @@ import {
 } from "../page/share";
 
 export const SectionContainerSpacing = memo(function SectionContainerSpacing() {
+  const breakpointData = listBreakpoints();
   return (
     <Section
       orientation="vertical"
@@ -23,36 +24,47 @@ export const SectionContainerSpacing = memo(function SectionContainerSpacing() {
           </p>
           <ul>
             <li>
-              <code>container-sm</code> - 16px
+              <code>container-xs</code> - 475px
             </li>
             <li>
-              <code>container-md</code> - 32px
+              <code>container-sm</code> - 640px
             </li>
             <li>
-              <code>container-lg</code> - 48px
+              <code>container-md</code> - 768px
+            </li>
+            <li>
+              <code>container-lg</code> - 1024px
+            </li>
+            <li>
+              <code>container-xl</code> - 1280px
+            </li>
+            <li>
+              <code>container-2xl</code> - 1536px
             </li>
           </ul>
         </>
       }
     >
       <SpacingGrid>
-        {listBreakpoints().map((key, index) => (
-          <Fragment key={key}>
-            <SpacingValue>{key}</SpacingValue>
-            <SpacingValue>Available</SpacingValue>
-            <SpacingValue>Responsive</SpacingValue>
+        {breakpointData.breakpoints.map((key, index) => (
+          <Fragment key={key.name}>
+            <SpacingValue>{key.name}</SpacingValue>
+            <SpacingValue>{key.value}px</SpacingValue>
+            <SpacingValue>{key.css}</SpacingValue>
             <SpacingValue>
               $spacing(
-              <SpacingLabel>{key}</SpacingLabel>)
+              <SpacingLabel>{`"${key.name}"`}</SpacingLabel>)
             </SpacingValue>
             <SpacingBar
               style={
                 {
-                  "--width": `var(--cdt-breakpoints-${key.replace(".", "-")})`,
+                  "--width": `var(--cdt-breakpoints-${key.name.replace(".", "-")})`,
                 } as CSSProperties
               }
             />
-            {index !== listBreakpoints().length - 1 && <SpacingDivider />}
+            {index !== breakpointData.breakpoints.length - 1 && (
+              <SpacingDivider />
+            )}
           </Fragment>
         ))}
       </SpacingGrid>

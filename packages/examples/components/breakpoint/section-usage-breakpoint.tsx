@@ -16,29 +16,38 @@ const Wrapper = styled.div`
   }
 `;
 
-const mediaQueryFunctionsCode = `import { mediaQuery, mediaQueryDown } from '@choiceform/design-tokens'
+const mediaQueryFunctionsCode = `import { up, down, between, only, media } from '@choiceform/design-js-tokens'
 
 // "@media screen and (min-width: 768px)"
-mediaQuery("md")
+up("md")
 
 // "@media screen and (max-width: 1023.98px)"
-mediaQueryDown("lg")
+down("lg")
 
-// For complex queries, you can use multiple breakpoints
-// or combine with custom CSS media queries
+// "@media screen and (min-width: 640px) and (max-width: 1023.98px)"
+between("sm", "lg")
+
+// "@media screen and (min-width: 768px) and (max-width: 1023.98px)"
+only("md") 
+
+// "@media screen and (min-width: 768px) and (max-width: 1023.98px) and (orientation: landscape)"
+media({ 
+  minWidth: "md", 
+  maxWidth: "lg", 
+  orientation: "landscape" 
+}) 
 `;
 
-const devicePresetFunctionsCode = `import { mediaQuery } from '@choiceform/design-tokens'
+const devicePresetFunctionsCode = `import { mobile, tablet, desktop } from '@choiceform/design-js-tokens'
 
-// Mobile-first approach using named breakpoints
-// "@media screen and (min-width: 640px)"  // small screens
-mediaQuery("sm")
+// "@media screen and (min-width: 475px)"
+mobile()
 
-// "@media screen and (min-width: 768px)"  // tablets
-mediaQuery("md") 
+// "@media screen and (min-width: 768px) and (max-width: 1023.98px)"
+tablet()
 
-// "@media screen and (min-width: 1024px)" // desktop
-mediaQuery("lg")
+// "@media screen and (min-width: 1024px)"
+desktop()
 `;
 
 export const SectionUsageBreakpoint = memo(function SectionUsageBreakpoint() {
@@ -69,7 +78,7 @@ export const SectionUsageBreakpoint = memo(function SectionUsageBreakpoint() {
         </span>
       );
     }
-    if (["mediaQuery", "mediaQueryDown"].includes(content)) {
+    if (["mobile", "tablet", "desktop"].includes(content)) {
       return (
         <span
           key={content + Math.random()}

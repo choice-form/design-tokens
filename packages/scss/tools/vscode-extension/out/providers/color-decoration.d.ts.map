@@ -1,1 +1,0 @@
-{"version":3,"file":"color-decoration.d.ts","sourceRoot":"","sources":["../../src/providers/color-decoration.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,MAAM,QAAQ,CAAA;AAKhC,qBAAa,uBAAuB;IAClC,OAAO,CAAC,WAAW,CAAa;IAChC,OAAO,CAAC,cAAc,CAAiC;;IAevD;;OAEG;IACI,iBAAiB,CAAC,MAAM,EAAE,MAAM,CAAC,UAAU,GAAG,IAAI;IA+CzD;;OAEG;IACI,OAAO,IAAI,IAAI;CAGvB"}

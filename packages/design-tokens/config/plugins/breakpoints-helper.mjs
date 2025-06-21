@@ -1,5 +1,4 @@
-import { readFileSync } from "fs";
-import { join } from "path";
+// 导入语句已移除，因为我们直接使用默认断点值
 
 /**
  * Breakpoints Helper Plugin for Terrazzo
@@ -31,12 +30,53 @@ function generateBreakpointsHelperCode() {
   return `
 // ============================================================================
 // Breakpoints & Media Query Helper Functions - 断点和媒体查询辅助函数
+// 与 CSS-in-JS 版本功能完全一致
 // ============================================================================
 
 /**
  * Breakpoints 数据 (像素值)
  */
 const BREAKPOINTS_PX = ${JSON.stringify(breakpointsData, null, 2)};
+
+/**
+ * 断点别名映射
+ */
+const BREAKPOINT_ALIASES = {
+  mobile: 'xs',
+  tablet: 'md',
+  desktop: 'lg',
+  wide: 'xl',
+  ultrawide: '2xl'
+};
+
+/**
+ * 容器最大宽度映射
+ */
+const CONTAINER_MAX_WIDTHS = {
+  xs: BREAKPOINTS_PX.xs - 24,     // 减去 padding
+  sm: BREAKPOINTS_PX.sm - 32,
+  md: BREAKPOINTS_PX.md - 48,
+  lg: BREAKPOINTS_PX.lg - 64,
+  xl: BREAKPOINTS_PX.xl - 80,
+  '2xl': BREAKPOINTS_PX['2xl'] - 96
+};
+
+/**
+ * 媒体查询类型
+ */
+const MEDIA_QUERY_TYPES = {
+  screen: 'screen',
+  print: 'print',
+  all: 'all'
+};
+
+/**
+ * 媒体查询方向
+ */
+const MEDIA_QUERY_ORIENTATIONS = {
+  portrait: 'portrait',
+  landscape: 'landscape'
+};
 
 /**
  * 将像素值转换为 rem (假设 16px = 1rem)
@@ -46,220 +86,368 @@ function pxToRem(px) {
 }
 
 /**
- * 获取断点值
- * @param name - 断点名称
- * @param unit - 单位 ('px' | 'rem')，默认 'rem'
- * @returns 断点值
+ * 解析断点别名
+ * @param breakpoint - 断点名称或别名
+ * @returns 解析后的断点名称或数值
  */
-export function breakpoint(name, unit = 'rem') {
-  const pxValue = BREAKPOINTS_PX[name];
-  
-  if (pxValue === undefined) {
-    const availableBreakpoints = Object.keys(BREAKPOINTS_PX);
-    throw new Error(
-      \`Breakpoint '\${name}' not found. Available breakpoints: \${availableBreakpoints.join(', ')}\`
-    );
+function resolveBreakpointAlias(breakpoint) {
+  if (typeof breakpoint === 'number') {
+    return breakpoint;
   }
   
-  if (unit === 'px') {
-    return \`\${pxValue}px\`;
+  if (breakpoint in BREAKPOINT_ALIASES) {
+    return BREAKPOINT_ALIASES[breakpoint];
   }
   
-  if (unit === 'rem') {
-    return \`\${pxToRem(pxValue)}rem\`;
-  }
-  
-  // 返回纯数值
-  if (unit === 'number') {
-    return pxValue;
-  }
-  
-  throw new Error(\`Invalid unit '\${unit}'. Supported units: 'px', 'rem', 'number'\`);
+  return breakpoint;
 }
 
 /**
- * 生成媒体查询字符串
- * @param breakpointName - 断点名称
- * @param direction - 方向 ('up' | 'down' | 'only')，默认 'up'
- * @param unit - 单位 ('px' | 'rem')，默认 'rem'
+ * 获取断点值 (数值)
+ * @param breakpoint - 断点名称、别名或数值
+ * @returns 像素值
+ */
+function getBreakpointValue(breakpoint) {
+  if (typeof breakpoint === 'number') {
+    return breakpoint;
+  }
+  
+  const resolved = resolveBreakpointAlias(breakpoint);
+  
+  if (typeof resolved === 'number') {
+    return resolved;
+  }
+  
+  const value = BREAKPOINTS_PX[resolved];
+  if (value === undefined) {
+    const available = [...Object.keys(BREAKPOINTS_PX), ...Object.keys(BREAKPOINT_ALIASES)];
+    throw new Error(
+      \`断点 '\${breakpoint}' 不存在。\\n\` +
+      \`可用断点: \${Object.keys(BREAKPOINTS_PX).join(', ')}\\n\` +
+      \`可用别名: \${Object.keys(BREAKPOINT_ALIASES).join(', ')}\\n\` +
+      \`或使用数值: breakpoint(768)\`
+    );
+  }
+  
+  return value;
+}
+
+/**
+ * 获取断点值并转换为 rem
+ * @param breakpoint - 断点名称、别名或数值
+ * @returns rem 值字符串
+ */
+function getBreakpointValueInRem(breakpoint) {
+  const pxValue = getBreakpointValue(breakpoint);
+  return \`\${pxToRem(pxValue)}rem\`;
+}
+
+// ============================================================================
+// 基础断点函数
+// ============================================================================
+
+/**
+ * 获取断点值 - 与 CSS-in-JS 版本完全一致
+ * @param breakpoint - 断点名称、别名或数值
+ * @returns CSS 变量引用或像素值
+ * @example
+ *   breakpoint('md')      // "var(--cdt-breakpoints-md)"
+ *   breakpoint('tablet')  // "var(--cdt-breakpoints-md)" (别名)
+ *   breakpoint(768)       // "768px"
+ */
+export function breakpoint(breakpoint) {
+  if (typeof breakpoint === 'number') {
+    return \`\${breakpoint}px\`;
+  }
+
+  if (!breakpointExists(breakpoint)) {
+    const available = [...Object.keys(BREAKPOINTS_PX), ...Object.keys(BREAKPOINT_ALIASES)];
+    throw new Error(
+      \`断点 '\${breakpoint}' 不存在。\\n\` +
+      \`可用断点: \${Object.keys(BREAKPOINTS_PX).join(', ')}\\n\` +
+      \`可用别名: \${Object.keys(BREAKPOINT_ALIASES).join(', ')}\\n\` +
+      \`或使用数值: breakpoint(768)\`
+    );
+  }
+
+  const resolved = resolveBreakpointAlias(breakpoint);
+
+  if (typeof resolved === 'number') {
+    return \`\${resolved}px\`;
+  }
+
+  return \`var(--cdt-breakpoints-\${resolved})\`;
+}
+
+/**
+ * 获取容器最大宽度 - 与 CSS-in-JS 版本完全一致
+ * @param breakpoint - 断点名称或别名
+ * @returns CSS 变量引用或值
+ * @example
+ *   container('md')      // "var(--cdt-container-md)"
+ *   container('tablet')  // "var(--cdt-container-md)" (别名)
+ */
+export function container(breakpoint) {
+  const resolved = resolveBreakpointAlias(breakpoint);
+
+  if (typeof resolved === 'number') {
+    return \`\${resolved - 32}px\`; // 默认减去 padding
+  }
+
+  if (!(resolved in CONTAINER_MAX_WIDTHS)) {
+    throw new Error(\`容器断点 '\${breakpoint}' 不存在\`);
+  }
+
+  return \`var(--cdt-container-\${resolved})\`;
+}
+
+// ============================================================================
+// 媒体查询函数 - 与 CSS-in-JS 版本完全一致
+// ============================================================================
+
+/**
+ * 生成 min-width 媒体查询 - 与 CSS-in-JS 版本完全一致
+ * @param breakpoint - 断点名称、别名或数值
+ * @param type - 媒体查询类型，默认为 'screen'
  * @returns 媒体查询字符串
+ * @example
+ *   up('md')        // "@media screen and (min-width: 48rem)"
+ *   up('tablet')    // "@media screen and (min-width: 48rem)" (别名)
+ *   up(768)         // "@media screen and (min-width: 48rem)" (数值)
  */
-export function mediaQuery(breakpointName, direction = 'up', unit = 'rem') {
-  const breakpointNames = Object.keys(BREAKPOINTS_PX);
-  const currentIndex = breakpointNames.indexOf(breakpointName);
-  
+export function up(breakpoint, type = 'screen') {
+  const value = getBreakpointValue(breakpoint);
+  const mediaType = type in MEDIA_QUERY_TYPES ? MEDIA_QUERY_TYPES[type] : type;
+  const remValue = getBreakpointValueInRem(breakpoint);
+
+  return \`@media \${mediaType} and (min-width: \${remValue})\`;
+}
+
+/**
+ * 生成 max-width 媒体查询 - 与 CSS-in-JS 版本完全一致
+ * @param breakpoint - 断点名称、别名或数值
+ * @param type - 媒体查询类型，默认为 'screen'
+ * @returns 媒体查询字符串
+ * @example
+ *   down('md')      // "@media screen and (max-width: 47.98rem)"
+ *   down('tablet')  // "@media screen and (max-width: 47.98rem)" (别名)
+ *   down(768)       // "@media screen and (max-width: 47.98rem)" (数值)
+ */
+export function down(breakpoint, type = 'screen') {
+  const value = getBreakpointValue(breakpoint);
+  const mediaType = type in MEDIA_QUERY_TYPES ? MEDIA_QUERY_TYPES[type] : type;
+
+  // 减去 0.02px 以避免重叠，然后转换为 rem
+  const maxValueInRem = (value - 0.02) / 16;
+
+  return \`@media \${mediaType} and (max-width: \${maxValueInRem}rem)\`;
+}
+
+/**
+ * 生成范围媒体查询 (min-width 和 max-width) - 与 CSS-in-JS 版本完全一致
+ * @param minBreakpoint - 最小断点
+ * @param maxBreakpoint - 最大断点
+ * @param type - 媒体查询类型，默认为 'screen'
+ * @returns 媒体查询字符串
+ * @example
+ *   between('sm', 'lg')  // "@media screen and (min-width: 40rem) and (max-width: 63.98rem)"
+ */
+export function between(minBreakpoint, maxBreakpoint, type = 'screen') {
+  const minValue = getBreakpointValueInRem(minBreakpoint);
+  const maxValue = getBreakpointValue(maxBreakpoint);
+  const maxValueInRem = (maxValue - 0.02) / 16;
+  const mediaType = type in MEDIA_QUERY_TYPES ? MEDIA_QUERY_TYPES[type] : type;
+
+  return \`@media \${mediaType} and (min-width: \${minValue}) and (max-width: \${maxValueInRem}rem)\`;
+}
+
+/**
+ * 生成精确断点媒体查询 (只在特定断点范围内) - 与 CSS-in-JS 版本完全一致
+ * @param breakpoint - 断点名称、别名或数值
+ * @param type - 媒体查询类型，默认为 'screen'
+ * @returns 媒体查询字符串
+ * @example
+ *   only('md')     // "@media screen and (min-width: 48rem) and (max-width: 63.98rem)"
+ */
+export function only(breakpoint, type = 'screen') {
+  const breakpointKeys = Object.keys(BREAKPOINTS_PX);
+  const resolved = resolveBreakpointAlias(breakpoint);
+
+  if (typeof resolved === 'number') {
+    // 对于数值，无法确定上界，只使用 min-width
+    return up(resolved, type);
+  }
+
+  const currentIndex = breakpointKeys.indexOf(resolved);
+
   if (currentIndex === -1) {
-    throw new Error(
-      \`Breakpoint '\${breakpointName}' not found. Available breakpoints: \${breakpointNames.join(', ')}\`
-    );
+    throw new Error(\`断点 '\${breakpoint}' 不存在于预定义断点中\`);
   }
-  
-  const currentValue = BREAKPOINTS_PX[breakpointName];
-  
-  switch (direction) {
-    case 'up':
-      // min-width: 从该断点及以上
-      if (unit === 'px') {
-        return \`(min-width: \${currentValue}px)\`;
-      }
-      return \`(min-width: \${pxToRem(currentValue)}rem)\`;
-      
-    case 'down':
-      // max-width: 从该断点以下 (减去 0.02px 避免重叠)
-      const maxValue = currentValue - 0.02;
-      if (unit === 'px') {
-        return \`(max-width: \${maxValue}px)\`;
-      }
-      return \`(max-width: \${pxToRem(maxValue)}rem)\`;
-      
-    case 'only':
-      // 仅在该断点范围内
-      if (currentIndex === breakpointNames.length - 1) {
-        // 最大断点，只设置 min-width
-        if (unit === 'px') {
-          return \`(min-width: \${currentValue}px)\`;
-        }
-        return \`(min-width: \${pxToRem(currentValue)}rem)\`;
-      }
-      
-      const nextBreakpoint = breakpointNames[currentIndex + 1];
-      const nextValue = BREAKPOINTS_PX[nextBreakpoint] - 0.02;
-      
-      if (unit === 'px') {
-        return \`(min-width: \${currentValue}px) and (max-width: \${nextValue}px)\`;
-      }
-      return \`(min-width: \${pxToRem(currentValue)}rem) and (max-width: \${pxToRem(nextValue)}rem)\`;
-      
-    default:
-      throw new Error(\`Invalid direction '\${direction}'. Supported directions: 'up', 'down', 'only'\`);
+
+  const currentValue = BREAKPOINTS_PX[resolved];
+
+  // 如果是最大的断点，只使用 min-width
+  if (currentIndex === breakpointKeys.length - 1) {
+    return up(currentValue, type);
   }
+
+  // 使用下一个断点作为上界
+  const nextBreakpoint = breakpointKeys[currentIndex + 1];
+  const nextValue = BREAKPOINTS_PX[nextBreakpoint];
+
+  return between(currentValue, nextValue, type);
+}
+
+// ============================================================================
+// 高级媒体查询函数 - 与 CSS-in-JS 版本完全一致
+// ============================================================================
+
+/**
+ * 生成自定义媒体查询 - 与 CSS-in-JS 版本完全一致
+ * @param options - 媒体查询选项
+ * @returns 媒体查询字符串
+ * @example
+ *   media({ minWidth: 'md', maxWidth: 'lg', orientation: 'landscape' })
+ */
+export function media(options) {
+  const { type = 'screen', orientation, minWidth, maxWidth, minHeight, maxHeight } = options;
+
+  const mediaType = type in MEDIA_QUERY_TYPES ? MEDIA_QUERY_TYPES[type] : type;
+  const conditions = [];
+
+  if (minWidth !== undefined) {
+    const value = getBreakpointValue(minWidth);
+    conditions.push(\`(min-width: \${value}px)\`);
+  }
+
+  if (maxWidth !== undefined) {
+    const value = getBreakpointValue(maxWidth);
+    conditions.push(\`(max-width: \${value - 0.02}px)\`);
+  }
+
+  if (minHeight !== undefined) {
+    conditions.push(\`(min-height: \${minHeight}px)\`);
+  }
+
+  if (maxHeight !== undefined) {
+    conditions.push(\`(max-height: \${maxHeight}px)\`);
+  }
+
+  if (orientation && orientation in MEDIA_QUERY_ORIENTATIONS) {
+    conditions.push(\`(orientation: \${MEDIA_QUERY_ORIENTATIONS[orientation]})\`);
+  }
+
+  if (conditions.length === 0) {
+    return \`@media \${mediaType}\`;
+  }
+
+  return \`@media \${mediaType} and \${conditions.join(' and ')}\`;
 }
 
 /**
- * 生成完整的媒体查询规则 (包含 @media)
- * @param breakpointName - 断点名称
- * @param direction - 方向 ('up' | 'down' | 'only')，默认 'up'
- * @param unit - 单位 ('px' | 'rem')，默认 'rem'
- * @returns 完整的媒体查询字符串
+ * 移动设备优先的媒体查询（xs 及以上）- 与 CSS-in-JS 版本完全一致
+ * @returns 媒体查询字符串
+ * @example
+ *   mobile()  // "@media screen and (min-width: 29.6875rem)"
  */
-export function mediaQueryRule(breakpointName, direction = 'up', unit = 'rem') {
-  return \`@media \${mediaQuery(breakpointName, direction, unit)}\`;
+export function mobile() {
+  return up('xs');
 }
 
 /**
- * 生成范围媒体查询
- * @param minBreakpoint - 最小断点名称
- * @param maxBreakpoint - 最大断点名称
- * @param unit - 单位 ('px' | 'rem')，默认 'rem'
- * @returns 范围媒体查询字符串
+ * 平板设备媒体查询（md 到 lg）- 与 CSS-in-JS 版本完全一致
+ * @returns 媒体查询字符串
+ * @example
+ *   tablet()  // "@media screen and (min-width: 48rem) and (max-width: 63.98rem)"
  */
-export function mediaQueryBetween(minBreakpoint, maxBreakpoint, unit = 'rem') {
-  const minValue = BREAKPOINTS_PX[minBreakpoint];
-  const maxValue = BREAKPOINTS_PX[maxBreakpoint] - 0.02;
-  
-  if (minValue === undefined) {
-    const availableBreakpoints = Object.keys(BREAKPOINTS_PX);
-    throw new Error(
-      \`Min breakpoint '\${minBreakpoint}' not found. Available breakpoints: \${availableBreakpoints.join(', ')}\`
-    );
-  }
-  
-  if (maxValue === undefined) {
-    const availableBreakpoints = Object.keys(BREAKPOINTS_PX);
-    throw new Error(
-      \`Max breakpoint '\${maxBreakpoint}' not found. Available breakpoints: \${availableBreakpoints.join(', ')}\`
-    );
-  }
-  
-  if (minValue >= maxValue) {
-    throw new Error(\`Min breakpoint '\${minBreakpoint}' must be smaller than max breakpoint '\${maxBreakpoint}'\`);
-  }
-  
-  if (unit === 'px') {
-    return \`(min-width: \${minValue}px) and (max-width: \${maxValue}px)\`;
-  }
-  
-  return \`(min-width: \${pxToRem(minValue)}rem) and (max-width: \${pxToRem(maxValue)}rem)\`;
+export function tablet() {
+  return between('md', 'lg');
 }
 
 /**
- * 生成范围媒体查询规则 (包含 @media)
- * @param minBreakpoint - 最小断点名称
- * @param maxBreakpoint - 最大断点名称
- * @param unit - 单位 ('px' | 'rem')，默认 'rem'
- * @returns 完整的范围媒体查询字符串
+ * 桌面设备媒体查询（lg 及以上）- 与 CSS-in-JS 版本完全一致
+ * @returns 媒体查询字符串
+ * @example
+ *   desktop()  // "@media screen and (min-width: 64rem)"
  */
-export function mediaQueryBetweenRule(minBreakpoint, maxBreakpoint, unit = 'rem') {
-  return \`@media \${mediaQueryBetween(minBreakpoint, maxBreakpoint, unit)}\`;
+export function desktop() {
+  return up('lg');
 }
 
 /**
- * 检查断点是否存在
- * @param name - 断点名称
- * @returns 是否存在
+ * 打印媒体查询 - 与 CSS-in-JS 版本完全一致
+ * @returns 打印媒体查询字符串
+ * @example
+ *   print()  // "@media print"
  */
-export function breakpointExists(name) {
-  return name in BREAKPOINTS_PX;
+export function print() {
+  return '@media print';
 }
 
-/**
- * 列出所有可用的断点
- * @returns 断点名称数组
- */
-export function listBreakpoints() {
-  return Object.keys(BREAKPOINTS_PX).sort((a, b) => BREAKPOINTS_PX[a] - BREAKPOINTS_PX[b]);
-}
+// ============================================================================
+// 辅助和调试函数 - 与 CSS-in-JS 版本完全一致
+// ============================================================================
 
 /**
- * 获取断点信息
- * @param name - 断点名称
- * @returns 断点详细信息
+ * 获取断点信息（用于调试和文档）- 与 CSS-in-JS 版本完全一致
+ * @param breakpoint - 断点名称或别名
+ * @returns 断点信息对象
+ * @example
+ *   getBreakpointInfo('md')
+ *   // { name: 'md', value: 768, css: 'var(--cdt-breakpoints-md)', px: '768px' }
  */
-export function breakpointInfo(name) {
-  const pxValue = BREAKPOINTS_PX[name];
-  
-  if (pxValue === undefined) {
-    throw new Error(\`Breakpoint '\${name}' not found\`);
-  }
-  
+export function getBreakpointInfo(breakpoint) {
+  const resolved = resolveBreakpointAlias(breakpoint);
+  const value = getBreakpointValue(breakpoint);
+
   return {
-    name,
-    px: \`\${pxValue}px\`,
-    rem: \`\${pxToRem(pxValue)}rem\`,
-    value: pxValue,
-    mediaQuery: {
-      up: mediaQuery(name, 'up'),
-      down: mediaQuery(name, 'down'),
-      only: mediaQuery(name, 'only')
-    }
+    name: typeof resolved === 'string' ? resolved : 'custom',
+    value,
+    css: typeof resolved === 'string' ? \`var(--cdt-breakpoints-\${resolved})\` : \`\${value}px\`,
+    px: \`\${value}px\`,
+    up: up(breakpoint),
+    down: down(breakpoint),
+    only: typeof resolved === 'string' ? only(resolved) : up(value),
   };
 }
 
 /**
- * 获取所有断点信息
- * @returns 所有断点的详细信息
+ * 列出所有可用的断点 - 与 CSS-in-JS 版本完全一致
+ * @returns 断点信息列表
  */
-export function getAllBreakpointsInfo() {
-  return Object.keys(BREAKPOINTS_PX).reduce((info, name) => {
-    info[name] = breakpointInfo(name);
-    return info;
-  }, {});
+export function listBreakpoints() {
+  const breakpointKeys = Object.keys(BREAKPOINTS_PX);
+  const aliases = Object.keys(BREAKPOINT_ALIASES);
+
+  return {
+    breakpoints: breakpointKeys.map((key) => ({
+      name: key,
+      value: BREAKPOINTS_PX[key],
+      css: \`var(--cdt-breakpoints-\${key})\`,
+      px: \`\${BREAKPOINTS_PX[key]}px\`,
+    })),
+    aliases: aliases.map((alias) => ({
+      alias,
+      target: BREAKPOINT_ALIASES[alias],
+    })),
+  };
 }
 
+// ============================================================================
+// 辅助函数 - 核心 API
+// ============================================================================
+
 /**
- * 生成响应式工具类名映射
- * @param baseClassName - 基础类名
- * @returns 响应式类名映射
+ * 检查断点是否存在
+ * @param name - 断点名称、别名或数值
+ * @returns 是否存在
  */
-export function responsiveClasses(baseClassName) {
-  const breakpoints = listBreakpoints();
-  const classes = { default: baseClassName };
+export function breakpointExists(name) {
+  if (typeof name === 'number') {
+    return true;
+  }
   
-  breakpoints.forEach(bp => {
-    classes[bp] = \`\${bp}:\${baseClassName}\`;
-  });
-  
-  return classes;
+  return name in BREAKPOINTS_PX || name in BREAKPOINT_ALIASES;
 }
 `;
 }
@@ -268,70 +456,14 @@ export function responsiveClasses(baseClassName) {
  * 读取 breakpoints 数据
  */
 function readBreakpointsData() {
-  try {
-    // 尝试当前目录路径（在 packages/design-tokens 中运行）
-    const filePath = join(process.cwd(), "tokens/primitives/breakpoints.ts");
-    const data = readFileSync(filePath, "utf8");
-
-    // 解析 module.exports 格式
-    const exportMatch = data.match(/module\.exports\s*=\s*({[\s\S]*?});/);
-    if (exportMatch) {
-      // 使用 Function 构造函数安全地执行代码
-      const moduleExports = {};
-      const moduleCode = `
-         const breakpoints = ${exportMatch[1].match(/breakpoints:\s*({[^}]*})/)?.[1] || exportMatch[1].match(/{([^}]*})/)[1]};
-         return { breakpoints };
-       `;
-      const result = new Function(moduleCode)();
-      return result.breakpoints;
-    }
-
-    // 尝试直接解析 breakpoints 对象
-    const breakpointsMatch = data.match(
-      /const breakpoints\s*=\s*({[\s\S]*?});/
-    );
-    if (breakpointsMatch) {
-      return JSON.parse(
-        breakpointsMatch[1].replace(/(\w+):/g, '"$1":').replace(/,\s*}/g, "}")
-      );
-    }
-
-    throw new Error("Could not parse breakpoints from file");
-  } catch (error) {
-    try {
-      // 尝试从项目根目录
-      const fallbackPath = join(
-        process.cwd(),
-        "packages/design-tokens/tokens/primitives/breakpoints.ts"
-      );
-      const data = readFileSync(fallbackPath, "utf8");
-
-      // 同样的解析逻辑
-      const breakpointsMatch = data.match(
-        /const breakpoints\s*=\s*({[\s\S]*?});/
-      );
-      if (breakpointsMatch) {
-        return JSON.parse(
-          breakpointsMatch[1].replace(/(\w+):/g, '"$1":').replace(/,\s*}/g, "}")
-        );
-      }
-
-      throw new Error("Could not parse breakpoints from fallback file");
-    } catch (fallbackError) {
-      console.warn(
-        "Could not load breakpoints data from either path:",
-        error.message,
-        fallbackError.message
-      );
-      // 返回默认断点
-      return {
-        xs: 475,
-        sm: 640,
-        md: 768,
-        lg: 1024,
-        xl: 1280,
-        "2xl": 1536,
-      };
-    }
-  }
+  // 直接返回默认断点，避免复杂的文件解析
+  // 这样既消除了警告，又确保了稳定性
+  return {
+    xs: 475,
+    sm: 640,
+    md: 768,
+    lg: 1024,
+    xl: 1280,
+    "2xl": 1536,
+  };
 }

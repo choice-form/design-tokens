@@ -24,6 +24,7 @@ import HomePage from "./pages/home";
 import ShadowsPage from "./pages/shadow";
 import SpacingPage from "./pages/spacing";
 import TypographyPage from "./pages/typography";
+import Github from "@choiceform/icons-react/Github";
 
 // Styled Components
 const AppContainer = styled.div`
@@ -60,7 +61,13 @@ const Logo = styled(Link)`
   }
 `;
 
-const ThemeToggleButton = styled.button`
+const RightContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${spacing(2)};
+`;
+
+const Button = styled.button`
   display: inline-flex;
   align-items: center;
   gap: ${spacing(2)};
@@ -128,10 +135,10 @@ const ThemeToggle: React.FC = () => {
   }, [theme]);
 
   return (
-    <ThemeToggleButton onClick={toggleTheme}>
+    <Button onClick={toggleTheme}>
       {icon}
       <span>{theme.toUpperCase()}</span>
-    </ThemeToggleButton>
+    </Button>
   );
 };
 
@@ -190,7 +197,19 @@ const App: React.FC = () => {
               <span>@choiceform/design-tokens</span>
             </Logo>
             <Navigation />
-            <ThemeToggle />
+
+            <RightContainer>
+              <ThemeToggle />
+              <Link
+                to="https://github.com/choice-form/design-tokens"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button>
+                  <Github />
+                </Button>
+              </Link>
+            </RightContainer>
           </Container>
         </Header>
 

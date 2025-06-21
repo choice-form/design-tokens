@@ -51,7 +51,7 @@ export const SectionBackgroundInteractionColors = memo(
 
         {["light", "dark"].map((theme) => (
           <Panel theme={theme as "light" | "dark"} key={theme}>
-            {backgroundInteractionGroups.map((colorData) => {
+            {backgroundInteractionGroups.map((colorData, index) => {
               const colorInfo = getRealColorValue(colorData.colorKey);
 
               return (
@@ -64,9 +64,12 @@ export const SectionBackgroundInteractionColors = memo(
                         colorData.colorKey as ColorPath
                       ),
                       "--color-hover": color(colorData.colorKey as ColorPath),
-                      "--color-text": tinycolor(colorInfo.hexValue).isDark()
-                        ? "white"
-                        : "black",
+                      "--color-text":
+                        index < 6
+                          ? tinycolor(colorInfo.hexValue).isDark()
+                            ? "white"
+                            : "black"
+                          : undefined,
                     } as React.CSSProperties
                   }
                 >
@@ -101,7 +104,6 @@ export const SectionBackgroundInteractionColors = memo(
                         grid-row: 1 / 3;
                         width: ${spacing(16)};
                         height: ${spacing(16)};
-                        border: 1px solid ${color("border.default")};
                         background-color: var(--color);
                         ${typographyStyles("heading.medium")};
                       `}

@@ -151,11 +151,11 @@ export const mockColorData = {
     "red-500": [224, 62, 26],
   },
   semanticColorsLight: {
-    "foreground-default": "black",
+    "text-default": "black",
     "background-default": "white",
   },
   semanticColorsDark: {
-    "foreground-default": "white",
+    "text-default": "white",
     "background-default": "gray-800",
   },
   extendedSemanticColors: {
@@ -167,6 +167,6 @@ export const mockColorData = {
     foreground: "text colors",
   },
   defaultAlpha: {
-    "foreground-default": 0.9,
+    "text-default": 0.9,
   },
 };

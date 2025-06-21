@@ -1,7 +1,9 @@
 import {
   color,
-  mediaQuery,
+  desktop,
+  mobile,
   spacing,
+  tablet,
   typographyStyles,
 } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
@@ -21,7 +23,7 @@ const Container = styled.div`
   }
 
   /* 移动设备 */
-  ${mediaQuery("sm")} {
+  ${mobile()} {
     background-color: ${color("background.accent", 0.1)};
 
     &::before {
@@ -31,7 +33,7 @@ const Container = styled.div`
   }
 
   /* 平板设备 */
-  ${mediaQuery("md")} {
+  ${tablet()} {
     background-color: ${color("background.success", 0.1)};
 
     &::before {
@@ -41,7 +43,7 @@ const Container = styled.div`
   }
 
   /* 桌面设备 */
-  ${mediaQuery("lg")} {
+  ${desktop()} {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto 1fr;
     grid-auto-flow: column;
@@ -58,7 +60,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${spacing(2)};
-  ${mediaQuery("lg")} {
+  ${desktop()} {
     grid-row: 2 / 3;
   }
 
@@ -70,7 +72,7 @@ const Content = styled.div`
 const Code = styled.div`
   background: ${color("background.default")};
 
-  ${mediaQuery("lg")} {
+  ${desktop()} {
     grid-row: 1 / 3;
   }
 `;

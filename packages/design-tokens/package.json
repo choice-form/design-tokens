@@ -1,6 +1,6 @@
 {
   "name": "@choiceform/design-tokens",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Design tokens generator for Choiceform Design System - converts TypeScript tokens to W3C format and outputs to multiple formats",
   "main": "dist/tokens.js",
   "types": "dist/tokens.d.ts",
@@ -53,8 +53,8 @@
     "compile": "npm run build",
     "clean": "rm -rf output/* dist/*",
     "dev": "npm run build:tokens && npm run terrazzo:watch",
-    "test": "node test-runner.js",
-    "test:run": "node test-runner.js",
+    "test": "vitest run",
+    "test:run": "vitest run",
     "test:vitest": "vitest",
     "test:vitest:run": "vitest run",
     "test:coverage": "vitest run --coverage",

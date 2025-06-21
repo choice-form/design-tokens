@@ -12,16 +12,16 @@ describe("颜色 Helper 函数测试", () => {
       stdio: "inherit",
     });
 
-    // 导入构建后的 helper 函数
-    const helpersPath = join(__dirname, "../../dist/helpers/colors.js");
-    helpers = require(helpersPath);
+    // 导入构建后的 tokens 函数（函数已移动到 tokens.js）
+    const tokensPath = join(__dirname, "../../dist/tokens.js");
+    helpers = await import(tokensPath);
   });
 
   describe("color() 函数", () => {
     it("应该生成基础颜色的 CSS 变量", () => {
       const result = helpers.color("blue.500");
       expect(typeof result).toBe("string");
-      expect(result).toMatch(/^rgba\(var\(--cdt-color-blue-500\)\)$/);
+      expect(result).toMatch(/^rgba\(var\(--cdt-color-blue-500\), 1\)$/);
     });
 
     it("应该支持透明度参数", () => {
@@ -40,12 +40,12 @@ describe("颜色 Helper 函数测试", () => {
 
     it("应该自动添加 color. 前缀", () => {
       const result = helpers.color("blue.500");
-      expect(result).toBe("rgba(var(--cdt-color-blue-500))");
+      expect(result).toBe("rgba(var(--cdt-color-blue-500), 1)");
     });
 
     it("应该支持完整路径", () => {
       const result = helpers.color("color.blue.500");
-      expect(result).toBe("rgba(var(--cdt-color-blue-500))");
+      expect(result).toBe("rgba(var(--cdt-color-blue-500), 1)");
     });
 
     it("无效颜色在开发模式下应该返回 fallback", () => {
@@ -151,31 +151,6 @@ describe("颜色 Helper 函数测试", () => {
     });
   });
 
-  describe("getColorToken() 函数", () => {
-    it("应该返回完整的 token 数据", () => {
-      const tokenData = helpers.getColorToken("blue.500");
-
-      expect(typeof tokenData).toBe("object");
-      expect(tokenData).toHaveProperty("hex");
-      expect(tokenData).toHaveProperty("components");
-      expect(tokenData).toHaveProperty("colorSpace");
-      expect(tokenData).toHaveProperty("alpha");
-    });
-
-    it("应该支持主题模式", () => {
-      const lightData = helpers.getColorToken("blue.500", "light");
-      const darkData = helpers.getColorToken("blue.500", "dark");
-
-      expect(typeof lightData).toBe("object");
-      expect(typeof darkData).toBe("object");
-    });
-
-    it("不存在的 token 应该返回 undefined", () => {
-      const result = helpers.getColorToken("invalid.color");
-      expect(result).toBeUndefined();
-    });
-  });
-
   describe("token() 函数重新导出", () => {
     it("应该能直接访问 Terrazzo token 函数", () => {
       expect(typeof helpers.token).toBe("function");
@@ -205,11 +180,11 @@ describe("颜色 Helper 函数测试", () => {
     it("path 前缀处理应该正确", () => {
       // 不带前缀
       const result1 = helpers.color("blue.500");
-      expect(result1).toBe("rgba(var(--cdt-color-blue-500))");
+      expect(result1).toBe("rgba(var(--cdt-color-blue-500), 1)");
 
       // 带前缀
       const result2 = helpers.color("color.blue.500");
-      expect(result2).toBe("rgba(var(--cdt-color-blue-500))");
+      expect(result2).toBe("rgba(var(--cdt-color-blue-500), 1)");
 
       // 两者应该生成相同的结果
       expect(result1).toBe(result2);

@@ -18,11 +18,6 @@ const colorRowClass = css`
   height: ${spacing(8)};
   padding: 0 ${spacing(1)} 0 ${spacing(2)};
   border: 1px solid ${color("border.default")};
-
-  &:hover {
-    border-color: ${color("border.default", 0.8)};
-    background-color: ${color("background.secondary", 0.5)};
-  }
 `;
 
 const colorRowBlackClass = css`

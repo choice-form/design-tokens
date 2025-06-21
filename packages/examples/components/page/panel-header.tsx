@@ -1,4 +1,4 @@
-import { color, spacing, mediaQuery } from "@choiceform/design-tokens";
+import { color, spacing, up } from "@choiceform/design-tokens";
 import { styled } from "@linaria/react";
 import { memo } from "react";
 
@@ -10,8 +10,8 @@ const Header = styled.div`
   display: flex;
   gap: ${spacing(2)};
   padding: ${spacing(4)};
-  box-shadow: 0 1px 0 0 ${color("black", 0.1)};
-  ${mediaQuery("lg")} {
+  border-bottom: 1px solid ${color("border.default")};
+  ${up("lg")} {
     grid-column: 1 / 3;
   }
 `;

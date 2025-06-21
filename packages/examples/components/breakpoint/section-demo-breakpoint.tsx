@@ -2,7 +2,7 @@ import {
   color,
   spacing,
   typographyStyles,
-  mediaQuery,
+  up,
 } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import { styled } from "@linaria/react";
@@ -14,17 +14,17 @@ const Container = styled.div`
   background-color: ${color("background.secondary")};
 
   /* 响应式样式演示 */
-  ${mediaQuery("sm")} {
+  ${up("sm")} {
     padding: ${spacing(6)};
     background-color: ${color("background.accent", 0.1)};
   }
 
-  ${mediaQuery("md")} {
+  ${up("md")} {
     padding: ${spacing(8)};
     background-color: ${color("background.accent", 0.2)};
   }
 
-  ${mediaQuery("lg")} {
+  ${up("lg")} {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: ${spacing(6)};
@@ -49,15 +49,15 @@ const Code = styled.div`
 `;
 
 const demoCode = `const ResponsiveDemo = styled.div\`
-  \${mediaQuery("sm")} {
+  \${up("sm")} {
     ...
   }
 
-  \${mediaQuery("md")} {
+  \${up("md")} {
     ...
   }
 
-  \${mediaQuery("lg")} {
+  \${up("lg")} {
     ...
   }
 \``;

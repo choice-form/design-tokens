@@ -1,8 +1,8 @@
 import {
   color,
-  mediaQuery,
   spacing,
   typographyStyles,
+  up,
 } from "@choiceform/design-tokens";
 import { styled } from "@linaria/react";
 import { memo } from "react";
@@ -23,7 +23,7 @@ const SectionContainer = styled.div`
   gap: ${spacing(8)};
 
   &[data-orientation="horizontal"] {
-    ${mediaQuery("lg")} {
+    ${up("lg")} {
       grid-template-columns: repeat(3, 1fr);
     }
   }
@@ -41,13 +41,13 @@ const SectionTitle = styled.h2`
 
 const SectionChildren = styled.div`
   display: grid;
-  box-shadow: inset 0 0 0 1px ${color("black", 0.1)};
+  border: 1px solid ${color("border.default")};
 
   &:where([data-orientation="horizontal"] *) {
-    ${mediaQuery("lg")} {
+    ${up("lg")} {
       grid-column: 2 / 4;
     }
-    ${mediaQuery("md")} {
+    ${up("md")} {
       grid-template-columns: repeat(2, 1fr);
     }
   }
@@ -58,6 +58,13 @@ const SectionContent = styled.div`
   flex-direction: column;
   gap: ${spacing(2)};
   ${typographyStyles("body.medium")};
+  ul {
+    list-style: disc;
+    padding-left: ${spacing(4)};
+    display: flex;
+    flex-direction: column;
+    gap: ${spacing(2)};
+  }
 `;
 
 export const Section = memo(function Section(props: SectionProps) {

@@ -45,26 +45,6 @@ export default function spacingHelper(userOptions = {}) {
         output.push("");
 
         output.push("/**");
-        output.push(" * 获取断点值");
-        output.push(" */");
-        output.push("function getBreakpointValue(name) {");
-        output.push("  const tokenValue = token(`breakpoints.${name}`);");
-        output.push("  if (!tokenValue) {");
-        output.push('    return "0";');
-        output.push("  }");
-        output.push("");
-        output.push("  // 如果是 dimension token，转换为 CSS 值");
-        output.push(
-          "  if (typeof tokenValue === 'object' && tokenValue.value && tokenValue.unit) {"
-        );
-        output.push("    return `${tokenValue.value}${tokenValue.unit}`;");
-        output.push("  }");
-        output.push("");
-        output.push("  return String(tokenValue);");
-        output.push("}");
-        output.push("");
-
-        output.push("/**");
         output.push(" * 检查断点是否存在（内部函数，避免与导出函数冲突）");
         output.push(" */");
         output.push("function _breakpointExists(name) {");
@@ -117,7 +97,17 @@ export default function spacingHelper(userOptions = {}) {
         output.push(
           '  if (typeof size === "string" && _breakpointExists(size)) {'
         );
-        output.push("    return getBreakpointValue(size);");
+        output.push("    const tokenValue = token(`breakpoints.${size}`);");
+        output.push("    if (tokenValue) {");
+        output.push("      // 如果是 dimension token，转换为 CSS 值");
+        output.push(
+          "      if (typeof tokenValue === 'object' && tokenValue.value && tokenValue.unit) {"
+        );
+        output.push("        return `${tokenValue.value}${tokenValue.unit}`;");
+        output.push("      }");
+        output.push("      return String(tokenValue);");
+        output.push("    }");
+        output.push('    return "0";');
         output.push("  }");
         output.push("");
         output.push("  // 处理数字值 - 使用 CSS 变量和 calc()");

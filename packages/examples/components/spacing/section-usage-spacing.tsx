@@ -71,15 +71,7 @@ export const SectionUsageSpacing = memo(function SectionUsageSpacing() {
           <p>
             <b>Basic principles</b>
           </p>
-          <ul
-            className={css`
-              list-style: disc;
-              padding-left: ${spacing(4)};
-              display: flex;
-              flex-direction: column;
-              gap: ${spacing(2)};
-            `}
-          >
+          <ul>
             <li>Use preset values (0, 1, 2, 3, 4, 6, 8, 12, 16, 20)</li>
             <li>Use any value when needed (2.5, 7.5, 15, etc.)</li>
             <li>

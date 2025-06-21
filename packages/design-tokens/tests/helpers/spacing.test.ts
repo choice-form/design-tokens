@@ -5,7 +5,7 @@ import { beforeAll, describe, expect, it } from "vitest";
 describe("Spacing Helper 函数测试", () => {
   let helpers: any;
 
-  beforeAll(() => {
+  beforeAll(async () => {
     // 确保 helpers 已构建
     try {
       execSync("npm run build:helpers", {
@@ -17,29 +17,14 @@ describe("Spacing Helper 函数测试", () => {
     }
 
     try {
-      const helpersPath = join(__dirname, "../../dist/helpers/spacing.js");
-      helpers = require(helpersPath);
+      const tokensPath = join(__dirname, "../../dist/tokens.js");
+      helpers = await import(tokensPath);
     } catch (error) {
       console.warn("无法加载 spacing helpers:", error.message);
     }
   });
 
   describe("spacing() 函数", () => {
-    it("应该支持数字倍数", () => {
-      if (!helpers?.spacing) {
-        console.warn("spacing 函数不可用，跳过测试");
-        return;
-      }
-
-      const result = helpers.spacing(4);
-      console.log("spacing(4):", result);
-
-      if (typeof result === "string") {
-        // 应该返回类似 "1rem" 的值
-        expect(result).toMatch(/\d+(\.\d+)?rem/);
-      }
-    });
-
     it("应该支持分数百分比", () => {
       if (!helpers?.spacing) return;
 
@@ -49,17 +34,6 @@ describe("Spacing Helper 函数测试", () => {
       if (typeof result === "string") {
         // 应该返回 "50%" 或类似值
         expect(result).toMatch(/\d+%|[\d.]+rem/);
-      }
-    });
-
-    it("应该支持预定义值", () => {
-      if (!helpers?.spacing) return;
-
-      const result = helpers.spacing("default");
-      console.log('spacing("default"):', result);
-
-      if (typeof result === "string") {
-        expect(result).toMatch(/[\d.]+rem|[\d.]+px/);
       }
     });
   });

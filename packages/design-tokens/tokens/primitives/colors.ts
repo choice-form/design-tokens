@@ -423,65 +423,6 @@ const defaultAlpha = {
   "text-on-accent-tertiary": 0.4,
 };
 
-const colorAliases = {
-  "fg-default": "text-default",
-  "fg-secondary": "text-secondary",
-  "fg-tertiary": "text-tertiary",
-  "fg-disabled": "text-disabled",
-  "fg-inverse": "text-inverse",
-
-  "fg-on-accent": "text-on-accent",
-  "fg-on-accent-secondary": "text-on-accent-secondary",
-  "fg-on-accent-tertiary": "text-on-accent-tertiary",
-
-  "fg-accent": "text-accent",
-  "fg-success": "text-success",
-  "fg-warning": "text-warning",
-  "fg-danger": "text-danger",
-  "fg-assistive": "text-assistive",
-  "fg-component": "text-component",
-
-  "bg-default": "background-default",
-  "bg-secondary": "background-secondary",
-  "bg-tertiary": "background-tertiary",
-  "bg-selected": "background-selected",
-  "bg-hover": "background-hover",
-  "bg-disabled": "background-disabled",
-  "bg-accent": "background-accent",
-  "bg-accent-hover": "background-accent-hover",
-  "bg-accent-secondary": "background-accent-secondary",
-  "bg-success": "background-success",
-  "bg-success-hover": "background-success-hover",
-  "bg-success-secondary": "background-success-secondary",
-  "bg-warning": "background-warning",
-  "bg-warning-hover": "background-warning-hover",
-  "bg-warning-secondary": "background-warning-secondary",
-  "bg-danger": "background-danger",
-  "bg-danger-hover": "background-danger-hover",
-  "bg-danger-secondary": "background-danger-secondary",
-  "bg-assistive": "background-assistive",
-  "bg-assistive-hover": "background-assistive-hover",
-  "bg-assistive-secondary": "background-assistive-secondary",
-  "bg-component": "background-component",
-  "bg-component-hover": "background-component-hover",
-  "bg-component-secondary": "background-component-secondary",
-  "bg-menu": "background-menu",
-  "bg-toolbar": "background-toolbar",
-  "bg-inverse": "background-inverse",
-
-  "ic-default": "icon-default",
-  "ic-secondary": "icon-secondary",
-  "ic-tertiary": "icon-tertiary",
-  "ic-disabled": "icon-disabled",
-
-  "bd-default": "border-default",
-  "bd-strong": "border-strong",
-  "bd-selected": "border-selected",
-  "bd-selected-strong": "border-selected-strong",
-  "bd-menu": "border-menu",
-  "bd-toolbar": "border-toolbar",
-};
-
 // 颜色分类映射
 const colorCategories = {
   // Neutrals
@@ -534,5 +475,4 @@ module.exports = {
   extendedSemanticColors,
   defaultAlpha,
   colorCategories,
-  // colorAliases, // 别名不导出为CSS变量
 };

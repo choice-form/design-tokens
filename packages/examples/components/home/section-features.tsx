@@ -1,6 +1,6 @@
 import {
   color,
-  mediaQuery,
+  up,
   spacing,
   typographyStyles,
 } from "@choiceform/design-tokens";
@@ -65,7 +65,7 @@ const sectionTitleClass = css`
   color: ${color("text.default")};
   text-align: center;
 
-  ${mediaQuery("md")} {
+  ${up("md")} {
     text-align: left;
   }
 `;

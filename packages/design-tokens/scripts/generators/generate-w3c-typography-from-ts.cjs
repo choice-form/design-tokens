@@ -100,8 +100,8 @@ function convertTypographyPreset(preset, type) {
       fontFamily: `{font.families.${preset.fontFamily}}`,
       fontSize: `{font.sizes.${preset.fontSize}}`,
       fontWeight: `{font.weights.${preset.fontWeight}}`,
-      lineHeight: `{font.lineHeights.${preset.lineHeight}}`,
-      letterSpacing: `{font.letterSpacings.${preset.letterSpacing}}`,
+      lineHeight: `{font.line-heights.${preset.lineHeight}}`,
+      letterSpacing: `{font.letter-spacings.${preset.letterSpacing}}`,
     },
   };
 }
@@ -129,8 +129,10 @@ function convertTypographyToW3C(typographyData) {
       families: convertFontFamilies(typographyData.fontFamilies),
       weights: convertFontWeights(typographyData.fontWeights),
       sizes: convertFontSizes(typographyData.fontSizes),
-      lineHeights: convertLineHeights(typographyData.lineHeights),
-      letterSpacings: convertLetterSpacings(typographyData.letterSpacings),
+      "line-heights": convertLineHeights(typographyData["line-heights"]),
+      "letter-spacings": convertLetterSpacings(
+        typographyData["letter-spacings"]
+      ),
     },
     // 复合 typography 类型 - W3C 规范支持，但不会导出为 CSS 变量（由 Terrazzo 过滤器控制）
     typography: {
@@ -193,8 +195,8 @@ function main() {
       fontFamilies: Object.keys(w3cTokens.font.families).length,
       fontWeights: Object.keys(w3cTokens.font.weights).length,
       fontSizes: Object.keys(w3cTokens.font.sizes).length,
-      lineHeights: Object.keys(w3cTokens.font.lineHeights).length,
-      letterSpacings: Object.keys(w3cTokens.font.letterSpacings).length,
+      lineHeights: Object.keys(w3cTokens.font["line-heights"]).length,
+      letterSpacings: Object.keys(w3cTokens.font["letter-spacings"]).length,
       // 复合 typography 类型现已启用
       bodyTypography: Object.keys(w3cTokens.typography.body).length,
       headingTypography: Object.keys(w3cTokens.typography.heading).length,

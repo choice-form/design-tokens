@@ -27,6 +27,7 @@ export const SpacingBar = styled.div`
 export const SpacingValue = styled.span`
   padding: ${spacing(2)};
   color: ${color("text.default")};
+  white-space: nowrap;
 `;
 
 export const SpacingLabel = styled.span`

@@ -1,5 +1,5 @@
 import { color, ColorPath, spacing } from "@choiceform/design-tokens";
-import { ToolbarComponent } from "@choiceform/icons-react";
+import ToolbarComponent from "@choiceform/icons-react/ToolbarComponent";
 import { css } from "@linaria/core";
 import { memo, useState } from "react";
 import {
@@ -79,7 +79,6 @@ export const SectionIconColors = memo(function SectionIconColors() {
                       colorType={colorType}
                       shade={{
                         key: colorData.colorKey,
-                        opacity: 1,
                       }}
                       theme={theme as "light" | "dark"}
                     />

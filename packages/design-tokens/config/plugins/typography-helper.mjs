@@ -193,10 +193,10 @@ export function fontSize(name, asVar = true) {
  */
 export function lineHeight(name, asVar = true) {
   if (asVar) {
-    return \`var(--cdt-font-lineHeights-\${name})\`;
+    return \`var(--cdt-font-line-heights-\${name})\`;
   }
   
-  const lineHeightToken = token(\`font.lineHeights.\${name}\`);
+  const lineHeightToken = token(\`font.line-heights.\${name}\`);
   if (typeof lineHeightToken === 'object' && lineHeightToken && 'value' in lineHeightToken && 'unit' in lineHeightToken) {
     return \`\${lineHeightToken.value}\${lineHeightToken.unit}\`;
   }
@@ -212,10 +212,10 @@ export function lineHeight(name, asVar = true) {
  */
 export function letterSpacing(name, asVar = true) {
   if (asVar) {
-    return \`var(--cdt-font-letterSpacings-\${name})\`;
+    return \`var(--cdt-font-letter-spacings-\${name})\`;
   }
   
-  const spacingToken = token(\`font.letterSpacings.\${name}\`);
+  const spacingToken = token(\`font.letter-spacings.\${name}\`);
   if (typeof spacingToken === 'object' && spacingToken && 'value' in spacingToken && 'unit' in spacingToken) {
     return \`\${spacingToken.value}\${spacingToken.unit}\`;
   }

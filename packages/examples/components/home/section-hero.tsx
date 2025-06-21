@@ -2,7 +2,7 @@ import {
   color,
   spacing,
   typographyStyles,
-  mediaQuery,
+  up,
 } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import React from "react";
@@ -26,7 +26,7 @@ const heroTitleClass = css`
   font-weight: 600;
   text-align: center;
 
-  ${mediaQuery("md")} {
+  ${up("md")} {
     text-align: left;
   }
 `;
@@ -37,7 +37,7 @@ const heroSubtitleClass = css`
   color: ${color("text.secondary")};
   text-align: center;
 
-  ${mediaQuery("md")} {
+  ${up("md")} {
     text-align: left;
   }
 `;
@@ -49,7 +49,7 @@ const heroActionsClass = css`
   margin-bottom: ${spacing(12)};
   justify-content: center;
 
-  ${mediaQuery("md")} {
+  ${up("md")} {
     justify-content: flex-start;
   }
 `;
@@ -81,7 +81,7 @@ const badgeListClass = css`
   margin-bottom: ${spacing(8)};
   justify-content: center;
 
-  ${mediaQuery("md")} {
+  ${up("md")} {
     justify-content: flex-start;
   }
 `;

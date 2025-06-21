@@ -135,37 +135,11 @@ function getColorCategory(colorName, groupName) {
 }
 
 /**
- * 动态生成颜色的别名列表
+ * 动态生成颜色的别名列表 (已禁用)
  */
 function getColorAliases(colorName, groupName) {
-  const aliases = [];
-
-  // 前缀缩写映射
-  const prefixMap = {
-    background: "bg",
-    foreground: "fg",
-    icon: "ic",
-    boundary: "bd",
-  };
-
-  // 检查是否为语义颜色（有前缀可以缩写）
-  if (prefixMap[groupName]) {
-    const prefix = prefixMap[groupName];
-    const variant = colorName.replace(`${groupName}-`, "");
-
-    // 生成两种格式的别名
-    aliases.push(`${prefix}.${variant}`); // bg.default
-    aliases.push(`${prefix}-${variant}`); // bg-default
-  }
-
-  // 基础颜色生成点号格式别名
-  if (colorName.includes("-") && !prefixMap[groupName]) {
-    // blue-500 -> blue.500
-    const dotAlias = colorName.replace(/-/g, ".");
-    aliases.push(dotAlias);
-  }
-
-  return aliases.length > 0 ? aliases : null;
+  // 不再生成别名，返回 null
+  return null;
 }
 
 // ============================================================================
@@ -303,7 +277,7 @@ function generateW3CTokens() {
       const darkValue = darkColors[colorName];
 
       const parts = colorName.split("-");
-      const groupName = parts[0]; // foreground, background, icon, boundary
+      const groupName = parts[0]; // text, background, icon, border
       const variant = parts.slice(1).join("-"); // default, secondary, etc.
 
       if (!result.color[groupName]) {
@@ -316,11 +290,30 @@ function generateW3CTokens() {
       const lightAlpha = getAlphaForColor(colorName, "light");
       const darkAlpha = getAlphaForColor(colorName, "dark");
 
-      // 检查是否为引用
-      if (isColorReference(lightValue)) {
+      // 判断主题间是否有差异
+      const hasThemeDifference =
+        lightValue &&
+        darkValue &&
+        // 类型不同（一个是引用，一个是RGB）
+        (isColorReference(lightValue) !== isColorReference(darkValue) ||
+          // 同为引用但值不同
+          (isColorReference(lightValue) &&
+            isColorReference(darkValue) &&
+            lightValue !== darkValue) ||
+          // 同为RGB但值不同
+          (Array.isArray(lightValue) &&
+            Array.isArray(darkValue) &&
+            JSON.stringify(lightValue) !== JSON.stringify(darkValue)));
+
+      // 使用 light 值作为默认值
+      const defaultValue = lightValue || darkValue;
+      const defaultAlpha = lightAlpha;
+
+      if (isColorReference(defaultValue)) {
+        // 默认值是引用
         token = {
           $type: "color",
-          $value: convertColorReference(lightValue),
+          $value: convertColorReference(defaultValue),
           $description: `${colorName.replace(/-/g, " ")} color`,
         };
 
@@ -332,46 +325,35 @@ function generateW3CTokens() {
             dark: darkAlpha,
           };
         }
-
-        // 如果 dark 主题的引用不同，添加 mode 扩展
-        if (
-          darkValue &&
-          isColorReference(darkValue) &&
-          darkValue !== lightValue
-        ) {
-          if (!token.$extensions) token.$extensions = {};
-          token.$extensions.mode = {
-            light: convertColorReference(lightValue),
-            dark: convertColorReference(darkValue),
-          };
-        }
       } else {
-        // 直接 RGB 值
-        const defaultRgb = lightValue || darkValue;
-        const alpha = getAlphaForColor(colorName, "light");
-
+        // 默认值是 RGB 数组
         token = {
           $type: "color",
-          $value: convertRgbToW3C(defaultRgb, alpha),
+          $value: convertRgbToW3C(defaultValue, defaultAlpha),
           $description: `${colorName.replace(/-/g, " ")} color`,
         };
+      }
 
-        // 如果有主题差异且都是RGB数组
-        if (
-          lightValue &&
-          darkValue &&
-          Array.isArray(lightValue) &&
-          Array.isArray(darkValue) &&
-          JSON.stringify(lightValue) !== JSON.stringify(darkValue)
-        ) {
-          if (!token.$extensions) token.$extensions = {};
-          token.$extensions.mode = {
-            light: convertRgbToW3C(lightValue, alpha),
-            dark: convertRgbToW3C(
-              darkValue,
-              getAlphaForColor(colorName, "dark")
-            ),
-          };
+      // 如果有主题差异，添加 mode 扩展
+      if (hasThemeDifference) {
+        if (!token.$extensions) token.$extensions = {};
+        token.$extensions.mode = {};
+
+        // 处理 light 模式
+        if (isColorReference(lightValue)) {
+          token.$extensions.mode.light = convertColorReference(lightValue);
+        } else {
+          token.$extensions.mode.light = convertRgbToW3C(
+            lightValue,
+            lightAlpha
+          );
+        }
+
+        // 处理 dark 模式
+        if (isColorReference(darkValue)) {
+          token.$extensions.mode.dark = convertColorReference(darkValue);
+        } else {
+          token.$extensions.mode.dark = convertRgbToW3C(darkValue, darkAlpha);
         }
       }
 
@@ -487,56 +469,6 @@ function generateW3CTokens() {
     }
   };
 
-  // 处理颜色别名 - 已禁用，不再导出别名
-  /*
-  const processColorAliases = (aliases) => {
-    for (const [alias, reference] of Object.entries(aliases)) {
-      const parts = alias.split("-");
-      const groupName = parts[0]; // fg, bg, ic, bd
-      const variant = parts.slice(1).join("-");
-
-      // 映射别名组名到完整组名
-      const groupMapping = {
-        fg: "foreground",
-        bg: "background",
-        ic: "icon",
-        bd: "boundary",
-      };
-
-      const fullGroupName = groupMapping[groupName] || groupName;
-
-      if (!result.color[fullGroupName]) {
-        result.color[fullGroupName] = {};
-      }
-
-      // 创建别名引用 - 但避免覆盖已存在的token
-      if (!result.color[fullGroupName][variant]) {
-        // 检查原始引用的透明度设置
-        const lightAlpha = getAlphaForColor(reference, "light");
-        const darkAlpha = getAlphaForColor(reference, "dark");
-
-        const token = {
-          $type: "color",
-          $value: convertColorReference(reference),
-          $description: `Alias for ${reference.replace(/-/g, " ")} color`,
-        };
-
-        // 如果有透明度设置，添加到 extensions
-        if (lightAlpha !== 1.0 || darkAlpha !== 1.0) {
-          token.$extensions = {
-            alpha: {
-              light: lightAlpha,
-              dark: darkAlpha,
-            },
-          };
-        }
-
-        result.color[fullGroupName][variant] = token;
-      }
-    }
-  };
-  */
-
   // 执行转换
   console.log("🚀 开始转换基础颜色...");
   processBaseColors(baseColorsLight, baseColorsDark);
@@ -549,9 +481,6 @@ function generateW3CTokens() {
 
   console.log("📝 转换语义颜色...");
   processSemanticColors(semanticColorsLight, semanticColorsDark);
-
-  // console.log("🔗 转换颜色别名...");
-  // processColorAliases(colorAliases); // 不再导出别名
 
   // 🔧 修正 white 和 black 的结构 - 移除 default 嵌套
   console.log("🔧 修正 white 和 black 为顶级颜色...");

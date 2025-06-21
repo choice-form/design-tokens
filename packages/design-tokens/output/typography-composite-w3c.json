@@ -8,8 +8,8 @@
           "fontFamily": "{font.families.default}",
           "fontSize": "{font.sizes.md}",
           "fontWeight": "{font.weights.default}",
-          "lineHeight": "{font.lineHeights.normal}",
-          "letterSpacing": "{font.letterSpacings.body-large}"
+          "lineHeight": "{font.line-heights.normal}",
+          "letterSpacing": "{font.letter-spacings.body-large}"
         }
       },
       "large-strong": {
@@ -19,8 +19,8 @@
           "fontFamily": "{font.families.default}",
           "fontSize": "{font.sizes.md}",
           "fontWeight": "{font.weights.strong}",
-          "lineHeight": "{font.lineHeights.normal}",
-          "letterSpacing": "{font.letterSpacings.body-large}"
+          "lineHeight": "{font.line-heights.normal}",
+          "letterSpacing": "{font.letter-spacings.body-large}"
         }
       },
       "medium": {
@@ -30,8 +30,8 @@
           "fontFamily": "{font.families.default}",
           "fontSize": "{font.sizes.sm}",
           "fontWeight": "{font.weights.medium}",
-          "lineHeight": "{font.lineHeights.snug}",
-          "letterSpacing": "{font.letterSpacings.body-medium}"
+          "lineHeight": "{font.line-heights.snug}",
+          "letterSpacing": "{font.letter-spacings.body-medium}"
         }
       },
       "medium-strong": {
@@ -41,8 +41,8 @@
           "fontFamily": "{font.families.default}",
           "fontSize": "{font.sizes.sm}",
           "fontWeight": "{font.weights.heavy}",
-          "lineHeight": "{font.lineHeights.snug}",
-          "letterSpacing": "{font.letterSpacings.body-medium}"
+          "lineHeight": "{font.line-heights.snug}",
+          "letterSpacing": "{font.letter-spacings.body-medium}"
         }
       },
       "small": {
@@ -52,8 +52,8 @@
           "fontFamily": "{font.families.default}",
           "fontSize": "{font.sizes.xs}",
           "fontWeight": "{font.weights.default}",
-          "lineHeight": "{font.lineHeights.tight}",
-          "letterSpacing": "{font.letterSpacings.body-small}"
+          "lineHeight": "{font.line-heights.tight}",
+          "letterSpacing": "{font.letter-spacings.body-small}"
         }
       },
       "small-strong": {
@@ -63,8 +63,8 @@
           "fontFamily": "{font.families.default}",
           "fontSize": "{font.sizes.xs}",
           "fontWeight": "{font.weights.strong}",
-          "lineHeight": "{font.lineHeights.tight}",
-          "letterSpacing": "{font.letterSpacings.body-small-strong}"
+          "lineHeight": "{font.line-heights.tight}",
+          "letterSpacing": "{font.letter-spacings.body-small-strong}"
         }
       }
     },
@@ -76,8 +76,8 @@
           "fontFamily": "{font.families.display}",
           "fontSize": "{font.sizes.2xl}",
           "fontWeight": "{font.weights.light}",
-          "lineHeight": "{font.lineHeights.extra-loose}",
-          "letterSpacing": "{font.letterSpacings.display}"
+          "lineHeight": "{font.line-heights.extra-loose}",
+          "letterSpacing": "{font.letter-spacings.display}"
         }
       },
       "large": {
@@ -87,8 +87,8 @@
           "fontFamily": "{font.families.default}",
           "fontSize": "{font.sizes.xl}",
           "fontWeight": "{font.weights.heavy}",
-          "lineHeight": "{font.lineHeights.loose}",
-          "letterSpacing": "{font.letterSpacings.heading-large}"
+          "lineHeight": "{font.line-heights.loose}",
+          "letterSpacing": "{font.letter-spacings.heading-large}"
         }
       },
       "medium": {
@@ -98,8 +98,8 @@
           "fontFamily": "{font.families.default}",
           "fontSize": "{font.sizes.lg}",
           "fontWeight": "{font.weights.heavy}",
-          "lineHeight": "{font.lineHeights.relaxed}",
-          "letterSpacing": "{font.letterSpacings.heading-medium}"
+          "lineHeight": "{font.line-heights.relaxed}",
+          "letterSpacing": "{font.letter-spacings.heading-medium}"
         }
       },
       "small": {
@@ -109,8 +109,8 @@
           "fontFamily": "{font.families.default}",
           "fontSize": "{font.sizes.md}",
           "fontWeight": "{font.weights.heavy}",
-          "lineHeight": "{font.lineHeights.normal}",
-          "letterSpacing": "{font.letterSpacings.heading-small}"
+          "lineHeight": "{font.line-heights.normal}",
+          "letterSpacing": "{font.letter-spacings.heading-small}"
         }
       }
     }

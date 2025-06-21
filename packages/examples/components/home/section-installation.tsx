@@ -2,7 +2,7 @@ import {
   color,
   spacing,
   typographyStyles,
-  mediaQuery,
+  up,
 } from "@choiceform/design-tokens";
 import { css } from "@linaria/core";
 import React from "react";
@@ -24,7 +24,7 @@ const sectionTitleClass = css`
   color: ${color("text.default")};
   text-align: center;
 
-  ${mediaQuery("md")} {
+  ${up("md")} {
     text-align: left;
   }
 `;
@@ -132,7 +132,9 @@ export const SectionInstallation: React.FC = () => {
             </p>
             <CodeBlock
               code={`// Import to initialize CSS variables
-import '@choiceform/design-tokens'
+import "@choiceform/design-tokens";
+import "@choiceform/design-tokens/tokens.css";
+import "@choiceform/design-tokens/preflight.css";
 
 // Or initialize manually
 import { initTokens } from '@choiceform/design-tokens'

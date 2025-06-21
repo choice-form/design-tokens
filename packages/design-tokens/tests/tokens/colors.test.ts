@@ -45,10 +45,10 @@ describe("颜色令牌测试", () => {
     });
 
     it("语义颜色应该有正确的引用格式", () => {
-      const foregroundColors = colorsW3C.color.foreground;
-      expect(foregroundColors).toBeDefined();
+      const textColors = colorsW3C.color.text;
+      expect(textColors).toBeDefined();
 
-      const defaultColor = foregroundColors.default;
+      const defaultColor = textColors.default;
       expect(defaultColor).toHaveProperty("$type", "color");
       expect(defaultColor).toHaveProperty("$value");
 
@@ -147,10 +147,10 @@ describe("颜色令牌测试", () => {
       expect(colorGroups).toContain("green");
 
       // 语义颜色
-      expect(colorGroups).toContain("foreground");
+      expect(colorGroups).toContain("text");
       expect(colorGroups).toContain("background");
       expect(colorGroups).toContain("icon");
-      expect(colorGroups).toContain("boundary");
+      expect(colorGroups).toContain("border");
 
       // 特殊颜色
       expect(colorGroups).toContain("white");

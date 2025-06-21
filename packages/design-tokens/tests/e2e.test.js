@@ -136,7 +136,7 @@ describe("端到端测试", () => {
     }
   });
 
-  it("应该成功构建并测试 Helper 函数", () => {
+  it("应该成功构建并测试 Helper 函数", async () => {
     console.log("🛠️  构建 Helper 函数...");
 
     try {
@@ -165,8 +165,8 @@ describe("端到端测试", () => {
       console.log("🧪 测试 Helper 函数...");
 
       try {
-        const helpersPath = join(projectRoot, "dist/helpers/colors.js");
-        const helpers = require(helpersPath);
+        const tokensPath = join(projectRoot, "dist/tokens.js");
+        const helpers = await import(tokensPath);
 
         // 测试基础功能
         if (typeof helpers.color !== "function") {

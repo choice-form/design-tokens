@@ -46,8 +46,10 @@ pnpm run dev
 
 ### Usage
 
+#### 🔥 JavaScript/TypeScript
+
 ```javascript
-import { color, spacing, shadow } from "@your-org/design-tokens";
+import { color, spacing, shadow, typography } from "@your-org/design-tokens";
 
 // 🎨 Colors - with theme and alias support
 const styles = {
@@ -70,6 +72,55 @@ const elevation = {
   dropShadow: shadow("lg", "dark"), // → large shadow for dark theme
   textShadow: shadowList(["sm", "md"]), // → combination of multiple shadows
 };
+
+// 📝 Typography - complete preset styles
+const textStyles = typography("heading.large"); // → full typography object
+const cssString = typographyStyles("body.medium"); // → CSS string
+```
+
+#### 🎨 SCSS
+
+```scss
+// Import functions and mixins (in order)
+@import "path/to/functions"; // Functions for individual values
+@import "path/to/mixins"; // Mixins for complex operations
+
+.my-component {
+  // 🎨 Colors - identical API to JS version
+  background: color("bg.default");
+  color: color("fg.secondary", 0.8);
+  border: 1px solid color("bd.default");
+
+  // 📏 Spacing - supports all JS features
+  padding: spacing(4); // → "1rem"
+  margin: spacing("1/2"); // → "50%"
+  gap: spacing("[10vh]"); // → "10vh"
+
+  // ✨ Typography - complete preset application
+  @include typography-styles("heading.large");
+
+  // 📱 Responsive design
+  @include up("md") {
+    padding: spacing(6);
+    @include typography-styles("heading.display");
+  }
+
+  // 🌓 Other design tokens
+  border-radius: radius("md");
+  box-shadow: shadow("lg");
+  z-index: z-index("modal");
+}
+
+// 📱 Responsive typography example
+.responsive-heading {
+  @include responsive-typography(
+    (
+      "default": "heading.small",
+      "md": "heading.medium",
+      "lg": "heading.large",
+    )
+  );
+}
 ```
 
 ## 🏗️ Architecture
@@ -86,28 +137,83 @@ graph TB
 
     C --> F
     E --> I["CSS Variables"]
-    E --> J["SCSS Mixins"]
+    E --> J["SCSS Functions & Mixins"]
     E --> K["JS/TS Modules"]
     E --> L["Flattened JSON"]
+
+    J --> M["functions.scss - Individual Values"]
+    J --> N["mixins.scss - Complex Operations"]
 
     style A fill:#e1f5fe
     style C fill:#f3e5f5
     style H fill:#e8f5e8
 ```
 
+### 📦 Output Format Comparison
+
+| Format             | File Size | Features                                  | Best For                               |
+| ------------------ | --------- | ----------------------------------------- | -------------------------------------- |
+| **functions.scss** | ~19KB     | 🎯 Individual values, identical JS API    | Component styling, utility classes     |
+| **mixins.scss**    | ~6.8KB    | 🔥 Multi-property application, responsive | Complex components, typography presets |
+| **tokens.css**     | ~30KB     | 🌍 Universal browser support              | Runtime theming, CSS-only projects     |
+| **tokens.js**      | ~25KB     | ⚡ Runtime logic, conditional styling     | React, Vue, dynamic applications       |
+
+**💡 Recommendation**: Use SCSS files for build-time optimization and CSS files for runtime flexibility.
+
 ## 📊 Token Ecosystem
 
-| Token Type         | Count    | Features                            | Use Cases                           |
-| ------------------ | -------- | ----------------------------------- | ----------------------------------- |
-| **🎨 Colors**      | 243      | Theming, opacity, smart aliases     | UI background, text, borders, icons |
-| **📝 Typography**  | 39       | Atomic + composite, negative values | Headings, body text, code, labels   |
-| **📏 Spacing**     | Flexible | `calc()`-based, fraction support    | Layout, gaps, sizing                |
-| **✨ Shadows**     | 22       | Multiple shadows, theme variants    | Cards, buttons, overlays            |
-| **📱 Breakpoints** | 22       | Responsive, container queries       | Media queries, layout breakpoints   |
-| **📚 Z-index**     | 9        | Layer management                    | Modals, dropdowns, sticky headers   |
-| **🔄 Radius**      | 3        | Corner radius sizes                 | Buttons, cards, inputs              |
+| Token Type         | Count    | JS/TS Support                           | SCSS Support                                 | Use Cases                           |
+| ------------------ | -------- | --------------------------------------- | -------------------------------------------- | ----------------------------------- |
+| **🎨 Colors**      | 243      | `color()`, `colorVar()`, aliases        | `color()`, `color-var()`, identical API      | UI background, text, borders, icons |
+| **📝 Typography**  | 39       | `typography()`, `fontFamily()`, etc     | `typography-styles()`, `font-family()`, etc  | Headings, body text, code, labels   |
+| **📏 Spacing**     | Flexible | `spacing()`, `spacingList()`, fractions | `spacing()`, `spacing-list()`, identical API | Layout, gaps, sizing                |
+| **✨ Shadows**     | 22       | `shadow()`, `shadowList()`, themes      | `shadow()`, `shadow-list()`, themes          | Cards, buttons, overlays            |
+| **📱 Breakpoints** | 6        | `up()`, `down()`, `between()`, `only()` | `@mixin up()`, `@mixin down()`, etc          | Media queries, responsive design    |
+| **📚 Z-index**     | 9        | `zIndex()`, `zIndexList()`              | `z-index()`, `z-index-list()`                | Modals, dropdowns, sticky headers   |
+| **🔄 Radius**      | 3        | `radius()`, `radiusList()`              | `radius()`, `radius-list()`                  | Buttons, cards, inputs              |
 
 ## 🎯 Core Strengths
+
+### 💎 SCSS Powerhouse Features
+
+Our SCSS integration provides a **complete, identical API** to the JavaScript version with additional SCSS-specific superpowers:
+
+```scss
+// 🎯 1. Identical API to JavaScript
+.component {
+  // Same function names, same parameters, same results
+  background: color("bg.default"); // ✓ Same as JS: color("bg.default")
+  padding: spacing(4); // ✓ Same as JS: spacing(4)
+  box-shadow: shadow("md"); // ✓ Same as JS: shadow("md")
+}
+
+// 🔥 2. SCSS-Only Superpowers
+.advanced {
+  // Multi-property application with mixins
+  @include typography-styles(
+    "heading.large"
+  ); // Applies 5 CSS properties at once
+
+  // Responsive breakpoint mixins
+  @include up("md") {
+    @include typography-styles("heading.display");
+  }
+
+  // Utility mixins for common patterns
+  @include text-ellipsis(); // Single-line text truncation
+  @include text-ellipsis-multiline(3); // Multi-line text truncation
+}
+
+// 🎨 3. Zero Learning Curve
+// If you know the JS API, you already know the SCSS API!
+.button {
+  // JS: { background: color("bg.primary", { alpha: 0.9 }) }
+  background: color("bg.primary", 0.9); // Same result in SCSS
+
+  // JS: { padding: spacingList([2, 4]) }
+  padding: spacing-list(2, 4); // Same result in SCSS
+}
+```
 
 ### 1. Smart Alias System 🧠
 
@@ -170,7 +276,15 @@ const shadows = shadowList(["sm", "md"]); // → combination of multiple shadows
 color("bg.primary", { alpha: 0.8 }); // → rgba(..., 0.8)
 
 // 📱 Responsive Breakpoints
-breakpoint("tablet"); // → "@media (min-width: 768px)"
+up("md"); // → "@media screen and (min-width: 48rem)"
+down("lg"); // → "@media screen and (max-width: 63.98rem)"
+between("sm", "xl"); // → "@media screen and (min-width: 40rem) and (max-width: 79.98rem)"
+only("md"); // → "@media screen and (min-width: 48rem) and (max-width: 63.98rem)"
+
+// 🎯 Device-specific aliases
+mobile(); // → "@media screen and (min-width: 29.6875rem)"
+tablet(); // → "@media screen and (min-width: 48rem) and (max-width: 63.98rem)"
+desktop(); // → "@media screen and (min-width: 64rem)"
 ```
 
 ## 🛠️ Build & Deployment
@@ -192,8 +306,14 @@ pnpm run test:helpers       # Test helper functions
 pnpm run test:integration   # Run integration tests
 
 # 🔄 Transform Commands
-pnpm run terrazzo           # Transform into multiple formats
+pnpm run terrazzo           # Transform into multiple formats (CSS, SCSS, JS, TS)
 pnpm run terrazzo:watch     # Transform in watch mode
+
+# 📁 Generated Files After Build:
+# dist/tokens.css           → CSS Custom Properties
+# dist/functions.scss       → SCSS Functions (1000+ lines)
+# dist/mixins.scss          → SCSS Mixins (400+ lines)
+# dist/tokens.js            → JavaScript Helpers
 ```
 
 ### Continuous Integration
@@ -239,6 +359,8 @@ packages/generate-tokens/
 ├── 📦 dist/                    # Multi-Format Output Layer
 │   ├── tokens.css              # CSS Custom Properties
 │   ├── tokens.scss             # Sass Variables and Mixins
+│   ├── functions.scss          # SCSS Functions (color, spacing, typography, etc.)
+│   ├── mixins.scss             # SCSS Mixins (breakpoints, typography-styles, etc.)
 │   ├── tokens.js               # JavaScript Modules
 │   ├── tokens.d.ts             # TypeScript Definitions
 │   └── helpers.js              # Compiled Helper Functions
@@ -295,7 +417,60 @@ const useSystemTheme = () => {
 };
 ```
 
-### 3. Performance Tips
+### 3. SCSS Best Practices
+
+```scss
+// 🚀 1. Correct Import Order (Critical!)
+@import "path/to/functions"; // Must be first - provides function definitions
+@import "path/to/mixins"; // Must be second - uses functions internally
+
+// 🎯 2. Use Functions for Individual Values
+.card {
+  background: color("bg.default");
+  padding: spacing(4);
+  border-radius: radius("md");
+  box-shadow: shadow("sm");
+}
+
+// 🔥 3. Use Mixins for Complex Operations
+.heading {
+  @include typography-styles("heading.large"); // 5 properties applied at once
+  @include text-ellipsis(); // Multiple utility properties
+}
+
+// 📱 4. Responsive Design Patterns
+.component {
+  // Base styles with functions
+  padding: spacing(4);
+  @include typography-styles("body.medium");
+
+  // Responsive with mixins
+  @include up("md") {
+    padding: spacing(6);
+    @include typography-styles("body.large");
+  }
+
+  @include up("lg") {
+    @include typography-styles("heading.small");
+  }
+}
+
+// 🎨 5. Advanced Responsive Typography
+.hero-title {
+  @include responsive-typography(
+    (
+      "default": "heading.medium",
+      // Mobile
+      "md": "heading.large",
+      // Tablet
+      "lg": "heading.display",
+      // Desktop
+    )
+  );
+}
+```
+
+### 4. Performance Tips
 
 ```javascript
 // ⚡ Optimize with bulk operations
@@ -312,6 +487,30 @@ const styles = {
   // Dynamic values are computed at runtime
   margin: spacing(props.size), // → calculated at runtime
 };
+```
+
+```scss
+// 📦 SCSS Performance Tips
+.optimized {
+  // ✅ Efficient: Use functions for individual properties
+  padding: spacing(4);
+  color: color("fg.primary");
+
+  // ✅ Efficient: Use mixins for multiple properties
+  @include typography-styles("body.large");
+
+  // ❌ Avoid: Don't call functions inside loops
+  // Use variables instead when possible
+  $base-spacing: spacing(4);
+
+  &::before {
+    margin: $base-spacing;
+  }
+
+  &::after {
+    margin: $base-spacing;
+  }
+}
 ```
 
 ## 🤝 Contributing

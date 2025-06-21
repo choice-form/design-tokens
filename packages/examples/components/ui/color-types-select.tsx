@@ -21,6 +21,7 @@ const Select = styled.select`
   border-radius: ${radius("md")};
   background-color: ${color("background.default")};
   color: ${color("text.default")};
+  text-transform: capitalize;
 `;
 
 export const ColorTypesSelect = memo(function ColorTypesSelect(

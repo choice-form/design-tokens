@@ -15,10 +15,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "blue.100"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -58,10 +55,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "blue.200"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -101,10 +95,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "blue.300"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -144,10 +135,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "blue.400"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -187,10 +175,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "blue.500"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -230,10 +215,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "blue.600"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -273,10 +255,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "blue.700"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -316,10 +295,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "blue.800"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -359,10 +335,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "blue.900"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -402,10 +375,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "blue.950"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -447,10 +417,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "violet.100"
-            ]
+            "category": "hues"
           }
         }
       },
@@ -468,10 +435,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "violet.200"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -511,10 +475,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "violet.300"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -554,10 +515,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "violet.400"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -597,10 +555,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "violet.500"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -640,10 +595,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "violet.600"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -683,10 +635,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "violet.700"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -726,10 +675,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "violet.800"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -769,10 +715,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "violet.900"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -812,10 +755,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "violet.950"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -857,10 +797,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "purple.100"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -900,10 +837,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "purple.200"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -943,10 +877,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "purple.300"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -986,10 +917,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "purple.400"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1029,10 +957,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "purple.500"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1072,10 +997,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "purple.600"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1115,10 +1037,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "purple.700"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1158,10 +1077,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "purple.800"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1201,10 +1117,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "purple.900"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1244,10 +1157,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "purple.950"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1289,10 +1199,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "pink.100"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1332,10 +1239,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "pink.200"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1375,10 +1279,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "pink.300"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1418,10 +1319,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "pink.400"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1461,10 +1359,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "pink.500"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1504,10 +1399,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "pink.600"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1547,10 +1439,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "pink.700"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1590,10 +1479,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "pink.800"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1633,10 +1519,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "pink.900"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1676,10 +1559,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "pink.950"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1721,10 +1601,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "teal.100"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1764,10 +1641,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "teal.200"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1807,10 +1681,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "teal.300"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1850,10 +1721,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "teal.400"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1893,10 +1761,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "teal.500"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1936,10 +1801,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "teal.600"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -1979,10 +1841,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "teal.700"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2022,10 +1881,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "teal.800"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2065,10 +1921,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "teal.900"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2108,10 +1961,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "teal.950"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2153,10 +2003,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "red.100"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2196,10 +2043,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "red.200"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2239,10 +2083,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "red.300"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2282,10 +2123,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "red.400"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2325,10 +2163,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "red.500"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2368,10 +2203,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "red.600"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2411,10 +2243,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "red.700"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2454,10 +2283,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "red.800"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2497,10 +2323,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "red.900"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2540,10 +2363,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "red.950"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2585,10 +2405,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "orange.100"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2628,10 +2445,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "orange.200"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2671,10 +2485,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "orange.300"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2714,10 +2525,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "orange.400"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2757,10 +2565,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "orange.500"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2800,10 +2605,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "orange.600"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2843,10 +2645,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "orange.700"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2886,10 +2685,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "orange.800"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2929,10 +2725,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "orange.900"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -2972,10 +2765,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "orange.950"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3017,10 +2807,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "yellow.100"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3060,10 +2847,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "yellow.200"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3103,10 +2887,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "yellow.300"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3146,10 +2927,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "yellow.400"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3189,10 +2967,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "yellow.500"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3232,10 +3007,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "yellow.600"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3275,10 +3047,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "yellow.700"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3318,10 +3087,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "yellow.800"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3361,10 +3127,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "yellow.900"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3404,10 +3167,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "yellow.950"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3449,10 +3209,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "green.100"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3492,10 +3249,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "green.200"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3535,10 +3289,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "green.300"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3578,10 +3329,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "green.400"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3621,10 +3369,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "green.500"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3664,10 +3409,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "green.600"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3707,10 +3449,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "green.700"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3750,10 +3489,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "green.800"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3793,10 +3529,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "green.900"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3836,10 +3569,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "hues",
-            "aliases": [
-              "green.950"
-            ]
+            "category": "hues"
           },
           "mode": {
             "light": {
@@ -3881,10 +3611,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "blue.pale.100"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -3902,10 +3629,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "blue.pale.200"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -3923,10 +3647,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "blue.pale.300"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -3944,10 +3665,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "blue.pale.400"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -3965,10 +3683,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "blue.pale.500"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -3986,10 +3701,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "blue.pale.600"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4007,10 +3719,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "blue.pale.700"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4028,10 +3737,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "blue.pale.800"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4049,10 +3755,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "blue.pale.900"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4070,10 +3773,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "blue.pale.950"
-            ]
+            "category": "pale"
           }
         }
       }
@@ -4093,10 +3793,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "violet.pale.100"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4114,10 +3811,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "violet.pale.200"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4135,10 +3829,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "violet.pale.300"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4156,10 +3847,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "violet.pale.400"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4177,10 +3865,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "violet.pale.500"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4198,10 +3883,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "violet.pale.600"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4219,10 +3901,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "violet.pale.700"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4240,10 +3919,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "violet.pale.800"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4261,10 +3937,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "violet.pale.900"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4282,10 +3955,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "violet.pale.950"
-            ]
+            "category": "pale"
           }
         }
       }
@@ -4305,10 +3975,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "purple.pale.100"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4326,10 +3993,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "purple.pale.200"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4347,10 +4011,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "purple.pale.300"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4368,10 +4029,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "purple.pale.400"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4389,10 +4047,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "purple.pale.500"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4410,10 +4065,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "purple.pale.600"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4431,10 +4083,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "purple.pale.700"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4452,10 +4101,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "purple.pale.800"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4473,10 +4119,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "purple.pale.900"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4494,10 +4137,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "purple.pale.950"
-            ]
+            "category": "pale"
           }
         }
       }
@@ -4517,10 +4157,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "pink.pale.100"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4538,10 +4175,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "pink.pale.200"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4559,10 +4193,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "pink.pale.300"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4580,10 +4211,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "pink.pale.400"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4601,10 +4229,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "pink.pale.500"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4622,10 +4247,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "pink.pale.600"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4643,10 +4265,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "pink.pale.700"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4664,10 +4283,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "pink.pale.800"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4685,10 +4301,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "pink.pale.900"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4706,10 +4319,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "pink.pale.950"
-            ]
+            "category": "pale"
           }
         }
       }
@@ -4729,10 +4339,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "teal.pale.100"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4750,10 +4357,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "teal.pale.200"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4771,10 +4375,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "teal.pale.300"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4792,10 +4393,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "teal.pale.400"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4813,10 +4411,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "teal.pale.500"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4834,10 +4429,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "teal.pale.600"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4855,10 +4447,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "teal.pale.700"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4876,10 +4465,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "teal.pale.800"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4897,10 +4483,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "teal.pale.900"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4918,10 +4501,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "teal.pale.950"
-            ]
+            "category": "pale"
           }
         }
       }
@@ -4941,10 +4521,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "red.pale.100"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4962,10 +4539,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "red.pale.200"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -4983,10 +4557,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "red.pale.300"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5004,10 +4575,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "red.pale.400"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5025,10 +4593,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "red.pale.500"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5046,10 +4611,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "red.pale.600"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5067,10 +4629,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "red.pale.700"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5088,10 +4647,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "red.pale.800"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5109,10 +4665,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "red.pale.900"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5130,10 +4683,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "red.pale.950"
-            ]
+            "category": "pale"
           }
         }
       }
@@ -5153,10 +4703,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "orange.pale.100"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5174,10 +4721,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "orange.pale.200"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5195,10 +4739,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "orange.pale.300"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5216,10 +4757,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "orange.pale.400"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5237,10 +4775,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "orange.pale.500"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5258,10 +4793,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "orange.pale.600"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5279,10 +4811,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "orange.pale.700"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5300,10 +4829,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "orange.pale.800"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5321,10 +4847,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "orange.pale.900"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5342,10 +4865,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "orange.pale.950"
-            ]
+            "category": "pale"
           }
         }
       }
@@ -5365,10 +4885,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "yellow.pale.100"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5386,10 +4903,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "yellow.pale.200"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5407,10 +4921,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "yellow.pale.300"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5428,10 +4939,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "yellow.pale.400"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5449,10 +4957,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "yellow.pale.500"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5470,10 +4975,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "yellow.pale.600"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5491,10 +4993,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "yellow.pale.700"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5512,10 +5011,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "yellow.pale.800"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5533,10 +5029,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "yellow.pale.900"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5554,10 +5047,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "yellow.pale.950"
-            ]
+            "category": "pale"
           }
         }
       }
@@ -5577,10 +5067,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "green.pale.100"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5598,10 +5085,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "green.pale.200"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5619,10 +5103,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "green.pale.300"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5640,10 +5121,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "green.pale.400"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5661,10 +5139,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "green.pale.500"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5682,10 +5157,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "green.pale.600"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5703,10 +5175,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "green.pale.700"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5724,10 +5193,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "green.pale.800"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5745,10 +5211,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "green.pale.900"
-            ]
+            "category": "pale"
           }
         }
       },
@@ -5766,10 +5229,7 @@
         },
         "$extensions": {
           "choiceform.design-system": {
-            "category": "pale",
-            "aliases": [
-              "green.pale.950"
-            ]
+            "category": "pale"
           }
         }
       }
@@ -5828,10 +5288,7 @@
         "$description": "gray 100 color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "neutrals",
-            "aliases": [
-              "gray.100"
-            ]
+            "category": "neutrals"
           }
         }
       },
@@ -5850,10 +5307,7 @@
         "$description": "gray 200 color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "neutrals",
-            "aliases": [
-              "gray.200"
-            ]
+            "category": "neutrals"
           }
         }
       },
@@ -5872,10 +5326,7 @@
         "$description": "gray 300 color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "neutrals",
-            "aliases": [
-              "gray.300"
-            ]
+            "category": "neutrals"
           }
         }
       },
@@ -5894,10 +5345,7 @@
         "$description": "gray 400 color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "neutrals",
-            "aliases": [
-              "gray.400"
-            ]
+            "category": "neutrals"
           }
         }
       },
@@ -5916,10 +5364,7 @@
         "$description": "gray 500 color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "neutrals",
-            "aliases": [
-              "gray.500"
-            ]
+            "category": "neutrals"
           }
         }
       },
@@ -5938,10 +5383,7 @@
         "$description": "gray 600 color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "neutrals",
-            "aliases": [
-              "gray.600"
-            ]
+            "category": "neutrals"
           }
         }
       },
@@ -5960,10 +5402,7 @@
         "$description": "gray 700 color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "neutrals",
-            "aliases": [
-              "gray.700"
-            ]
+            "category": "neutrals"
           }
         }
       },
@@ -5982,10 +5421,7 @@
         "$description": "gray 800 color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "neutrals",
-            "aliases": [
-              "gray.800"
-            ]
+            "category": "neutrals"
           }
         }
       },
@@ -6004,10 +5440,7 @@
         "$description": "gray 900 color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "neutrals",
-            "aliases": [
-              "gray.900"
-            ]
+            "category": "neutrals"
           }
         }
       },
@@ -6026,10 +5459,7 @@
         "$description": "gray 950 color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "neutrals",
-            "aliases": [
-              "gray.950"
-            ]
+            "category": "neutrals"
           }
         }
       }
@@ -6041,10 +5471,7 @@
         "$description": "text on accent color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "text colors",
-            "aliases": [
-              "text.on.accent"
-            ]
+            "category": "text colors"
           }
         }
       },
@@ -6058,10 +5485,7 @@
             "dark": 0.8
           },
           "choiceform.design-system": {
-            "category": "text colors",
-            "aliases": [
-              "text.on.accent.secondary"
-            ]
+            "category": "text colors"
           }
         }
       },
@@ -6075,10 +5499,7 @@
             "dark": 0.4
           },
           "choiceform.design-system": {
-            "category": "text colors",
-            "aliases": [
-              "text.on.accent.tertiary"
-            ]
+            "category": "text colors"
           }
         }
       },
@@ -6096,10 +5517,7 @@
             "dark": "{color.white}"
           },
           "choiceform.design-system": {
-            "category": "text colors",
-            "aliases": [
-              "text.default"
-            ]
+            "category": "text colors"
           }
         }
       },
@@ -6117,10 +5535,7 @@
             "dark": "{color.white}"
           },
           "choiceform.design-system": {
-            "category": "text colors",
-            "aliases": [
-              "text.secondary"
-            ]
+            "category": "text colors"
           }
         }
       },
@@ -6138,10 +5553,7 @@
             "dark": "{color.white}"
           },
           "choiceform.design-system": {
-            "category": "text colors",
-            "aliases": [
-              "text.disabled"
-            ]
+            "category": "text colors"
           }
         }
       },
@@ -6159,10 +5571,7 @@
             "dark": "{color.white}"
           },
           "choiceform.design-system": {
-            "category": "text colors",
-            "aliases": [
-              "text.tertiary"
-            ]
+            "category": "text colors"
           }
         }
       },
@@ -6176,10 +5585,7 @@
             "dark": "{color.blue.400}"
           },
           "choiceform.design-system": {
-            "category": "text colors",
-            "aliases": [
-              "text.accent"
-            ]
+            "category": "text colors"
           }
         }
       },
@@ -6193,10 +5599,7 @@
             "dark": "{color.green.400}"
           },
           "choiceform.design-system": {
-            "category": "text colors",
-            "aliases": [
-              "text.success"
-            ]
+            "category": "text colors"
           }
         }
       },
@@ -6210,10 +5613,7 @@
             "dark": "{color.yellow.400}"
           },
           "choiceform.design-system": {
-            "category": "text colors",
-            "aliases": [
-              "text.warning"
-            ]
+            "category": "text colors"
           }
         }
       },
@@ -6227,10 +5627,7 @@
             "dark": "{color.red.400}"
           },
           "choiceform.design-system": {
-            "category": "text colors",
-            "aliases": [
-              "text.danger"
-            ]
+            "category": "text colors"
           }
         }
       },
@@ -6244,10 +5641,7 @@
             "dark": "{color.pink.400}"
           },
           "choiceform.design-system": {
-            "category": "text colors",
-            "aliases": [
-              "text.assistive"
-            ]
+            "category": "text colors"
           }
         }
       },
@@ -6261,10 +5655,7 @@
             "dark": "{color.purple.400}"
           },
           "choiceform.design-system": {
-            "category": "text colors",
-            "aliases": [
-              "text.component"
-            ]
+            "category": "text colors"
           }
         }
       },
@@ -6278,10 +5669,7 @@
             "dark": "{color.black}"
           },
           "choiceform.design-system": {
-            "category": "text colors",
-            "aliases": [
-              "text.inverse"
-            ]
+            "category": "text colors"
           }
         }
       }
@@ -6293,11 +5681,7 @@
         "$description": "background accent color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.accent",
-              "bg-accent"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6307,11 +5691,7 @@
         "$description": "background accent hover color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.accent-hover",
-              "bg-accent-hover"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6321,11 +5701,7 @@
         "$description": "background accent secondary color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.accent-secondary",
-              "bg-accent-secondary"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6335,11 +5711,7 @@
         "$description": "background success color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.success",
-              "bg-success"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6349,11 +5721,7 @@
         "$description": "background success hover color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.success-hover",
-              "bg-success-hover"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6363,11 +5731,7 @@
         "$description": "background success secondary color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.success-secondary",
-              "bg-success-secondary"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6377,11 +5741,7 @@
         "$description": "background warning color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.warning",
-              "bg-warning"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6391,11 +5751,7 @@
         "$description": "background warning hover color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.warning-hover",
-              "bg-warning-hover"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6405,11 +5761,7 @@
         "$description": "background warning secondary color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.warning-secondary",
-              "bg-warning-secondary"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6419,11 +5771,7 @@
         "$description": "background danger color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.danger",
-              "bg-danger"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6433,11 +5781,7 @@
         "$description": "background danger hover color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.danger-hover",
-              "bg-danger-hover"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6447,11 +5791,7 @@
         "$description": "background danger secondary color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.danger-secondary",
-              "bg-danger-secondary"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6461,11 +5801,7 @@
         "$description": "background assistive color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.assistive",
-              "bg-assistive"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6475,11 +5811,7 @@
         "$description": "background assistive hover color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.assistive-hover",
-              "bg-assistive-hover"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6489,11 +5821,7 @@
         "$description": "background assistive secondary color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.assistive-secondary",
-              "bg-assistive-secondary"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6503,11 +5831,7 @@
         "$description": "background component color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.component",
-              "bg-component"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6517,11 +5841,7 @@
         "$description": "background component hover color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.component-hover",
-              "bg-component-hover"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6531,11 +5851,7 @@
         "$description": "background component secondary color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.component-secondary",
-              "bg-component-secondary"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6545,11 +5861,7 @@
         "$description": "background menu color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.menu",
-              "bg-menu"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6559,11 +5871,7 @@
         "$description": "background toolbar color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.toolbar",
-              "bg-toolbar"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6577,11 +5885,7 @@
             "dark": "{color.gray.800}"
           },
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.default",
-              "bg-default"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6595,11 +5899,7 @@
             "dark": "{color.gray.700}"
           },
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.secondary",
-              "bg-secondary"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6613,11 +5913,7 @@
             "dark": "{color.gray.600}"
           },
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.tertiary",
-              "bg-tertiary"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6631,11 +5927,7 @@
             "dark": "{color.blue-pale.700}"
           },
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.selected",
-              "bg-selected"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6649,11 +5941,7 @@
             "dark": "{color.gray.700}"
           },
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.hover",
-              "bg-hover"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6667,11 +5955,7 @@
             "dark": "{color.gray.500}"
           },
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.disabled",
-              "bg-disabled"
-            ]
+            "category": "background colors"
           }
         }
       },
@@ -6685,11 +5969,7 @@
             "dark": "{color.white}"
           },
           "choiceform.design-system": {
-            "category": "background colors",
-            "aliases": [
-              "bg.inverse",
-              "bg-inverse"
-            ]
+            "category": "background colors"
           }
         }
       }
@@ -6701,10 +5981,7 @@
         "$description": "border selected color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "border colors",
-            "aliases": [
-              "border.selected"
-            ]
+            "category": "border colors"
           }
         }
       },
@@ -6714,10 +5991,7 @@
         "$description": "border menu color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "border colors",
-            "aliases": [
-              "border.menu"
-            ]
+            "category": "border colors"
           }
         }
       },
@@ -6727,10 +6001,7 @@
         "$description": "border toolbar color (extended)",
         "$extensions": {
           "choiceform.design-system": {
-            "category": "border colors",
-            "aliases": [
-              "border.toolbar"
-            ]
+            "category": "border colors"
           }
         }
       },
@@ -6744,10 +6015,7 @@
             "dark": "{color.gray.600}"
           },
           "choiceform.design-system": {
-            "category": "border colors",
-            "aliases": [
-              "border.default"
-            ]
+            "category": "border colors"
           }
         }
       },
@@ -6765,10 +6033,7 @@
             "dark": "{color.white}"
           },
           "choiceform.design-system": {
-            "category": "border colors",
-            "aliases": [
-              "border.strong"
-            ]
+            "category": "border colors"
           }
         }
       },
@@ -6782,10 +6047,7 @@
             "dark": "{color.blue.400}"
           },
           "choiceform.design-system": {
-            "category": "border colors",
-            "aliases": [
-              "border.selected.strong"
-            ]
+            "category": "border colors"
           }
         }
       }
@@ -6805,12 +6067,21 @@
         },
         "$description": "icon default color",
         "$extensions": {
+          "mode": {
+            "light": {
+              "colorSpace": "srgb",
+              "components": [
+                0.102,
+                0.102,
+                0.102
+              ],
+              "alpha": 1,
+              "hex": "#1a1a1a"
+            },
+            "dark": "{color.white}"
+          },
           "choiceform.design-system": {
-            "category": "icon colors",
-            "aliases": [
-              "ic.default",
-              "ic-default"
-            ]
+            "category": "icon colors"
           }
         }
       },
@@ -6851,11 +6122,7 @@
             }
           },
           "choiceform.design-system": {
-            "category": "icon colors",
-            "aliases": [
-              "ic.secondary",
-              "ic-secondary"
-            ]
+            "category": "icon colors"
           }
         }
       },
@@ -6896,11 +6163,7 @@
             }
           },
           "choiceform.design-system": {
-            "category": "icon colors",
-            "aliases": [
-              "ic.tertiary",
-              "ic-tertiary"
-            ]
+            "category": "icon colors"
           }
         }
       },
@@ -6941,11 +6204,7 @@
             }
           },
           "choiceform.design-system": {
-            "category": "icon colors",
-            "aliases": [
-              "ic.disabled",
-              "ic-disabled"
-            ]
+            "category": "icon colors"
           }
         }
       }

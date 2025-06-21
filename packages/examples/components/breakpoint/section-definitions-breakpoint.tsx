@@ -1,15 +1,12 @@
 import {
   color,
   listBreakpoints,
-  breakpoint,
-  breakpointInfo,
   spacingList,
   typographyStyles,
-  BreakpointKey,
 } from "@choiceform/design-tokens";
 import { styled } from "@linaria/react";
-import { Section } from "..";
 import { memo } from "react";
+import { Section } from "..";
 
 const BreakpointTable = styled.table`
   width: 100%;
@@ -29,7 +26,7 @@ const BreakpointTable = styled.table`
 
 export const SectionDefinitionsBreakpoint = memo(
   function SectionDefinitionsBreakpoint() {
-    const breakpointNames = listBreakpoints();
+    const breakpointData = listBreakpoints();
 
     return (
       <Section
@@ -56,15 +53,14 @@ export const SectionDefinitionsBreakpoint = memo(
             </tr>
           </thead>
           <tbody>
-            {breakpointNames.map((name) => {
-              const info = breakpointInfo(name as BreakpointKey);
-              const value = breakpoint(name as BreakpointKey);
+            {breakpointData.breakpoints.map((info) => {
+              const remValue = (info.value / 16).toFixed(4);
               return (
-                <tr key={name}>
-                  <td>{name}</td>
-                  <td>{value}</td>
-                  <td>--cdt-breakpoints-{name}</td>
+                <tr key={info.name}>
                   <td>{info.name}</td>
+                  <td>{remValue}rem</td>
+                  <td>{info.css}</td>
+                  <td>@media screen and (min-width: {remValue}rem)</td>
                 </tr>
               );
             })}
