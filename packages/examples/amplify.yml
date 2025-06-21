@@ -1,0 +1,36 @@
+version: 1
+backend:
+  phases:
+    build:
+      commands:
+        - "# Execute Amplify CLI with the helper script"
+        - amplifyPush --simple
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "Installing dependencies for monorepo from examples directory..."
+        - corepack enable
+        - corepack prepare pnpm@latest --activate
+        - pnpm config set registry https://registry.npmjs.org/
+        - pnpm install --frozen-lockfile
+        - echo "Checking @choiceform/design-tokens installation..."
+        - pnpm ls @choiceform/design-tokens || echo "Package not found"
+    build:
+      commands:
+        - echo "Building examples project..."
+        - export NODE_OPTIONS="--max-old-space-size=4096"
+        - export WYW_IN_JS_EVAL_TIMEOUT=60000
+        - NODE_ENV=production pnpm run build:production
+    postBuild:
+      commands:
+        - echo "Build completed successfully"
+        - ls -la dist/
+  artifacts:
+    baseDirectory: dist
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*
+      - ~/.pnpm-store/**/*

@@ -17,6 +17,13 @@ export default defineConfig({
         presets: ["@babel/preset-typescript", "@babel/preset-react"],
       },
       classNameSlug: (hash, name) => `cdt-${hash}`,
+      evaluationRules: [
+        {
+          action: "ignore",
+          test: /node_modules/,
+        },
+      ],
+      evalTimeout: 60000,
     }),
   ],
 
@@ -28,9 +35,10 @@ export default defineConfig({
   build: {
     outDir: "dist",
     emptyOutDir: true,
+    minify: process.env.NODE_ENV === "production" ? "esbuild" : false,
     rollupOptions: {
-      // 让 Vite 处理 CSS 导入而不是外部化
       external: [],
+      maxParallelFileOps: 5,
     },
   },
 
@@ -45,5 +53,9 @@ export default defineConfig({
   server: {
     port: 3001,
     open: true,
+  },
+
+  optimizeDeps: {
+    include: ["@choiceform/design-tokens"],
   },
 });
