@@ -7,7 +7,7 @@ applications:
         preBuild:
           commands:
             - npm install -g pnpm
-            - pnpm install --frozen-lockfile
+            - pnpm install --no-frozen-lockfile
             - cd packages/design-tokens
             - pnpm build
             - cd ../..
