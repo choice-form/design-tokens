@@ -74,41 +74,38 @@ export default defineConfig({
       transform(token, mode) {
         // 处理颜色类型，支持 light/dark 模式
         if (token.$type === "color") {
-          // 首先尝试从 $extensions.mode 中获取模式特定的值
-          const modeValue = token.originalValue?.$extensions?.mode?.[mode];
-          const colorValue = modeValue || token.$value;
-
-          // 如果是引用（字符串且包含 "{" ）
-          if (typeof colorValue === "string" && colorValue.includes("{")) {
+          // 首先检查原始值是否是引用
+          const originalValue = token.originalValue?.$value;
+          if (
+            typeof originalValue === "string" &&
+            originalValue.includes("{")
+          ) {
             // 这是引用，使用默认转换
             return undefined;
           }
 
-          // 如果是 RGB 对象
-          if (
-            colorValue &&
-            colorValue.colorSpace === "srgb" &&
-            colorValue.components
-          ) {
-            const [r, g, b] = colorValue.components;
-            const red = Math.round(r * 255);
-            const green = Math.round(g * 255);
-            const blue = Math.round(b * 255);
-            return `${red}, ${green}, ${blue}`;
-          }
+          // 然后尝试从 $extensions.mode 中获取模式特定的值
+          const modeValue = token.originalValue?.$extensions?.mode?.[mode];
 
-          // 如果是默认的 token.$value 格式
-          if (token.$value && token.$value.colorSpace === "srgb") {
-            // 检查原始值是否包含引用（如 "{color.blue.500}"）
-            const originalValue = token.originalValue?.$value;
-            if (
-              typeof originalValue === "string" &&
-              originalValue.includes("{")
-            ) {
+          // 如果有模式特定的值，检查是否是引用
+          if (modeValue) {
+            if (typeof modeValue === "string" && modeValue.includes("{")) {
               // 这是引用，使用默认转换
               return undefined;
             }
 
+            // 如果是 RGB 对象，转换为 RGB 组件
+            if (modeValue.colorSpace === "srgb" && modeValue.components) {
+              const [r, g, b] = modeValue.components;
+              const red = Math.round(r * 255);
+              const green = Math.round(g * 255);
+              const blue = Math.round(b * 255);
+              return `${red}, ${green}, ${blue}`;
+            }
+          }
+
+          // 最后处理默认的 token.$value 格式
+          if (token.$value && token.$value.colorSpace === "srgb") {
             const [r, g, b] = token.$value.components;
             const red = Math.round(r * 255);
             const green = Math.round(g * 255);

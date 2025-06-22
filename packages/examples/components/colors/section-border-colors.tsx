@@ -224,21 +224,20 @@ export const SectionBorderColors = memo(function SectionBorderColors() {
         {["light", "dark"].map((theme) => (
           <Panel theme={theme as "light" | "dark"} key={theme}>
             {menuBorderStrongGroups.map((colorData) => {
-              const colorKey = color(colorData.colorKey as ColorPath);
               return (
                 <div
                   key={colorData.name}
                   style={
                     {
-                      "--color": colorKey,
+                      "--color": color(colorData.colorKey as ColorPath),
                     } as React.CSSProperties
                   }
                 >
                   <ColorField
-                    colorValue={colorKey}
+                    colorValue={color(colorData.colorKey as ColorPath)}
                     colorString={
                       <ColorValue
-                        selectedColor={colorData.name}
+                        selectedColor={colorData.colorKey}
                         colorType={colorType}
                         shade={{
                           key: colorData.colorKey,
@@ -248,7 +247,7 @@ export const SectionBorderColors = memo(function SectionBorderColors() {
                     }
                   />
                   <div
-                    data-type={colorData.name.replace("border.", "")}
+                    data-type={colorData.name}
                     className={css`
                       display: flex;
                       justify-content: center;
@@ -256,11 +255,11 @@ export const SectionBorderColors = memo(function SectionBorderColors() {
                       margin-top: ${spacing(4)};
                       padding: ${spacing(4)};
 
-                      &[data-type="menu"] {
+                      &[data-type="color.border.menu"] {
                         background-color: ${color("background.menu")};
                       }
 
-                      &[data-type="toolbar"] {
+                      &[data-type="color.border.toolbar"] {
                         background-color: ${color("gray.800")};
                       }
                     `}

@@ -50,14 +50,197 @@ function getAlphaMapFromW3CFile() {
   return alphaMap;
 }
 
+// 从 W3C 文件中获取所有 tokens，包括引用类型的
+function getW3CTokens() {
+  try {
+    const colorsW3CPath = join(process.cwd(), "output/colors-w3c.json");
+    const colorsData = JSON.parse(readFileSync(colorsW3CPath, "utf-8"));
+    return colorsData;
+  } catch (error) {
+    console.warn("[tokens-base] 无法读取 colors-w3c.json:", error.message);
+    return {};
+  }
+}
+
+// 解析引用字符串 "{color.blue.500}" 为路径数组 ["color", "blue", "500"]
+function parseReference(ref) {
+  if (typeof ref !== "string" || !ref.startsWith("{") || !ref.endsWith("}")) {
+    return null;
+  }
+  return ref.slice(1, -1).split(".");
+}
+
+// 根据路径获取嵌套对象的值
+function getNestedValue(obj, path) {
+  return path.reduce((current, key) => {
+    return current && current[key];
+  }, obj);
+}
+
+// 处理引用类型的 tokens，从被引用的 token 继承模式信息
+function processReferencedTokens(tokens, w3cData) {
+  const processedTokens = {};
+
+  function processNestedTokens(obj, pathPrefix = "") {
+    console.log(`[processReferencedTokens] 处理路径: ${pathPrefix || "root"}`);
+    console.log(
+      `[processReferencedTokens] 对象键: [${Object.keys(obj).join(", ")}]`
+    );
+
+    for (const [key, value] of Object.entries(obj)) {
+      const currentPath = pathPrefix ? `${pathPrefix}.${key}` : key;
+
+      console.log(
+        `[processReferencedTokens] 检查 ${currentPath}:`,
+        value?.$type,
+        typeof value?.$value
+      );
+
+      if (value && typeof value === "object") {
+        if (
+          value.$type === "color" &&
+          typeof value.$value === "string" &&
+          value.$value.includes("{")
+        ) {
+          // 这是一个引用类型的颜色 token
+          const tokenId = `color.${currentPath}`;
+
+          console.log(
+            `[processReferencedTokens] 发现引用类型 token: ${tokenId}, 引用: ${value.$value}`
+          );
+
+          // 检查是否已经在 tokens 中存在（已被 Terrazzo 处理）
+          if (!tokens[tokenId]) {
+            console.log(
+              `[processReferencedTokens] ${tokenId} 不存在于 tokens 中，尝试添加`
+            );
+
+            // 解析引用
+            const referencePath = parseReference(value.$value);
+            console.log(
+              `[processReferencedTokens] 解析引用路径:`,
+              referencePath
+            );
+
+            if (referencePath) {
+              // 获取被引用的 token 数据
+              const referencedToken = getNestedValue(w3cData, referencePath);
+              console.log(
+                `[processReferencedTokens] 被引用的 token:`,
+                !!referencedToken,
+                !!referencedToken?.$extensions?.mode
+              );
+
+              if (referencedToken && referencedToken.$extensions?.mode) {
+                // 被引用的 token 有模式信息，创建引用 token 的模式数据
+                console.log(
+                  `[tokens-base] 为引用 token ${tokenId} 添加模式信息，引用自 ${referencePath.join(
+                    "."
+                  )}`
+                );
+
+                processedTokens[tokenId] = {
+                  $type: "color",
+                  mode: {},
+                };
+
+                // 复制被引用 token 的所有模式
+                for (const [mode, modeValue] of Object.entries(
+                  referencedToken.$extensions.mode
+                )) {
+                  processedTokens[tokenId].mode[mode] = {
+                    $value: modeValue,
+                  };
+                }
+
+                // 也添加默认的 "." 模式
+                if (referencedToken.$value) {
+                  processedTokens[tokenId].mode["."] = {
+                    $value: referencedToken.$value,
+                  };
+                }
+              }
+            }
+          } else {
+            console.log(
+              `[processReferencedTokens] ${tokenId} 已存在于 tokens 中，跳过`
+            );
+          }
+        } else if (!value.$type) {
+          // 递归处理嵌套对象
+          processNestedTokens(value, currentPath);
+        }
+      }
+    }
+  }
+
+  // 处理 color 分组下的所有 tokens
+  if (w3cData.color) {
+    processNestedTokens(w3cData.color);
+  }
+
+  return processedTokens;
+}
+
+// 修复引用类型 tokens 的缺失模式
+function fixReferencedTokenModes(tokens, w3cData) {
+  console.log("[tokens-base] 修复引用 tokens 的缺失模式...");
+
+  let fixedCount = 0;
+
+  // 遍历所有已存在的 tokens，检查哪些是引用类型且缺少模式
+  for (const [tokenId, token] of Object.entries(tokens)) {
+    if (token.$type === "color" && token.aliasOf) {
+      // 检查是否缺少 light/dark 模式
+      const hasLightMode = token.mode?.light;
+      const hasDarkMode = token.mode?.dark;
+
+      if (!hasLightMode || !hasDarkMode) {
+        // 找到被引用的 token
+        const referencedTokenId = token.aliasOf;
+        const referencedToken = tokens[referencedTokenId];
+
+        if (referencedToken) {
+          // 复制被引用 token 的模式到当前 token
+          if (referencedToken.mode?.light && !hasLightMode) {
+            token.mode.light = {
+              $value: referencedToken.mode.light.$value,
+              originalValue: `{${referencedTokenId}}`,
+              aliasOf: referencedTokenId,
+              aliasChain: [referencedTokenId],
+            };
+            fixedCount++;
+          }
+
+          if (referencedToken.mode?.dark && !hasDarkMode) {
+            token.mode.dark = {
+              $value: referencedToken.mode.dark.$value,
+              originalValue: `{${referencedTokenId}}`,
+              aliasOf: referencedTokenId,
+              aliasChain: [referencedTokenId],
+            };
+            fixedCount++;
+          }
+        }
+      }
+    }
+  }
+
+  console.log(`[tokens-base] 修复完成，共添加了 ${fixedCount} 个缺失的模式`);
+}
+
 export default function tokensBase(userOptions = {}) {
   return {
     name: "tokens-base",
     enforce: "post", // 在其他插件之后运行
 
     async transform({ tokens, setTransform }) {
-      // 从 W3C 文件中提取透明度配置
+      // 从 W3C 文件中提取透明度配置和所有 token 数据
       const alphaMap = getAlphaMapFromW3CFile();
+      const w3cData = getW3CTokens();
+
+      // 修复引用类型 tokens 的缺失模式
+      fixReferencedTokenModes(tokens, w3cData);
 
       // 为每个颜色 token 添加透明度信息
       for (const [id, token] of Object.entries(tokens)) {

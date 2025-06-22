@@ -1,4 +1,4 @@
-import { color } from "@choiceform/design-tokens";
+import { color, ColorPath } from "@choiceform/design-tokens";
 import { memo, useState } from "react";
 import {
   ColorField,
@@ -37,14 +37,13 @@ export const SectionOverviewSemanticColors = memo(
               return (
                 <ColorField
                   key={colorData.name}
-                  colorValue={color(colorData.colorKey)}
+                  colorValue={color(colorData.colorKey as ColorPath)}
                   colorString={
                     <ColorValue
                       selectedColor={colorData.name}
                       colorType={colorType}
                       shade={{
                         key: colorData.colorKey,
-                        opacity: 1,
                       }}
                       theme={theme as "light" | "dark"}
                     />

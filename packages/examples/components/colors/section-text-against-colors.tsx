@@ -51,6 +51,7 @@ export const SectionTextAgainstColors = memo(
           <Panel theme={theme as "light" | "dark"} key={theme}>
             {textAgainstGroups.map((colorData) => {
               const colorKey = color(colorData.colorKey as ColorPath);
+              const alpha = colorData.alpha;
 
               return (
                 <div
@@ -69,8 +70,9 @@ export const SectionTextAgainstColors = memo(
                         colorType={colorType}
                         shade={{
                           key: colorData.colorKey,
+                          opacity: alpha,
                         }}
-                        theme={theme as "light" | "dark"}
+                        theme={"light"}
                       />
                     }
                   />

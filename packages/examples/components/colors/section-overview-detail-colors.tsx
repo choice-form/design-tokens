@@ -76,7 +76,10 @@ export const SectionOverviewDetailColor = memo(
               data-selected={selectedColor === colorData.name}
               style={
                 {
-                  "--color": `var(--cdt-color-${colorData.shades[4].key.replace(".", "-")})`,
+                  "--color": `var(--cdt-color-${colorData.shades[4].key.replace(
+                    ".",
+                    "-"
+                  )})`,
                 } as React.CSSProperties
               }
             >
@@ -95,7 +98,10 @@ export const SectionOverviewDetailColor = memo(
                 shadeGroup.shades.map((shade) => (
                   <ColorField
                     key={shade.key}
-                    colorValue={`rgba(var(--cdt-color-${shade.key.replace(".", "-")}), 1)`}
+                    colorValue={`rgba(var(--cdt-color-${shade.key.replace(
+                      ".",
+                      "-"
+                    )}), 1)`}
                     colorString={
                       <ColorValue
                         selectedColor={shade.key}

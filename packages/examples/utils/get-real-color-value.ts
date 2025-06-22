@@ -4,6 +4,7 @@ import {
   colorHex,
   colorRgb,
   getAllAvailableColors,
+  token,
 } from "@choiceform/design-tokens";
 import type { ColorPath } from "@choiceform/design-tokens";
 import tinycolor from "tinycolor2";
@@ -16,7 +17,7 @@ export type ColorType =
 
 /**
  * 获取真实的颜色值（用于文档展示）
- * @param colorKey - 颜色键名（如 "background.accent" 或 "blue.500"）
+ * @param colorKey - 颜色键名（如 "background.default" 或 "blue.500"）
  * @param opacity - 不透明度
  * @param colorType - 颜色类型
  * @param mode - 主题模式
@@ -33,21 +34,30 @@ export function getRealColorValue(
     const themeMode = mode === "light" ? "." : "dark";
 
     // 使用新的 color 函数获取 CSS 变量（类型断言以避免严格类型检查）
-    const cssValue =
-      opacity < 1
-        ? color(colorKey as ColorPath, opacity, themeMode)
-        : color(colorKey as ColorPath, 1, themeMode);
+    const cssValue = color(colorKey as ColorPath, opacity, themeMode);
 
     // 直接从 Terrazzo tokens 获取颜色值
     let hexValue = "#000000";
     let rgbValue = "rgb(0, 0, 0)";
+    let realOpacity = opacity;
     let isValid = true;
 
     try {
-      // 修复：调整 colorHex 和 colorRgb 的参数顺序
+      // 获取 token 数据来获取真实的透明度
+      const tokenPath = colorKey.startsWith("color.")
+        ? colorKey
+        : `color.${colorKey}`;
+      const tokenData = token(tokenPath, themeMode);
+
+      // 获取原始的 hex 和 rgb 值
       hexValue = colorHex(colorKey as ColorPath, themeMode);
       const [r, g, b] = colorRgb(colorKey as ColorPath, themeMode);
       rgbValue = `rgb(${r}, ${g}, ${b})`;
+
+      // 从 token 数据中获取真实的透明度
+      if (tokenData && tokenData.alpha !== undefined) {
+        realOpacity = tokenData.alpha;
+      }
     } catch (error) {
       // 如果找不到颜色，标记为无效
       console.warn(
@@ -69,15 +79,15 @@ export function getRealColorValue(
       }
     }
 
-    // 带透明度的值
-    const rgbaValue =
-      opacity < 1
-        ? tinycolor(hexValue).setAlpha(opacity).toRgbString()
-        : rgbValue;
+    // 使用实际的透明度值（优先使用传入的 opacity，除非用户没有指定且token有透明度）
+    const finalOpacity = opacity !== 1 ? opacity : realOpacity;
+
+    // 生成带透明度的值
+    const rgbaValue = tinycolor(hexValue).setAlpha(finalOpacity).toRgbString();
 
     return {
       key: colorKey,
-      opacity,
+      opacity: finalOpacity,
       colorType,
       mode,
       hexValue,
@@ -119,10 +129,11 @@ export function getAvailableColorAliases(): string[] {
  * 按类别获取颜色
  */
 export function getColorsByType(
-  category: "background" | "foreground" | "boundary" | "icon"
+  category: "background" | "text" | "border" | "icon"
 ): string[] {
   try {
-    return getAllAvailableColors();
+    const allColors = getAllAvailableColors();
+    return allColors.filter((color) => color.startsWith(`${category}.`));
   } catch (error) {
     console.warn(`Failed to get colors for category ${category}:`, error);
     return [];
@@ -138,14 +149,43 @@ export function isValidColorKey(colorKey: string): boolean {
 }
 
 /**
+ * 获取颜色 token 的透明度值
+ * @param colorKey - 颜色键名（如 "text.on-accent-secondary"）
+ * @param mode - 主题模式
+ * @returns 透明度值 (0-1)
+ */
+export function getColorAlpha(
+  colorKey: string,
+  mode: "light" | "dark" = "light"
+): number {
+  try {
+    const themeMode = mode === "light" ? "." : "dark";
+    const tokenPath = colorKey.startsWith("color.")
+      ? colorKey
+      : `color.${colorKey}`;
+
+    const tokenData = token(tokenPath, themeMode);
+
+    if (tokenData && tokenData.alpha !== undefined) {
+      return tokenData.alpha;
+    }
+
+    return 1.0; // 默认不透明
+  } catch (error) {
+    console.warn(`Failed to get alpha for ${colorKey}:`, error);
+    return 1.0;
+  }
+}
+
+/**
  * 获取颜色数据的辅助信息
  */
 export function getColorInfo(colorKey: string) {
-  // 检查是否为语义颜色
+  // 检查是否为语义颜色（使用新的命名系统）
   const isSemanticColor =
     colorKey.startsWith("background.") ||
-    colorKey.startsWith("foreground.") ||
-    colorKey.startsWith("boundary.") ||
+    colorKey.startsWith("text.") ||
+    colorKey.startsWith("border.") ||
     colorKey.startsWith("icon.");
 
   // 检查是否为标准色阶
@@ -180,51 +220,23 @@ export function getColorInfo(colorKey: string) {
 }
 
 /**
- * 颜色路径映射 - 帮助从旧格式迁移到新格式
+ * 获取颜色类别前缀列表
  */
-export const COLOR_PATH_MIGRATION_MAP: Record<string, string> = {
-  // 背景颜色
-  "bg.default": "background.default",
-  "bg.secondary": "background.secondary",
-  "bg.tertiary": "background.tertiary",
-  "bg.hover": "background.hover",
-  "bg.selected": "background.selected",
-  "bg.disabled": "background.disabled",
-  "bg.inverse": "background.inverse",
-  "bg.accent": "background.accent",
-  "bg.accent-hover": "background.accent-hover",
-  "bg.success": "background.success",
-  "bg.warning": "background.warning",
-  "bg.danger": "background.danger",
+export const COLOR_CATEGORIES = [
+  "background",
+  "text",
+  "border",
+  "icon",
+] as const;
 
-  // 前景颜色
-  "fg.default": "foreground.default",
-  "fg.secondary": "foreground.secondary",
-  "fg.tertiary": "foreground.tertiary",
-  "fg.disabled": "foreground.disabled",
-  "fg.inverse": "foreground.inverse",
-  "fg.accent": "foreground.accent",
-  "fg.on-accent": "foreground.on-accent",
-  "fg.success": "foreground.success",
-  "fg.warning": "foreground.warning",
-  "fg.danger": "foreground.danger",
-
-  // 边框颜色
-  "bd.default": "boundary.default",
-  "bd.strong": "boundary.strong",
-  "bd.selected": "boundary.selected",
-  "bd.selected-strong": "boundary.selected-strong",
-
-  // 图标颜色
-  "ic.default": "icon.default",
-  "ic.secondary": "icon.secondary",
-  "ic.tertiary": "icon.tertiary",
-  "ic.disabled": "icon.disabled",
-};
+export type ColorCategory = (typeof COLOR_CATEGORIES)[number];
 
 /**
- * 迁移颜色路径 - 将旧格式转换为新格式
+ * 检查颜色是否属于指定类别
  */
-export function migrateColorPath(oldPath: string): string {
-  return COLOR_PATH_MIGRATION_MAP[oldPath] || oldPath;
+export function isColorInCategory(
+  colorKey: string,
+  category: ColorCategory
+): boolean {
+  return colorKey.startsWith(`${category}.`);
 }

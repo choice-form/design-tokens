@@ -1,4 +1,5 @@
 import { ColorPath, tokens } from "@choiceform/design-tokens";
+import { getColorAlpha } from "../../utils/get-real-color-value";
 
 // 基础颜色类型定义
 export type ColorShade = {
@@ -134,9 +135,7 @@ export const backgroundHierarchyGroups = backgroundColors
 export const backgroundInteractionGroups = backgroundColors
   .filter(
     (colorKey: string) =>
-      colorKey.includes("hover") ||
-      colorKey.includes("selected") ||
-      colorKey.includes("disabled")
+      colorKey.includes("selected") || colorKey.includes("disabled")
   )
   .map((colorKey: string) => ({
     name: colorKey,
@@ -144,32 +143,32 @@ export const backgroundInteractionGroups = backgroundColors
   }));
 
 // 语义色调背景颜色
-export const semanticHuesBgGroups = backgroundColors
-  .filter((colorKey: string) => !colorKey.includes("secondary"))
-  .filter((colorKey: string) => !colorKey.includes("hover"))
+export const semanticHuesBgGroups = Object.keys(tokens)
+  .filter((key) => key.startsWith("color.background."))
   .filter(
-    (colorKey: string) =>
-      colorKey.includes("accent") ||
-      colorKey.includes("success") ||
-      colorKey.includes("warning") ||
-      colorKey.includes("danger") ||
-      colorKey.includes("assistive") ||
-      colorKey.includes("component")
+    (key) =>
+      key.includes("accent") ||
+      key.includes("success") ||
+      key.includes("warning") ||
+      key.includes("danger") ||
+      key.includes("assistive") ||
+      key.includes("component")
   )
-  .map((colorKey: string) => ({
-    name: colorKey,
-    colorKey: colorKey,
+  .map((key) => ({
+    name: key,
+    colorKey: key,
   }));
 
 // 语义背景颜色概览
-export const overviewSemanticGroups = backgroundColors
-  .filter((colorKey: string) => !colorKey.includes("hover"))
-  .filter((colorKey: string) => !colorKey.includes("secondary"))
-  .filter((colorKey: string) => !colorKey.includes("menu"))
-  .filter((colorKey: string) => !colorKey.includes("toolbar"))
-  .map((colorKey: string) => ({
-    name: colorKey,
-    colorKey: colorKey,
+export const overviewSemanticGroups = Object.keys(tokens)
+  .filter((key) => key.startsWith("color.background."))
+  .filter((key) => !key.includes("hover"))
+  .filter((key) => !key.includes("secondary"))
+  .filter((key) => !key.includes("menu"))
+  .filter((key) => !key.includes("toolbar"))
+  .map((key) => ({
+    name: key,
+    colorKey: key,
   }));
 
 // 文本基础颜色
@@ -204,13 +203,19 @@ export const textTintedGroups = textColors
     colorKey: colorKey,
   }));
 
-// 对比文本颜色
+// 对比文本颜色 - 包含透明度信息
 export const textAgainstGroups = textColors
   .filter((colorKey: string) => colorKey.includes("on-"))
-  .map((colorKey: string) => ({
-    name: colorKey,
-    colorKey: colorKey,
-  }));
+  .map((colorKey: string) => {
+    // 获取该颜色在 light 和 dark 主题下的透明度
+    const alpha = getColorAlpha(colorKey);
+
+    return {
+      name: colorKey,
+      colorKey: colorKey,
+      alpha: alpha,
+    };
+  });
 
 // 图标颜色
 const iconColors = getSemanticColors("icon");
@@ -239,14 +244,12 @@ export const selectionBorderGroups = boundaryColors
   }));
 
 // 特殊边框颜色
-export const menuBorderStrongGroups = boundaryColors
-  .filter(
-    (colorKey: string) =>
-      colorKey.includes("menu") || colorKey.includes("toolbar")
-  )
-  .map((colorKey: string) => ({
-    name: colorKey,
-    colorKey: colorKey,
+export const menuBorderStrongGroups = Object.keys(tokens)
+  .filter((key) => key.startsWith("color.border."))
+  .filter((key) => key.includes("menu") || key.includes("toolbar"))
+  .map((key) => ({
+    name: key,
+    colorKey: key,
   }));
 
 // 导出一个函数来获取所有可用的颜色键（用于调试）
