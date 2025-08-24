@@ -4,6 +4,7 @@ import sass from "@terrazzo/plugin-sass";
 import js from "@terrazzo/plugin-js";
 import tailwind from "@terrazzo/plugin-tailwind";
 import vanillaExtract from "@terrazzo/plugin-vanilla-extract";
+import tailwindV4 from "./plugins/tailwind-v4.mjs";
 import tokensBase from "./plugins/tokens-base.mjs";
 import colorsHelper from "./plugins/colors-helper.mjs";
 import spacingHelper from "./plugins/spacing-helper.mjs";
@@ -181,19 +182,24 @@ export default defineConfig({
     scssResponsiveMixinsV2(), // SCSS 响应式 mixins - up(), down(), between(), only() 等
     scssTypographyMixinsV2(), // SCSS typography mixins - typography-styles() 等
     scssMixinsMerger(), // 合并 SCSS mixins
-    // tailwind({
-    //   filename: "tailwind.js",
+    tailwind({
+      filename: "tailwind-theme.js",
 
-    //   theme: {
-    //     /** @see https://tailwindcss.com/docs/configuration#theme */
-    //     colors: ["color.*"],
-    //     font: {
-    //       sans: "typography.family.base",
-    //     },
-    //     spacing: ["spacing.*"],
-    //     radius: ["borderRadius.*"],
-    //   },
-    // }),
+      theme: {
+        /** @see https://tailwindcss.com/docs/configuration#theme */
+        colors: ["color.*"],
+        font: {
+          sans: "typography.family.base",
+        },
+        spacing: ["spacing.*"],
+        radius: ["borderRadius.*"],
+      },
+      modeVariants: [
+        { variant: "light", mode: "light" },
+        { variant: "dark", mode: "dark" }
+      ]
+    }),
+    tailwindV4({ filename: "tailwind.css" }), // Tailwind CSS v4 格式
     // vanillaExtract({
     //   filename: "themes.css.ts",
     //   // Use global CSS vars (recommended). Your Vanilla Extract CSS is still scoped.

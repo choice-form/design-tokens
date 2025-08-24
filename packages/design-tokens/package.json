@@ -1,6 +1,6 @@
 {
   "name": "@choiceform/design-tokens",
-  "version": "0.1.3",
+  "version": "0.2.8",
   "description": "Design tokens generator for Choiceform Design System - converts TypeScript tokens to W3C format and outputs to multiple formats",
   "main": "dist/tokens.js",
   "types": "dist/tokens.d.ts",
@@ -18,6 +18,7 @@
     },
     "./css": "./dist/tokens.css",
     "./scss": "./dist/tokens.scss",
+    "./tailwind.css": "./dist/tailwind.css",
     "./tokens.css": {
       "style": "./dist/tokens.css",
       "default": "./dist/tokens.css"
@@ -27,6 +28,8 @@
       "default": "./dist/preflight.css"
     },
     "./tokens.scss": "./dist/tokens.scss",
+    "./mixins.scss": "./dist/mixins.scss",
+    "./functions.scss": "./dist/functions.scss",
     "./tokens.js": "./dist/tokens.js",
     "./tokens.d.ts": "./dist/tokens.d.ts"
   },
@@ -70,12 +73,12 @@
     "stats": "node -e \"console.log('📊 Design token stats:'); const fs = require('fs'); const files = fs.readdirSync('./output').filter(f => f.endsWith('.json')); let total = 0; files.forEach(f => { const data = JSON.parse(fs.readFileSync('./output/' + f)); const count = JSON.stringify(data).split('$type').length - 1; total += count; console.log(`📄 ${f}: ${count} tokens`); }); console.log(`📋 Total: ${total} tokens`);\""
   },
   "dependencies": {
-    "@terrazzo/cli": "^0.8.1",
-    "@terrazzo/plugin-css": "^0.8.1",
-    "@terrazzo/plugin-js": "^0.8.1",
-    "@terrazzo/plugin-sass": "^0.8.1",
-    "@terrazzo/plugin-tailwind": "^0.1.0",
-    "@terrazzo/plugin-vanilla-extract": "^0.0.2"
+    "@terrazzo/cli": "^0.10.2",
+    "@terrazzo/plugin-css": "^0.10.2",
+    "@terrazzo/plugin-js": "^0.10.1",
+    "@terrazzo/plugin-sass": "^0.10.1",
+    "@terrazzo/plugin-tailwind": "^0.3.2",
+    "@terrazzo/plugin-vanilla-extract": "^0.2.1"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

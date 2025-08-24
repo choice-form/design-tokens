@@ -5273,6 +5273,25 @@
       }
     },
     "gray": {
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.98,
+            0.98,
+            0.98
+          ],
+          "alpha": 1,
+          "hex": "#fafafa"
+        },
+        "$description": "gray 50 color (extended)",
+        "$extensions": {
+          "choiceform.design-system": {
+            "category": "neutrals"
+          }
+        }
+      },
       "100": {
         "$type": "color",
         "$value": {

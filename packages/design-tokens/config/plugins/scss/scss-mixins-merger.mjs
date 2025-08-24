@@ -14,6 +14,26 @@ export default function scssMixinsMerger() {
         }
 
         const output = [];
+        const mixinsData = global.designTokensHelpers.scssMixins;
+
+        // 收集所有需要的 @use 语句（去重）
+        const useStatements = new Set();
+        
+        // 从所有模块中提取 @use 语句
+        mixinsData.forEach((moduleData) => {
+          const useMatches = moduleData.content.match(/@use\s+"sass:[^"]+";?/g);
+          if (useMatches) {
+            useMatches.forEach(statement => {
+              useStatements.add(statement.replace(/;?\s*$/, '') + ';');
+            });
+          }
+        });
+
+        // 首先输出所有 @use 语句
+        useStatements.forEach(statement => output.push(statement));
+        if (useStatements.size > 0) {
+          output.push("");
+        }
 
         // 添加文件头部注释
         output.push(
@@ -57,16 +77,17 @@ export default function scssMixinsMerger() {
         );
         output.push("");
 
-        // 合并所有 mixins 模块
-        const mixinsData = global.designTokensHelpers.scssMixins;
-
         // 按特定顺序合并模块
         const moduleOrder = ["responsive", "color", "utility"];
 
         moduleOrder.forEach((moduleName) => {
           const moduleData = mixinsData.find((m) => m.name === moduleName);
           if (moduleData) {
-            output.push(moduleData.content);
+            // 移除模块中的 @use 语句，避免重复
+            let moduleContent = moduleData.content;
+            moduleContent = moduleContent.replace(/@use\s+"sass:[^"]+";?\s*\n?/g, '');
+            
+            output.push(moduleContent);
             output.push(""); // 模块之间的空行
           }
         });
@@ -74,7 +95,11 @@ export default function scssMixinsMerger() {
         // 合并任何其他未排序的模块
         mixinsData.forEach((moduleData) => {
           if (!moduleOrder.includes(moduleData.name)) {
-            output.push(moduleData.content);
+            // 移除模块中的 @use 语句，避免重复
+            let moduleContent = moduleData.content;
+            moduleContent = moduleContent.replace(/@use\s+"sass:[^"]+";?\s*\n?/g, '');
+            
+            output.push(moduleContent);
             output.push("");
           }
         });

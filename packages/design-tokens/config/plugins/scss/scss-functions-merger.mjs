@@ -29,8 +29,16 @@ export default function scssFunctionsMerger(userOptions = {}) {
       );
       output.push("");
 
-      // 通用依赖
-      output.push('@use "sass:string";');
+      // 收集所有需要的 @use 语句（去重）
+      const useStatements = new Set();
+      useStatements.add('@use "sass:string"');
+      useStatements.add('@use "sass:map"');
+      useStatements.add('@use "sass:meta"');
+      useStatements.add('@use "sass:list"');
+      useStatements.add('@use "sass:math"');
+      
+      // 输出所有 @use 语句
+      useStatements.forEach(statement => output.push(statement + ";"));
       output.push("");
 
       // 添加各个模块的函数
@@ -46,7 +54,12 @@ export default function scssFunctionsMerger(userOptions = {}) {
             `// ============================================================================`
           );
           output.push("");
-          output.push(helpers[moduleName]);
+          
+          // 移除模块中的 @use 语句，避免重复
+          let moduleContent = helpers[moduleName];
+          moduleContent = moduleContent.replace(/@use\s+"sass:[^"]+";?\s*\n?/g, '');
+          
+          output.push(moduleContent);
           output.push("");
         }
       });
@@ -62,7 +75,12 @@ export default function scssFunctionsMerger(userOptions = {}) {
             `// ============================================================================`
           );
           output.push("");
-          output.push(helpers[moduleName]);
+          
+          // 移除模块中的 @use 语句，避免重复
+          let moduleContent = helpers[moduleName];
+          moduleContent = moduleContent.replace(/@use\s+"sass:[^"]+";?\s*\n?/g, '');
+          
+          output.push(moduleContent);
           output.push("");
         }
       });

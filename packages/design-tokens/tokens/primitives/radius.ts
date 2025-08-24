@@ -4,7 +4,8 @@
 const radiusValues = {
   sm: "0.125rem", // 2px
   md: "0.3125rem", // 5px
-  lg: "0.8125rem", // 13px
+  lg: "0.4375rem", // 13px
+  xl: "0.8125rem", // 20px
 };
 
 module.exports = {

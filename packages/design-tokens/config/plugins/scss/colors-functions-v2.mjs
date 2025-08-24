@@ -6,25 +6,55 @@ export default function scssColorsFunctionsV2(userOptions = {}) {
     async build({ tokens, getTransforms, outputFile }) {
       const output = [];
 
-      // SCSS 文件头部
+      // 添加必要的 @use 语句（仅在此模块中需要的）
       output.push('@use "sass:map";');
       output.push('@use "sass:meta";');
-      output.push('@use "sass:string";');
       output.push('@use "sass:list";');
       output.push("");
-      output.push(
-        "// ============================================================================"
-      );
+      
+      // 颜色工具函数注释
       output.push("// 颜色工具函数 - 与 CSS-in-JS API 完全一致");
-      output.push(
-        "// ============================================================================"
-      );
       output.push("");
 
-      // 收集所有颜色 tokens
-      const colorTokens = Object.keys(tokens)
-        .filter((key) => key.startsWith("color."))
-        .map((key) => key.replace("color.", ""));
+      // 收集所有颜色 tokens 和它们的 alpha 值
+      const colorTokens = [];
+      const colorAlphaMap = {};
+      
+      Object.entries(tokens).forEach(([id, token]) => {
+        if (id.startsWith("color.")) {
+          const colorPath = id.replace("color.", "");
+          colorTokens.push(colorPath);
+          
+          // 提取 alpha 值（与 tailwind-v4.mjs 保持一致）
+          let alpha = null;
+          
+          // 检查 originalValue.$extensions.alpha（Terrazzo 处理后的位置）
+          if (token.originalValue && token.originalValue.$extensions && token.originalValue.$extensions.alpha) {
+            if (typeof token.originalValue.$extensions.alpha === 'number') {
+              alpha = token.originalValue.$extensions.alpha;
+            } else if (token.originalValue.$extensions.alpha.light !== undefined) {
+              // 使用 light 模式的 alpha 值作为默认值
+              alpha = token.originalValue.$extensions.alpha.light;
+            }
+          }
+          // 回退检查 $extensions.alpha
+          else if (token.$extensions && token.$extensions.alpha) {
+            if (typeof token.$extensions.alpha === 'number') {
+              alpha = token.$extensions.alpha;
+            } else if (token.$extensions.alpha.light !== undefined) {
+              alpha = token.$extensions.alpha.light;
+            }
+          }
+          // 检查 $value 中的 alpha
+          else if (token.$value && typeof token.$value === 'object' && token.$value.alpha !== undefined && token.$value.alpha !== 1) {
+            alpha = token.$value.alpha;
+          }
+          
+          if (alpha !== null && alpha !== 1) {
+            colorAlphaMap[colorPath] = alpha;
+          }
+        }
+      });
 
       // 主要颜色函数 - 完全匹配 CSS-in-JS API
       output.push("/// 颜色辅助函数 - 与 CSS-in-JS color() 完全一致");
@@ -73,9 +103,17 @@ export default function scssColorsFunctionsV2(userOptions = {}) {
       output.push("  ");
 
       // 确定最终的 alpha 值
-      output.push(
-        "  $final-alpha: if($alpha != null, clamp(0, $alpha, 1), 1);"
-      );
+      output.push("  // 确定最终的 alpha 值");
+      output.push("  $final-alpha: null;");
+      output.push("  ");
+      output.push("  // 如果用户提供了 alpha 值，使用用户的值");
+      output.push("  @if $alpha != null {");
+      output.push("    $final-alpha: clamp(0, $alpha, 1);");
+      output.push("  }");
+      output.push("  // 否则从 token 的默认 alpha 值中获取");
+      output.push("  @else {");
+      output.push("    $final-alpha: _get-color-alpha($path);");
+      output.push("  }");
       output.push("  ");
 
       output.push("  @return rgba(var(#{$css-var}), #{$final-alpha});");
@@ -133,6 +171,28 @@ export default function scssColorsFunctionsV2(userOptions = {}) {
       );
       output.push("  }");
       output.push("  @return $string;");
+      output.push("}");
+      output.push("");
+
+      // 获取颜色的默认 alpha 值（私有）
+      output.push("/// 获取颜色的默认 alpha 值");
+      output.push("/// @param {String} $path - 颜色路径");
+      output.push("/// @return {Number} alpha 值");
+      output.push("/// @access private");
+      output.push("@function _get-color-alpha($path) {");
+      output.push("  // 颜色 alpha 映射表");
+      output.push("  $color-alpha-map: (");
+      Object.entries(colorAlphaMap).forEach(([path, alpha], index, arr) => {
+        const comma = index === arr.length - 1 ? "" : ",";
+        output.push(`    "${path}": ${alpha}${comma}`);
+      });
+      output.push("  );");
+      output.push("  ");
+      output.push("  // 查找并返回 alpha 值，如果没有则返回 1");
+      output.push("  @if map.has-key($color-alpha-map, $path) {");
+      output.push("    @return map.get($color-alpha-map, $path);");
+      output.push("  }");
+      output.push("  @return 1;");
       output.push("}");
       output.push("");
 

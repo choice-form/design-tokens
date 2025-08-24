@@ -20,6 +20,14 @@
       "$type": "dimension",
       "$description": "Border radius lg size",
       "$value": {
+        "value": 0.4375,
+        "unit": "rem"
+      }
+    },
+    "xl": {
+      "$type": "dimension",
+      "$description": "Border radius xl size",
+      "$value": {
         "value": 0.8125,
         "unit": "rem"
       }
