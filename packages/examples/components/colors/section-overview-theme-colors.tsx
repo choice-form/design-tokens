@@ -21,6 +21,7 @@ const Button = styled.button`
   border-radius: ${radius("md")};
   background-color: ${color("background.accent")};
   color: ${color("text.on-accent")};
+  border: none;
 
   &[data-theme="accent"] {
     background-color: ${color("background.accent")};

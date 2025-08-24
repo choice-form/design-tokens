@@ -74,8 +74,8 @@ importers:
         specifier: workspace:*
         version: link:../design-tokens
       '@choiceform/icons-react':
-        specifier: ^1.1.4
-        version: 1.1.4(react@18.3.1)
+        specifier: ^1.2.4
+        version: 1.2.4(react@18.3.1)
       '@linaria/core':
         specifier: ^6.3.0
         version: 6.3.0
@@ -489,8 +489,8 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@choiceform/icons-react@1.1.4(react@18.3.1):
-    resolution: {integrity: sha512-xDWBYVsnXIoK9DRKvqtzduAvN0GbeEExzY8LkjnQ59YgPqU3kFnRcn6tod2YBk3L46aMf4m8vm/Nc2/mneqyUw==}
+  /@choiceform/icons-react@1.2.4(react@18.3.1):
+    resolution: {integrity: sha512-fK0O+S7PVvoD54olUOx6F726q2iaLcUHHf4+STlv9YXE74Co9bmdNgri4YRBRbzNH2nSCp9SXQIKpSqjOE4UKQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:

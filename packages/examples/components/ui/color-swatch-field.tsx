@@ -52,7 +52,7 @@ export const ColorSwatchField = memo(function ColorSwatchField(
         {colorData.name}
       </div>
       <div className={colorSwatchesClass}>
-        {colorData.shades.map((shade, index) => {
+        {colorData.shades.slice(0, 10).map((shade) => {
           const key =
             "opacity" in shade ? `${shade.key}-${shade.opacity}` : shade.key;
           return <ColorSwatch key={key} shade={shade} />;

@@ -29,9 +29,12 @@ import Github from "@choiceform/icons-react/Github";
 // Styled Components
 const AppContainer = styled.div`
   min-height: 100vh;
-  background-color: ${color("background.default")};
+  background-color: ${color("white")};
   color: ${color("text.default")};
   ${typographyStyles("body.medium")};
+  &[data-theme="dark"] {
+    background-color: ${color("gray.900")};
+  }
 `;
 
 const Container = styled.div`
@@ -75,6 +78,9 @@ const Button = styled.button`
   padding: 0 ${spacing(2)};
   border-radius: ${radius("md")};
   justify-self: end;
+  border: none;
+  color: ${color("text.default")};
+  background-color: ${color("background.default")};
 
   &:hover {
     background-color: ${color("background.secondary")};
@@ -105,6 +111,10 @@ const NavLink = styled(Link)`
   border-radius: ${radius("md")};
   text-decoration: none;
   cursor: default;
+  color: ${color("text.default")};
+  &:target {
+    color: ${color("text.default")};
+  }
 
   &[data-active="true"] {
     background-color: ${color("background.accent", 0.1)};
@@ -180,7 +190,7 @@ const App: React.FC = () => {
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      <AppContainer>
+      <AppContainer data-theme={theme}>
         <Header>
           <Container
             className={css`

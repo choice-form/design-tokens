@@ -16,7 +16,7 @@ interface SectionProps {
 }
 
 const SectionRoot = styled.section`
-  margin-bottom: ${spacing(32)};
+  padding-bottom: ${spacing(32)};
 `;
 const SectionContainer = styled.div`
   display: grid;

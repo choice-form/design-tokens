@@ -16,10 +16,7 @@ const themePanelClass = css`
   padding: ${spacing(4)};
   color: ${color("text.default")};
   min-width: 0;
-
-  &[data-theme="dark"] {
-    background-color: ${color("background.default")};
-  }
+  background-color: ${color("background.default")};
 `;
 
 const themePanelEmptyClass = css`

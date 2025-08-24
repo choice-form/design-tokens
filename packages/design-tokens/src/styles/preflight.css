@@ -117,4 +117,11 @@
   svg {
     flex: none;
   }
+
+  button,
+  input,
+  select,
+  textarea {
+    appearance: none;
+  }
 }
