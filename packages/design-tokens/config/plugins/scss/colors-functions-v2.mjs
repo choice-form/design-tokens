@@ -84,7 +84,7 @@ export default function scssColorsFunctionsV2(userOptions = {}) {
 
       // 自动添加 color. 前缀（如果没有的话）
       output.push(
-        '  $token-path: if(str-index($path, "color.") == 1, $path, "color.#{$path}");'
+        '  $token-path: if(string.index($path, "color.") == 1, $path, "color.#{$path}");'
       );
       output.push("  ");
 
@@ -128,7 +128,7 @@ export default function scssColorsFunctionsV2(userOptions = {}) {
       output.push("/// @return {String} CSS 变量");
       output.push("@function color-var($path) {");
       output.push(
-        '  $token-path: if(str-index($path, "color.") == 1, $path, "color.#{$path}");'
+        '  $token-path: if(string.index($path, "color.") == 1, $path, "color.#{$path}");'
       );
       output.push('  $css-var-name: str-replace($token-path, ".", "-");');
       output.push("  @return var(--cdt-#{$css-var-name});");

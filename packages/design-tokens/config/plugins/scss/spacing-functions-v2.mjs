@@ -108,15 +108,15 @@ export default function scssSpacingFunctionsV2(userOptions = {}) {
       output.push("  // 处理任意值 [value]");
       output.push("  @if meta.type-of($size) == string {");
       output.push(
-        '    @if str-index($size, "[") == 1 and str-index($size, "]") == str-length($size) {'
+        '    @if string.index($size, "[") == 1 and string.index($size, "]") == string.length($size) {'
       );
-      output.push("      @return str-slice($size, 2, -2);");
+      output.push("      @return string.slice($size, 2, -2);");
       output.push("    }");
       output.push("  }");
       output.push("");
       output.push("  // 处理分数 1/2, 2/3 等");
       output.push(
-        '  @if meta.type-of($size) == string and str-index($size, "/") {'
+        '  @if meta.type-of($size) == string and string.index($size, "/") {'
       );
       output.push("    @return _parse-fraction($size);");
       output.push("  }");
@@ -205,13 +205,13 @@ export default function scssSpacingFunctionsV2(userOptions = {}) {
       output.push("  @if meta.type-of($size) == string {");
       output.push("    // 任意值检查");
       output.push(
-        '    @if str-index($size, "[") == 1 and str-index($size, "]") == str-length($size) {'
+        '    @if string.index($size, "[") == 1 and string.index($size, "]") == string.length($size) {'
       );
       output.push("      @return true;");
       output.push("    }");
       output.push("");
       output.push("    // 分数检查");
-      output.push('    @if str-index($size, "/") {');
+      output.push('    @if string.index($size, "/") {');
       output.push(
         '      $valid-fractions: ("1/2", "1/3", "2/3", "1/4", "3/4", "1/5", "2/5", "3/5", "4/5", "1/6", "5/6", "1/12", "5/12", "7/12", "11/12");'
       );
