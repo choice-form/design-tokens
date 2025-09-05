@@ -1,6 +1,6 @@
 {
   "name": "@choiceform/design-tokens",
-  "version": "0.2.8",
+  "version": "0.2.11",
   "description": "Design tokens generator for Choiceform Design System - converts TypeScript tokens to W3C format and outputs to multiple formats",
   "main": "dist/tokens.js",
   "types": "dist/tokens.d.ts",

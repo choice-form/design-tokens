@@ -108,8 +108,12 @@
 
   body {
     touch-action: pan-x pan-y;
-    font: 400 11px / 16px Inter, sans-serif;
-    font-feature-settings: "liga" on, "calt" on;
+    font:
+      400 11px / 16px Inter,
+      sans-serif;
+    font-feature-settings:
+      "liga" on,
+      "calt" on;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -123,5 +127,13 @@
   select,
   textarea {
     appearance: none;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
   }
 }
