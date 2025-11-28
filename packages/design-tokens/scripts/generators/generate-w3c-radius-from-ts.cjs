@@ -14,7 +14,7 @@ function parseRemValue(remString) {
 
 // 读取 radius 数据
 function getRadiusData() {
-  return require("../../tokens/primitives/radius.ts");
+  return require("../../tokens/primitives/radius.cjs");
 }
 
 // 转换为 W3C 格式

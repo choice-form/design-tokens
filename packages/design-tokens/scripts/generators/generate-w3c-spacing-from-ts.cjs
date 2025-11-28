@@ -25,7 +25,7 @@ function parseSpacingValue(value, key) {
 
 // 读取 spacing 数据
 function getSpacingData() {
-  return require("../../tokens/primitives/spacing.ts");
+  return require("../../tokens/primitives/spacing.cjs");
 }
 
 // 转换为 W3C 格式

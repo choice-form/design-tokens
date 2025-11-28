@@ -8,6 +8,7 @@ const zindexValues = {
   modals: 810,
   popover: 820,
   menu: 910,
+  alert: 920,
   tooltip: 1000,
   notification: 1100,
   "scroll-bar": 1200,

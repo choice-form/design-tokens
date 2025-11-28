@@ -16,7 +16,7 @@ const {
   extendedSemanticColors,
   defaultAlpha,
   colorCategories,
-} = require("../../tokens/primitives/colors.ts");
+} = require("../../tokens/primitives/colors.cjs");
 
 // ============================================================================
 // 工具函数

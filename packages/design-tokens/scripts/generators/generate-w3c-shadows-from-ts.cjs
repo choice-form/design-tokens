@@ -11,7 +11,7 @@ const {
   shadowsLight,
   shadowsDark,
   semanticShadows,
-} = require("../../tokens/primitives/shadows.ts");
+} = require("../../tokens/primitives/shadows.cjs");
 
 // ============================================================================
 // 辅助函数

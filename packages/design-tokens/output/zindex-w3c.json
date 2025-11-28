@@ -30,6 +30,11 @@
       "$description": "Z-index value for menu layer",
       "$value": 910
     },
+    "alert": {
+      "$type": "number",
+      "$description": "Z-index value for alert layer",
+      "$value": 920
+    },
     "tooltip": {
       "$type": "number",
       "$description": "Z-index value for tooltip layer",

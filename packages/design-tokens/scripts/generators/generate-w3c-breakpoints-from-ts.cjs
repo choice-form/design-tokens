@@ -11,7 +11,7 @@ function pxToRem(pxValue) {
 
 // 读取 breakpoints 数据
 function getBreakpointsData() {
-  return require("../../tokens/primitives/breakpoints.ts");
+  return require("../../tokens/primitives/breakpoints.cjs");
 }
 
 // 转换为 W3C 格式

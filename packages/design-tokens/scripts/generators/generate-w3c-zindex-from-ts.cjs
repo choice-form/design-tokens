@@ -3,7 +3,7 @@ const path = require("path");
 
 // 读取 zindex 数据
 function getZindexData() {
-  return require("../../tokens/primitives/zindex.ts");
+  return require("../../tokens/primitives/zindex.cjs");
 }
 
 // 转换为 W3C 格式

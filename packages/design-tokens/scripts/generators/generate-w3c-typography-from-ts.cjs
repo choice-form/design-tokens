@@ -154,7 +154,7 @@ function main() {
 
     // 读取数据
     console.log("📥 读取 Typography 数据...");
-    const typographyData = require("../../tokens/primitives/typography.ts");
+    const typographyData = require("../../tokens/primitives/typography.cjs");
 
     console.log("🔄 转换为 W3C 格式...");
     const w3cTokens = convertTypographyToW3C(typographyData);
